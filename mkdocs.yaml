@@ -6,5 +6,6 @@ nav:
   - Git:
       - Merge Conflict: git/merge-conflict.md
       - Detached Head: git/detached-head.md
+      - Branching & Merging: git/branching-merging.md
   - Hosting:
       - Vercel Deploy: hosting/vercel-deploy.md
