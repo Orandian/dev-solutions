@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write   # allow Actions to push to gh-pages
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -20,6 +23,11 @@ jobs:
         run: |
           pip install mkdocs-material
 
-      - name: Build and Deploy
-        run: |
-          mkdocs gh-deploy --force
+      - name: Build site
+        run: mkdocs build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
