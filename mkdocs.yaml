@@ -1,0 +1,10 @@
+site_name: Dev Solutions
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Git:
+      - Merge Conflict: git/merge-conflict.md
+      - Detached Head: git/detached-head.md
+  - Hosting:
+      - Vercel Deploy: hosting/vercel-deploy.md
