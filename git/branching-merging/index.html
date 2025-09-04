@@ -438,13 +438,18 @@
 
 
 <h1 id="branching-merging">Branching &amp; Merging</h1>
-<p>```bash</p>
-<h1 id="create-a-new-branch">Create a new branch</h1>
-<p>git branch {branchName}</p>
-<h1 id="switch-to-a-branch">Switch to a branch</h1>
-<p>git checkout {branchName}</p>
-<h1 id="merge-a-remote-branch-into-your-current-branch">Merge a remote branch into your current branch</h1>
-<p>git merge origin/{branchName}</p>
+<p><strong>Problem</strong><br />
+<code>error: Your local changes to the following files would be overwritten by merge</code></p>
+<p><strong>Solution</strong></p>
+<pre><code class="language-bash"># Create a new branch
+git branch {branchName}
+</code></pre>
+<pre><code class="language-bash"># Switch to a branch
+git checkout {branchName}
+</code></pre>
+<pre><code class="language-bash"># Merge a remote branch into your current branch
+git merge origin/{branchName}
+</code></pre>
 
 
 
