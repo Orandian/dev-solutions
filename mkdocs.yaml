@@ -9,3 +9,5 @@ nav:
       - Branching & Merging: git/branching-merging.md
   - Hosting:
       - Vercel Deploy: hosting/vercel-deploy.md
+  - Caddy:
+      - SSL Renewal: caddy/ssl-renewal.md
