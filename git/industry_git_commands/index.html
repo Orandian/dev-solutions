@@ -1,0 +1,2179 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../branching-merging/">
+      
+      
+        <link rel="next" href="../../hosting/vercel-deploy/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Industry Git Commands - Dev Solutions</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#industry-git-commands-for-project-management" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Dev Solutions" class="md-header__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Solutions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Industry Git Commands
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Dev Solutions" class="md-nav__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dev Solutions
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Git
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../merge-conflict/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Merge Conflict
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detached-head/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detached Head
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-merging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branching & Merging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Industry Git Commands
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Industry Git Commands
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-setup-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repository Setup &amp; Initialization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository Setup &amp; Initialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-repository-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Repository Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#branch-management-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branch Management Strategies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Branch Management Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-and-managing-feature-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating and Managing Feature Branches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch-tracking-and-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branch Tracking and Updates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collaborative-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collaborative Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Collaborative Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#daily-development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Daily Development Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-with-team-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with Team Changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stashing-work-in-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stashing Work in Progress
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-review-pull-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Review &amp; Pull Requests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Review &amp; Pull Requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparing-code-for-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparing Code for Review
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-review-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Review Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-releases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Releases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-tags-and-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Tags and Versions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hotfix-emergency-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hotfix &amp; Emergency Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hotfix &amp; Emergency Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#emergency-hotfix-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emergency Hotfix Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverting-changes-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reverting Changes in Production
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-git-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Git Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Git Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rebasing-and-history-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rebasing and History Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cherry-picking-and-selective-merging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cherry-picking and Selective Merging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-merging-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Merging Strategies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-flow-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Flow Workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git Flow Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-flow-commands-using-git-flow-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Flow Commands (using git-flow extension)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-flow-simplified" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Flow (Simplified)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting &amp; Recovery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting &amp; Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#undoing-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Undoing Changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recovery Operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleaning-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleaning Repository
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enterprise-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enterprise Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commit-message-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit Message Standards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch-protection-and-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branch Protection and Policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repository Maintenance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-and-access-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security and Access Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#daily-workflow-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Daily Workflow Checklist
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Daily Workflow Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#morning-routine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Morning Routine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#before-leaving-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before Leaving Work
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weekly-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weekly Maintenance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emergency-commands-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emergency Commands Reference
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hosting
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Hosting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hosting/vercel-deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vercel Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Caddy
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Caddy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../caddy/ssl-renewal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SSL Renewal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker_process_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spring boot process
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/essential_docker_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Essential Docker Commands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-setup-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repository Setup &amp; Initialization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository Setup &amp; Initialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-repository-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Repository Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#branch-management-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branch Management Strategies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Branch Management Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-and-managing-feature-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating and Managing Feature Branches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch-tracking-and-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branch Tracking and Updates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collaborative-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collaborative Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Collaborative Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#daily-development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Daily Development Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-with-team-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with Team Changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stashing-work-in-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stashing Work in Progress
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-review-pull-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Review &amp; Pull Requests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Review &amp; Pull Requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparing-code-for-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparing Code for Review
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-review-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Review Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-releases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Releases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-tags-and-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Tags and Versions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hotfix-emergency-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hotfix &amp; Emergency Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hotfix &amp; Emergency Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#emergency-hotfix-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emergency Hotfix Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverting-changes-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reverting Changes in Production
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-git-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Git Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Git Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rebasing-and-history-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rebasing and History Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cherry-picking-and-selective-merging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cherry-picking and Selective Merging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-merging-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Merging Strategies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-flow-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Flow Workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git Flow Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-flow-commands-using-git-flow-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Flow Commands (using git-flow extension)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-flow-simplified" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Flow (Simplified)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting &amp; Recovery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting &amp; Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#undoing-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Undoing Changes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recovery Operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleaning-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleaning Repository
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enterprise-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enterprise Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enterprise Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commit-message-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit Message Standards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch-protection-and-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branch Protection and Policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repository Maintenance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-and-access-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security and Access Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#daily-workflow-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Daily Workflow Checklist
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Daily Workflow Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#morning-routine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Morning Routine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#before-leaving-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before Leaving Work
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weekly-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weekly Maintenance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emergency-commands-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emergency Commands Reference
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="industry-git-commands-for-project-management">Industry Git Commands for Project Management</h1>
+<p>A comprehensive guide to Git commands essential for professional software development and project management in enterprise environments.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#repository-setup--initialization">Repository Setup &amp; Initialization</a></li>
+<li><a href="#branch-management-strategies">Branch Management Strategies</a></li>
+<li><a href="#collaborative-development">Collaborative Development</a></li>
+<li><a href="#code-review--pull-requests">Code Review &amp; Pull Requests</a></li>
+<li><a href="#release-management">Release Management</a></li>
+<li><a href="#hotfix--emergency-procedures">Hotfix &amp; Emergency Procedures</a></li>
+<li><a href="#advanced-git-operations">Advanced Git Operations</a></li>
+<li><a href="#git-flow-workflows">Git Flow Workflows</a></li>
+<li><a href="#troubleshooting--recovery">Troubleshooting &amp; Recovery</a></li>
+<li><a href="#enterprise-best-practices">Enterprise Best Practices</a></li>
+</ol>
+<hr />
+<h2 id="repository-setup-initialization">Repository Setup &amp; Initialization</h2>
+<h3 id="initial-repository-setup">Initial Repository Setup</h3>
+<pre><code class="language-bash"># Initialize new repository
+git init
+
+# Clone existing repository
+git clone https://github.com/company/project.git
+git clone git@github.com:company/project.git  # SSH
+
+# Clone specific branch
+git clone -b develop https://github.com/company/project.git
+
+# Clone with custom directory name
+git clone https://github.com/company/project.git my-project
+
+# Set up remote repositories
+git remote add origin https://github.com/company/project.git
+git remote add upstream https://github.com/original/project.git
+</code></pre>
+<h3 id="initial-configuration">Initial Configuration</h3>
+<pre><code class="language-bash"># Configure user information
+git config --global user.name &quot;John Doe&quot;
+git config --global user.email &quot;john.doe@company.com&quot;
+
+# Set default branch name
+git config --global init.defaultBranch main
+
+# Set up SSH key (for secure access)
+ssh-keygen -t ed25519 -C &quot;john.doe@company.com&quot;
+ssh-add ~/.ssh/id_ed25519
+
+# Configure line endings (important for cross-platform teams)
+git config --global core.autocrlf true  # Windows
+git config --global core.autocrlf input # Mac/Linux
+
+# Set default editor
+git config --global core.editor &quot;code --wait&quot;  # VS Code
+</code></pre>
+<hr />
+<h2 id="branch-management-strategies">Branch Management Strategies</h2>
+<h3 id="creating-and-managing-feature-branches">Creating and Managing Feature Branches</h3>
+<pre><code class="language-bash"># Create and switch to new feature branch
+git checkout -b feature/user-authentication
+git switch -c feature/user-authentication  # Modern syntax
+
+# Create branch from specific commit
+git checkout -b hotfix/security-patch main
+
+# List all branches (local and remote)
+git branch -a
+git branch -r  # Remote only
+
+# Switch between branches
+git checkout develop
+git switch develop  # Modern syntax
+
+# Rename branch
+git branch -m old-name new-name
+git branch -m new-name  # Rename current branch
+
+# Delete branch (safe - prevents deletion if not merged)
+git branch -d feature/completed-feature
+
+# Force delete branch
+git branch -D feature/abandoned-feature
+
+# Delete remote branch
+git push origin --delete feature/old-feature
+</code></pre>
+<h3 id="branch-tracking-and-updates">Branch Tracking and Updates</h3>
+<pre><code class="language-bash"># Set upstream branch for current branch
+git push -u origin feature/new-feature
+
+# Track remote branch
+git checkout --track origin/feature/existing-feature
+
+# Update local branch with remote changes
+git pull origin develop
+git pull --rebase origin develop  # Rebase instead of merge
+
+# Fetch all remote changes without merging
+git fetch --all
+
+# Show branch relationships
+git branch -vv
+</code></pre>
+<hr />
+<h2 id="collaborative-development">Collaborative Development</h2>
+<h3 id="daily-development-workflow">Daily Development Workflow</h3>
+<pre><code class="language-bash"># Start work day - update local repository
+git fetch --all
+git pull origin develop
+
+# Create feature branch for new work
+git checkout -b feature/payment-integration
+
+# Stage and commit changes
+git add .
+git add -p  # Interactive staging (recommended)
+git commit -m &quot;feat: implement stripe payment integration&quot;
+
+# Push feature branch to remote
+git push -u origin feature/payment-integration
+
+# Regular commits during development
+git add .
+git commit -m &quot;feat: add payment validation logic&quot;
+git push origin feature/payment-integration
+</code></pre>
+<h3 id="working-with-team-changes">Working with Team Changes</h3>
+<pre><code class="language-bash"># Update feature branch with latest develop
+git checkout develop
+git pull origin develop
+git checkout feature/payment-integration
+git merge develop
+
+# Alternative: Rebase feature branch
+git checkout feature/payment-integration
+git rebase develop
+
+# Interactive rebase for cleaning up commits
+git rebase -i HEAD~3  # Last 3 commits
+
+# Resolve merge conflicts
+git status
+# Edit conflicted files
+git add resolved-file.js
+git commit  # Complete merge
+</code></pre>
+<h3 id="stashing-work-in-progress">Stashing Work in Progress</h3>
+<pre><code class="language-bash"># Stash uncommitted changes
+git stash
+git stash save &quot;work in progress on login feature&quot;
+
+# List stashes
+git stash list
+
+# Apply most recent stash
+git stash pop
+git stash apply  # Apply without removing from stash
+
+# Apply specific stash
+git stash apply stash@{2}
+
+# Create branch from stash
+git stash branch feature/from-stash
+</code></pre>
+<hr />
+<h2 id="code-review-pull-requests">Code Review &amp; Pull Requests</h2>
+<h3 id="preparing-code-for-review">Preparing Code for Review</h3>
+<pre><code class="language-bash"># Ensure branch is up to date
+git checkout develop
+git pull origin develop
+git checkout feature/payment-integration
+git rebase develop
+
+# Clean up commit history before PR
+git rebase -i HEAD~5  # Interactive rebase last 5 commits
+
+# Push cleaned branch
+git push --force-with-lease origin feature/payment-integration
+
+# Create tag for release candidate
+git tag -a v1.2.0-rc1 -m &quot;Release candidate 1.2.0&quot;
+git push origin v1.2.0-rc1
+</code></pre>
+<h3 id="code-review-commands">Code Review Commands</h3>
+<pre><code class="language-bash"># Checkout PR for local testing
+git fetch origin pull/123/head:pr-123
+git checkout pr-123
+
+# Compare branches
+git diff develop..feature/payment-integration
+git diff --name-only develop..feature/payment-integration
+
+# Show commits in feature branch not in develop
+git log develop..feature/payment-integration --oneline
+
+# Check which branches contain specific commit
+git branch --contains commit-hash
+</code></pre>
+<hr />
+<h2 id="release-management">Release Management</h2>
+<h3 id="creating-releases">Creating Releases</h3>
+<pre><code class="language-bash"># Create release branch
+git checkout -b release/v1.2.0 develop
+
+# Bump version files, update changelog
+git add .
+git commit -m &quot;chore: bump version to 1.2.0&quot;
+
+# Merge release to main
+git checkout main
+git merge --no-ff release/v1.2.0
+
+# Tag the release
+git tag -a v1.2.0 -m &quot;Release version 1.2.0&quot;
+
+# Merge back to develop
+git checkout develop
+git merge --no-ff release/v1.2.0
+
+# Push everything
+git push origin main develop v1.2.0
+
+# Delete release branch
+git branch -d release/v1.2.0
+git push origin --delete release/v1.2.0
+</code></pre>
+<h3 id="managing-tags-and-versions">Managing Tags and Versions</h3>
+<pre><code class="language-bash"># List all tags
+git tag
+git tag -l &quot;v1.*&quot;  # Filter tags
+
+# Show tag information
+git show v1.2.0
+
+# Create signed tag
+git tag -s v1.2.0 -m &quot;Signed release 1.2.0&quot;
+
+# Push specific tag
+git push origin v1.2.0
+
+# Push all tags
+git push origin --tags
+
+# Delete tag locally and remotely
+git tag -d v1.2.0
+git push origin --delete v1.2.0
+
+# Checkout specific version
+git checkout v1.2.0
+</code></pre>
+<hr />
+<h2 id="hotfix-emergency-procedures">Hotfix &amp; Emergency Procedures</h2>
+<h3 id="emergency-hotfix-process">Emergency Hotfix Process</h3>
+<pre><code class="language-bash"># Create hotfix branch from main
+git checkout main
+git pull origin main
+git checkout -b hotfix/security-vulnerability
+
+# Make critical fix
+git add fixed-file.js
+git commit -m &quot;fix: resolve critical security vulnerability&quot;
+
+# Test the fix
+# Run automated tests, security scans
+
+# Merge hotfix to main
+git checkout main
+git merge --no-ff hotfix/security-vulnerability
+
+# Tag hotfix release
+git tag -a v1.2.1 -m &quot;Hotfix release 1.2.1&quot;
+
+# Merge hotfix to develop
+git checkout develop
+git merge --no-ff hotfix/security-vulnerability
+
+# Push everything
+git push origin main develop v1.2.1
+
+# Clean up
+git branch -d hotfix/security-vulnerability
+git push origin --delete hotfix/security-vulnerability
+</code></pre>
+<h3 id="reverting-changes-in-production">Reverting Changes in Production</h3>
+<pre><code class="language-bash"># Revert specific commit
+git revert commit-hash
+git revert HEAD  # Revert last commit
+
+# Revert merge commit
+git revert -m 1 merge-commit-hash
+
+# Revert multiple commits
+git revert HEAD~3..HEAD
+
+# Create revert PR instead of direct revert
+git revert --no-commit HEAD~3..HEAD
+git commit -m &quot;Revert problematic changes from release 1.2.0&quot;
+</code></pre>
+<hr />
+<h2 id="advanced-git-operations">Advanced Git Operations</h2>
+<h3 id="rebasing-and-history-management">Rebasing and History Management</h3>
+<pre><code class="language-bash"># Interactive rebase to clean up history
+git rebase -i HEAD~5
+
+# Rebase feature branch onto develop
+git rebase develop feature/payment-integration
+
+# Continue rebase after resolving conflicts
+git rebase --continue
+
+# Abort rebase
+git rebase --abort
+
+# Squash commits
+git rebase -i HEAD~3
+# Change 'pick' to 'squash' for commits to combine
+
+# Split a commit
+git rebase -i HEAD~2
+# Change 'pick' to 'edit' for commit to split
+git reset HEAD~
+# Stage and commit files separately
+git add file1.js
+git commit -m &quot;first part of original commit&quot;
+git add file2.js
+git commit -m &quot;second part of original commit&quot;
+git rebase --continue
+</code></pre>
+<h3 id="cherry-picking-and-selective-merging">Cherry-picking and Selective Merging</h3>
+<pre><code class="language-bash"># Cherry-pick specific commit
+git cherry-pick commit-hash
+
+# Cherry-pick without committing
+git cherry-pick --no-commit commit-hash
+
+# Cherry-pick range of commits
+git cherry-pick commit1..commit2
+
+# Cherry-pick from another branch
+git cherry-pick feature/other-branch~3
+</code></pre>
+<h3 id="advanced-merging-strategies">Advanced Merging Strategies</h3>
+<pre><code class="language-bash"># Merge with no fast-forward (creates merge commit)
+git merge --no-ff feature/payment-integration
+
+# Merge and squash all commits
+git merge --squash feature/payment-integration
+
+# Merge with specific strategy
+git merge -X ours feature/conflicting-branch  # Prefer our changes
+git merge -X theirs feature/conflicting-branch  # Prefer their changes
+
+# Abort merge
+git merge --abort
+
+# Continue merge after resolving conflicts
+git commit  # Complete the merge
+</code></pre>
+<hr />
+<h2 id="git-flow-workflows">Git Flow Workflows</h2>
+<h3 id="git-flow-commands-using-git-flow-extension">Git Flow Commands (using git-flow extension)</h3>
+<pre><code class="language-bash"># Initialize git flow
+git flow init
+
+# Start new feature
+git flow feature start payment-integration
+
+# Finish feature (merges to develop)
+git flow feature finish payment-integration
+
+# Start release
+git flow release start 1.2.0
+
+# Finish release (merges to main and develop, creates tag)
+git flow release finish 1.2.0
+
+# Start hotfix
+git flow hotfix start security-patch
+
+# Finish hotfix
+git flow hotfix finish security-patch
+</code></pre>
+<h3 id="github-flow-simplified">GitHub Flow (Simplified)</h3>
+<pre><code class="language-bash"># Create feature branch
+git checkout -b feature/new-feature
+
+# Work and commit
+git add .
+git commit -m &quot;implement new feature&quot;
+git push origin feature/new-feature
+
+# Create pull request (via GitHub UI)
+# After review and approval, merge via GitHub
+
+# Clean up local branch
+git checkout main
+git pull origin main
+git branch -d feature/new-feature
+</code></pre>
+<hr />
+<h2 id="troubleshooting-recovery">Troubleshooting &amp; Recovery</h2>
+<h3 id="undoing-changes">Undoing Changes</h3>
+<pre><code class="language-bash"># Undo last commit (keep changes staged)
+git reset --soft HEAD~1
+
+# Undo last commit (unstage changes)
+git reset HEAD~1
+git reset --mixed HEAD~1  # Same as above
+
+# Undo last commit (lose changes)
+git reset --hard HEAD~1
+
+# Undo changes to specific file
+git checkout HEAD -- file.js
+git restore file.js  # Modern syntax
+
+# Unstage file
+git reset HEAD file.js
+git restore --staged file.js  # Modern syntax
+</code></pre>
+<h3 id="recovery-operations">Recovery Operations</h3>
+<pre><code class="language-bash"># Find lost commits
+git reflog
+git log --oneline --all
+
+# Recover deleted branch
+git checkout -b recovered-branch commit-hash
+
+# Find commit that introduced bug
+git bisect start
+git bisect bad HEAD
+git bisect good v1.1.0
+# Git will checkout commits to test
+git bisect good/bad  # Mark each commit
+git bisect reset  # End bisect session
+
+# Recover file from specific commit
+git show commit-hash:path/to/file.js &gt; recovered-file.js
+
+# Find commits that changed specific file
+git log --follow -- file.js
+</code></pre>
+<h3 id="cleaning-repository">Cleaning Repository</h3>
+<pre><code class="language-bash"># Remove untracked files
+git clean -n  # Dry run
+git clean -f  # Remove files
+git clean -fd  # Remove files and directories
+
+# Remove ignored files
+git clean -fX
+
+# Garbage collect
+git gc --aggressive --prune=now
+
+# Verify repository integrity
+git fsck
+</code></pre>
+<hr />
+<h2 id="enterprise-best-practices">Enterprise Best Practices</h2>
+<h3 id="commit-message-standards">Commit Message Standards</h3>
+<pre><code class="language-bash"># Conventional Commits format
+git commit -m &quot;feat: add user authentication system&quot;
+git commit -m &quot;fix: resolve login validation bug&quot;
+git commit -m &quot;docs: update API documentation&quot;
+git commit -m &quot;chore: update dependencies&quot;
+git commit -m &quot;test: add unit tests for payment service&quot;
+
+# Multi-line commit messages
+git commit -m &quot;feat: implement payment processing
+
+- Add Stripe integration
+- Handle payment validation
+- Add error handling for failed payments
+- Update user interface for payment flow&quot;
+</code></pre>
+<h3 id="branch-protection-and-policies">Branch Protection and Policies</h3>
+<pre><code class="language-bash"># Check if branch is protected (GitHub CLI)
+gh api repos/:owner/:repo/branches/main
+
+# Enforce signed commits
+git config --global commit.gpgsign true
+
+# Set up commit template
+git config --global commit.template ~/.gitmessage
+</code></pre>
+<h3 id="repository-maintenance">Repository Maintenance</h3>
+<pre><code class="language-bash"># Update all remote references
+git remote update --prune
+
+# Show repository statistics
+git count-objects -v
+
+# Find large files in repository
+git rev-list --objects --all | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' | awk '/^blob/ {print substr($0,6)}' | sort --numeric-sort --key=2
+
+# Remove file from entire history (use carefully!)
+git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch large-file.zip' --prune-empty --tag-name-filter cat -- --all
+</code></pre>
+<h3 id="security-and-access-management">Security and Access Management</h3>
+<pre><code class="language-bash"># Sign commits with GPG
+git commit -S -m &quot;signed commit message&quot;
+
+# Verify signatures
+git log --show-signature
+
+# Configure GPG key
+git config --global user.signingkey GPG-KEY-ID
+
+# Use SSH for authentication
+git config --global url.&quot;git@github.com:&quot;.insteadOf &quot;https://github.com/&quot;
+</code></pre>
+<hr />
+<h2 id="daily-workflow-checklist">Daily Workflow Checklist</h2>
+<h3 id="morning-routine">Morning Routine</h3>
+<pre><code class="language-bash"># 1. Update local repository
+git fetch --all
+git checkout develop
+git pull origin develop
+
+# 2. Check status of current work
+git status
+git stash list
+
+# 3. Review what happened overnight
+git log --oneline --since=&quot;1 day ago&quot;
+</code></pre>
+<h3 id="before-leaving-work">Before Leaving Work</h3>
+<pre><code class="language-bash"># 1. Commit or stash work in progress
+git add .
+git commit -m &quot;wip: progress on feature X&quot; || git stash
+
+# 2. Push current branch
+git push origin current-branch-name
+
+# 3. Clean up workspace
+git status  # Ensure clean working directory
+</code></pre>
+<h3 id="weekly-maintenance">Weekly Maintenance</h3>
+<pre><code class="language-bash"># 1. Update all branches
+git fetch --all --prune
+
+# 2. Clean up merged branches
+git branch --merged | grep -v &quot;\*\|main\|develop&quot; | xargs -n 1 git branch -d
+
+# 3. Update main and develop
+git checkout main &amp;&amp; git pull origin main
+git checkout develop &amp;&amp; git pull origin develop
+</code></pre>
+<hr />
+<h2 id="emergency-commands-reference">Emergency Commands Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Need to switch branches quickly</td>
+<td><code>git stash &amp;&amp; git checkout branch-name</code></td>
+</tr>
+<tr>
+<td>Accidentally committed to wrong branch</td>
+<td><code>git reset --soft HEAD~1</code></td>
+</tr>
+<tr>
+<td>Need to undo last commit but keep changes</td>
+<td><code>git reset --soft HEAD~1</code></td>
+</tr>
+<tr>
+<td>Made mistake in commit message</td>
+<td><code>git commit --amend -m "corrected message"</code></td>
+</tr>
+<tr>
+<td>Need to find when bug was introduced</td>
+<td><code>git bisect start &amp;&amp; git bisect bad HEAD &amp;&amp; git bisect good v1.0.0</code></td>
+</tr>
+<tr>
+<td>Accidentally deleted branch</td>
+<td><code>git reflog</code> then <code>git checkout -b branch-name commit-hash</code></td>
+</tr>
+<tr>
+<td>Production is broken, need quick revert</td>
+<td><code>git revert commit-hash &amp;&amp; git push origin main</code></td>
+</tr>
+<tr>
+<td>Merge conflict during important release</td>
+<td><code>git merge --abort</code> then resolve properly</td>
+</tr>
+</tbody>
+</table>
+<p>Remember: Always backup important work, communicate with your team before force-pushing, and follow your company's specific Git workflows and policies!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
