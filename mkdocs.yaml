@@ -7,6 +7,7 @@ nav:
       - Merge Conflict: git/merge-conflict.md
       - Detached Head: git/detached-head.md
       - Branching & Merging: git/branching-merging.md
+      - Industry Git Commands: git/industry_git_commands.md
   - Hosting:
       - Vercel Deploy: hosting/vercel-deploy.md
   - Caddy:
