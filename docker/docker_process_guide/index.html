@@ -1,0 +1,1309 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../caddy/ssl-renewal/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Spring boot process - Dev Solutions</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#docker-process-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Dev Solutions" class="md-header__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Solutions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Spring boot process
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Dev Solutions" class="md-nav__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dev Solutions
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Git
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/merge-conflict/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Merge Conflict
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/detached-head/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detached Head
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/branching-merging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branching & Merging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hosting
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Hosting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hosting/vercel-deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vercel Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Caddy
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Caddy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../caddy/ssl-renewal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SSL Renewal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Spring boot process
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spring boot process
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spring-boot-docker-image-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spring Boot Docker Image Creation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring Boot Docker Image Creation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-the-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building the Docker Image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushing-to-docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pushing to Docker Hub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-the-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring the Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#essential-docker-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential Docker Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Essential Docker Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#image-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Interaction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-database-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL Database Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PostgreSQL Database Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-postgresql-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic PostgreSQL Container
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pgadmin-web-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      PgAdmin Web Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-container-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Container Communication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleanup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-network-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Network Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Network Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-custom-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Custom Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-containers-on-custom-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Containers on Custom Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-network-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify Network Connectivity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-service-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL Service Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PostgreSQL Service Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stopping-local-postgresql-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stopping Local PostgreSQL Services
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Tips
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spring-boot-docker-image-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spring Boot Docker Image Creation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring Boot Docker Image Creation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-the-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building the Docker Image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushing-to-docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pushing to Docker Hub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-the-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring the Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#essential-docker-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential Docker Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Essential Docker Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#image-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Interaction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-database-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL Database Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PostgreSQL Database Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-postgresql-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic PostgreSQL Container
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pgadmin-web-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      PgAdmin Web Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-container-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Container Communication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleanup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-network-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Network Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Network Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-custom-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Custom Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-containers-on-custom-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Containers on Custom Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-network-connectivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify Network Connectivity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-service-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL Service Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PostgreSQL Service Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stopping-local-postgresql-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stopping Local PostgreSQL Services
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Tips
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="docker-process-guide">Docker Process Guide</h1>
+<p>This guide covers the complete Docker workflow from building Spring Boot applications to managing PostgreSQL databases with Docker.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#spring-boot-docker-image-creation">Spring Boot Docker Image Creation</a></li>
+<li><a href="#essential-docker-commands">Essential Docker Commands</a></li>
+<li><a href="#postgresql-database-setup">PostgreSQL Database Setup</a></li>
+<li><a href="#docker-network-configuration">Docker Network Configuration</a></li>
+<li><a href="#postgresql-service-management">PostgreSQL Service Management</a></li>
+</ol>
+<hr />
+<h2 id="spring-boot-docker-image-creation">Spring Boot Docker Image Creation</h2>
+<h3 id="building-the-docker-image">Building the Docker Image</h3>
+<pre><code class="language-bash">./mvnw spring-boot:build-image &quot;-Dspring-boot.build-image.imageName=orandian2511/jobappimage&quot;
+</code></pre>
+<p><strong>Explanation</strong>: This command uses Maven Wrapper to build a Docker image for your Spring Boot application. The <code>-Dspring-boot.build-image.imageName</code> parameter specifies the image name and tag. Spring Boot's build-image goal uses Cloud Native Buildpacks to create an optimized Docker image.</p>
+<h3 id="pushing-to-docker-hub">Pushing to Docker Hub</h3>
+<pre><code class="language-bash">docker push orandian2511/jobappimage
+</code></pre>
+<p><strong>Explanation</strong>: Uploads your locally built Docker image to Docker Hub registry under the username <code>orandian2511</code>. This makes the image available for deployment on any system with Docker.</p>
+<h3 id="running-the-application">Running the Application</h3>
+<pre><code class="language-bash"># Run in foreground (interactive mode)
+docker run -p 8080:8080 orandian2511/jobappimage
+
+# Run in background (detached mode)
+docker run -d -p 8080:8080 orandian2511/jobappimage
+</code></pre>
+<p><strong>Explanation</strong>: 
+- <code>-p 8080:8080</code>: Maps port 8080 on your host machine to port 8080 inside the container
+- <code>-d</code>: Runs the container in detached mode (background)</p>
+<h3 id="monitoring-the-application">Monitoring the Application</h3>
+<pre><code class="language-bash"># List running containers
+docker ps
+
+# View container logs
+docker logs a6c0aa9393dc
+</code></pre>
+<p><strong>Explanation</strong>: <code>docker ps</code> shows active containers, while <code>docker logs</code> displays the output from a specific container using its ID.</p>
+<hr />
+<h2 id="essential-docker-commands">Essential Docker Commands</h2>
+<h3 id="image-management">Image Management</h3>
+<pre><code class="language-bash"># Pull an image from registry
+docker pull &lt;image&gt;
+
+# Push an image to registry
+docker push &lt;username/image&gt;
+
+# Build an image from Dockerfile
+docker build -t &lt;username/image&gt; .
+
+# List all images
+docker images
+
+# Remove an image
+docker rmi &lt;image-id/image-name&gt;
+</code></pre>
+<h3 id="container-management">Container Management</h3>
+<pre><code class="language-bash"># Run a container
+docker run -it -d -p &lt;host-port&gt;:&lt;container-port&gt; --name &lt;name&gt; &lt;image&gt;
+
+# Stop a running container
+docker stop &lt;container-id/container-name&gt;
+
+# Start a stopped container
+docker start &lt;container-id/container-name&gt;
+
+# Remove a container
+docker rm &lt;container-id/container-name&gt;
+
+# List running containers
+docker ps
+
+# List all containers (including stopped)
+docker ps -a
+</code></pre>
+<h3 id="container-interaction">Container Interaction</h3>
+<pre><code class="language-bash"># Execute commands inside a running container
+docker exec -it &lt;container-name/container-id&gt; bash
+
+# View container logs
+docker logs &lt;container-name/container-id&gt;
+
+# Inspect container configuration
+docker inspect &lt;container-name/container-id&gt;
+</code></pre>
+<p><strong>Key Flags Explained</strong>:
+- <code>-it</code>: Interactive terminal mode
+- <code>-d</code>: Detached mode (runs in background)
+- <code>-p</code>: Port mapping
+- <code>--name</code>: Assigns a custom name to the container</p>
+<hr />
+<h2 id="postgresql-database-setup">PostgreSQL Database Setup</h2>
+<h3 id="basic-postgresql-container">Basic PostgreSQL Container</h3>
+<pre><code class="language-bash"># Run PostgreSQL database
+docker run -d --name db -e POSTGRES_PASSWORD=postgres postgres
+</code></pre>
+<p><strong>Explanation</strong>: Creates a PostgreSQL container named <code>db</code> with the default password set to <code>postgres</code>. The <code>-e</code> flag sets environment variables.</p>
+<h3 id="pgadmin-web-interface">PgAdmin Web Interface</h3>
+<pre><code class="language-bash"># Run PgAdmin for database management
+docker run -d --name pgadmin \
+  -e PGADMIN_DEFAULT_EMAIL=admin@gmail.com \
+  -e PGADMIN_DEFAULT_PASSWORD=admin \
+  dpage/pgadmin4
+</code></pre>
+<p><strong>Explanation</strong>: Starts PgAdmin4 web interface for PostgreSQL management. You can access it via a web browser once the container is running.</p>
+<h3 id="testing-container-communication">Testing Container Communication</h3>
+<pre><code class="language-bash"># Test network connectivity between containers
+docker exec -it pgadmin ping db
+</code></pre>
+<p><strong>Explanation</strong>: This command attempts to ping the <code>db</code> container from inside the <code>pgadmin</code> container. Initially, this may fail because containers aren't on the same network.</p>
+<h3 id="cleanup">Cleanup</h3>
+<pre><code class="language-bash"># Force remove both containers
+docker rm -f db pgadmin
+</code></pre>
+<p><strong>Explanation</strong>: The <code>-f</code> flag forcefully stops and removes running containers.</p>
+<hr />
+<h2 id="docker-network-configuration">Docker Network Configuration</h2>
+<h3 id="creating-a-custom-network">Creating a Custom Network</h3>
+<pre><code class="language-bash"># Create a user-defined bridge network
+docker network create my-network
+</code></pre>
+<p><strong>Explanation</strong>: Creates a custom network that allows containers to communicate using container names as hostnames.</p>
+<h3 id="running-containers-on-custom-network">Running Containers on Custom Network</h3>
+<pre><code class="language-bash"># Run PostgreSQL on custom network
+docker run -d --name db --network my-network \
+  -e POSTGRES_PASSWORD=postgres postgres
+
+# Run PgAdmin on the same network
+docker run -d --name pgadmin --network my-network \
+  -e PGADMIN_DEFAULT_EMAIL=user@domain.com \
+  -e PGADMIN_DEFAULT_PASSWORD=SuperSecret \
+  dpage/pgadmin4
+</code></pre>
+<p><strong>Explanation</strong>: Both containers are now on the same custom network, enabling them to communicate using container names (<code>db</code>, <code>pgadmin</code>) as hostnames.</p>
+<h3 id="verify-network-connectivity">Verify Network Connectivity</h3>
+<pre><code class="language-bash"># Test connectivity between networked containers
+docker exec -it pgadmin ping db
+</code></pre>
+<p><strong>Explanation</strong>: This should now work successfully since both containers are on the same network.</p>
+<hr />
+<h2 id="postgresql-service-management">PostgreSQL Service Management</h2>
+<h3 id="stopping-local-postgresql-services">Stopping Local PostgreSQL Services</h3>
+<pre><code class="language-bash"># Stop PostgreSQL service (macOS with Homebrew)
+sudo brew services stop postgresql
+
+# Kill any running PostgreSQL processes
+sudo pkill -f postgres
+</code></pre>
+<p><strong>Explanation</strong>: These commands stop local PostgreSQL installations that might conflict with Docker containers. This is useful when you want to use PostgreSQL in Docker instead of a local installation.</p>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li><strong>Use specific tags</strong>: Instead of <code>latest</code>, use version tags for production</li>
+<li><strong>Environment variables</strong>: Store sensitive data in environment variables, not in the image</li>
+<li><strong>Volume mapping</strong>: Use volumes for persistent data storage</li>
+<li><strong>Resource limits</strong>: Set memory and CPU limits for containers</li>
+<li><strong>Health checks</strong>: Implement health checks for better monitoring</li>
+<li><strong>Multi-stage builds</strong>: Use multi-stage Dockerfiles for smaller production images</li>
+</ol>
+<h2 id="troubleshooting-tips">Troubleshooting Tips</h2>
+<ul>
+<li>Use <code>docker logs &lt;container-name&gt;</code> to debug container issues</li>
+<li>Check port conflicts with <code>netstat -tlnp | grep :8080</code></li>
+<li>Verify network connectivity with <code>docker network ls</code> and <code>docker network inspect</code></li>
+<li>Clean up unused resources with <code>docker system prune</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
