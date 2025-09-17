@@ -1,0 +1,1905 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../docker_process_guide/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Essential Docker Commands - Dev Solutions</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#essential-docker-commands-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Dev Solutions" class="md-header__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Solutions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Essential Docker Commands
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Dev Solutions" class="md-nav__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dev Solutions
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Git
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/merge-conflict/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Merge Conflict
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/detached-head/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detached Head
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/branching-merging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branching & Merging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hosting
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Hosting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hosting/vercel-deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vercel Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Caddy
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Caddy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../caddy/ssl-renewal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SSL Renewal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker_process_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spring boot process
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Essential Docker Commands
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Essential Docker Commands
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-image-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Image Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Image Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Information
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-container-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Container Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Container Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Containers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Lifecycle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Interaction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-network-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Network Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Network Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-containers-with-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Containers with Networks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-volume-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Volume Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Volume Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#volume-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Volumes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-system-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker System Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker System Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Information
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Cleanup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Compose Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Compose Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-flags-and-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Flags and Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Flags and Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#universal-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Universal Flags
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-mapping-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Port Mapping Options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-mount-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume Mount Options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-web-application-with-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1: Web Application with Database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-development-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 2: Development Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-temporary-testing-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 3: Temporary Testing Container
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4-multi-container-application-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 4: Multi-container Application Logs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debugging-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Containers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-issues-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues Solutions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Reference Cheat Sheet
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-image-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Image Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Image Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Information
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-container-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Container Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Container Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Containers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Lifecycle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Interaction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-network-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Network Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Network Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-containers-with-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Containers with Networks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-volume-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Volume Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Volume Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#volume-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Volumes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-system-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker System Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker System Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Information
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Cleanup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Compose Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Compose Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-flags-and-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Flags and Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Flags and Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#universal-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Universal Flags
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-mapping-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Port Mapping Options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-mount-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume Mount Options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-web-application-with-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 1: Web Application with Database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-development-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 2: Development Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-temporary-testing-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 3: Temporary Testing Container
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4-multi-container-application-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example 4: Multi-container Application Logs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debugging-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Containers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-issues-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues Solutions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Reference Cheat Sheet
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="essential-docker-commands-reference">Essential Docker Commands Reference</h1>
+<p>A comprehensive guide to the most important Docker commands every developer should know.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#docker-image-commands">Docker Image Commands</a></li>
+<li><a href="#docker-container-commands">Docker Container Commands</a></li>
+<li><a href="#docker-network-commands">Docker Network Commands</a></li>
+<li><a href="#docker-volume-commands">Docker Volume Commands</a></li>
+<li><a href="#docker-system-commands">Docker System Commands</a></li>
+<li><a href="#docker-compose-commands">Docker Compose Commands</a></li>
+<li><a href="#common-flags-and-options">Common Flags and Options</a></li>
+<li><a href="#practical-examples">Practical Examples</a></li>
+</ol>
+<hr />
+<h2 id="docker-image-commands">Docker Image Commands</h2>
+<h3 id="building-images">Building Images</h3>
+<pre><code class="language-bash"># Build image from Dockerfile in current directory
+docker build -t myapp:latest .
+
+# Build with custom Dockerfile name
+docker build -f Dockerfile.prod -t myapp:prod .
+
+# Build with build arguments
+docker build --build-arg ENV=production -t myapp:prod .
+</code></pre>
+<h3 id="managing-images">Managing Images</h3>
+<pre><code class="language-bash"># List all images
+docker images
+docker image ls
+
+# Pull image from registry
+docker pull nginx:latest
+docker pull mysql:8.0
+
+# Push image to registry
+docker push username/myapp:latest
+
+# Remove image
+docker rmi image_id
+docker rmi nginx:latest
+
+# Remove unused images
+docker image prune
+
+# Remove all images
+docker rmi $(docker images -q)
+</code></pre>
+<h3 id="image-information">Image Information</h3>
+<pre><code class="language-bash"># Show image details
+docker inspect nginx:latest
+
+# Show image history/layers
+docker history nginx:latest
+
+# Search images on Docker Hub
+docker search mysql
+</code></pre>
+<hr />
+<h2 id="docker-container-commands">Docker Container Commands</h2>
+<h3 id="running-containers">Running Containers</h3>
+<pre><code class="language-bash"># Basic container run
+docker run nginx
+
+# Run in detached mode (background)
+docker run -d nginx
+
+# Run with custom name
+docker run --name webserver nginx
+
+# Run with port mapping
+docker run -p 8080:80 nginx
+
+# Run with environment variables
+docker run -e MYSQL_ROOT_PASSWORD=secret mysql
+
+# Run with volume mount
+docker run -v /host/path:/container/path nginx
+
+# Interactive container with terminal
+docker run -it ubuntu bash
+
+# Run and remove container when it stops
+docker run --rm nginx
+</code></pre>
+<h3 id="container-lifecycle">Container Lifecycle</h3>
+<pre><code class="language-bash"># List running containers
+docker ps
+
+# List all containers (including stopped)
+docker ps -a
+
+# Start stopped container
+docker start container_name
+
+# Stop running container
+docker stop container_name
+
+# Restart container
+docker restart container_name
+
+# Pause container
+docker pause container_name
+
+# Unpause container
+docker unpause container_name
+
+# Kill container (force stop)
+docker kill container_name
+</code></pre>
+<h3 id="container-interaction">Container Interaction</h3>
+<pre><code class="language-bash"># Execute command in running container
+docker exec -it container_name bash
+docker exec container_name ls /app
+
+# View container logs
+docker logs container_name
+docker logs -f container_name  # Follow logs
+docker logs --tail 100 container_name  # Last 100 lines
+
+# Copy files to/from container
+docker cp file.txt container_name:/path/
+docker cp container_name:/path/file.txt ./
+
+# Show container resource usage
+docker stats container_name
+
+# Show running processes in container
+docker top container_name
+</code></pre>
+<h3 id="container-management">Container Management</h3>
+<pre><code class="language-bash"># Remove stopped container
+docker rm container_name
+
+# Remove running container (force)
+docker rm -f container_name
+
+# Remove all stopped containers
+docker container prune
+
+# Remove all containers
+docker rm $(docker ps -aq)
+
+# Inspect container details
+docker inspect container_name
+</code></pre>
+<hr />
+<h2 id="docker-network-commands">Docker Network Commands</h2>
+<h3 id="network-management">Network Management</h3>
+<pre><code class="language-bash"># List networks
+docker network ls
+
+# Create custom network
+docker network create mynetwork
+docker network create --driver bridge mynetwork
+
+# Remove network
+docker network rm mynetwork
+
+# Connect container to network
+docker network connect mynetwork container_name
+
+# Disconnect container from network
+docker network disconnect mynetwork container_name
+
+# Inspect network details
+docker network inspect mynetwork
+
+# Remove unused networks
+docker network prune
+</code></pre>
+<h3 id="running-containers-with-networks">Running Containers with Networks</h3>
+<pre><code class="language-bash"># Run container on specific network
+docker run --network mynetwork nginx
+
+# Run with network alias
+docker run --network mynetwork --network-alias web nginx
+</code></pre>
+<hr />
+<h2 id="docker-volume-commands">Docker Volume Commands</h2>
+<h3 id="volume-management">Volume Management</h3>
+<pre><code class="language-bash"># List volumes
+docker volume ls
+
+# Create volume
+docker volume create myvolume
+
+# Remove volume
+docker volume rm myvolume
+
+# Remove unused volumes
+docker volume prune
+
+# Inspect volume details
+docker volume inspect myvolume
+</code></pre>
+<h3 id="using-volumes">Using Volumes</h3>
+<pre><code class="language-bash"># Mount named volume
+docker run -v myvolume:/data nginx
+
+# Mount host directory (bind mount)
+docker run -v /host/path:/container/path nginx
+
+# Read-only mount
+docker run -v /host/path:/container/path:ro nginx
+
+# Create and mount volume in one command
+docker run -v mydata:/app/data nginx
+</code></pre>
+<hr />
+<h2 id="docker-system-commands">Docker System Commands</h2>
+<h3 id="system-information">System Information</h3>
+<pre><code class="language-bash"># Show Docker system info
+docker info
+
+# Show Docker version
+docker version
+
+# Show disk usage
+docker system df
+
+# Show real-time events
+docker events
+</code></pre>
+<h3 id="system-cleanup">System Cleanup</h3>
+<pre><code class="language-bash"># Remove unused data (containers, networks, images, build cache)
+docker system prune
+
+# Remove everything including volumes
+docker system prune -a --volumes
+
+# Remove unused containers
+docker container prune
+
+# Remove unused images
+docker image prune
+
+# Remove unused networks
+docker network prune
+
+# Remove unused volumes
+docker volume prune
+</code></pre>
+<hr />
+<h2 id="docker-compose-commands">Docker Compose Commands</h2>
+<h3 id="basic-operations">Basic Operations</h3>
+<pre><code class="language-bash"># Start services defined in docker-compose.yml
+docker-compose up
+
+# Start in detached mode
+docker-compose up -d
+
+# Stop services
+docker-compose down
+
+# Stop and remove volumes
+docker-compose down -v
+
+# Build services
+docker-compose build
+
+# Pull service images
+docker-compose pull
+</code></pre>
+<h3 id="service-management">Service Management</h3>
+<pre><code class="language-bash"># Scale services
+docker-compose up -d --scale web=3
+
+# View running services
+docker-compose ps
+
+# View logs
+docker-compose logs
+docker-compose logs web
+
+# Execute command in service
+docker-compose exec web bash
+
+# Restart services
+docker-compose restart
+</code></pre>
+<hr />
+<h2 id="common-flags-and-options">Common Flags and Options</h2>
+<h3 id="universal-flags">Universal Flags</h3>
+<ul>
+<li><code>-d, --detach</code>: Run container in background</li>
+<li><code>-it</code>: Interactive terminal (combine -i and -t)</li>
+<li><code>-p, --publish</code>: Publish container port to host</li>
+<li><code>-v, --volume</code>: Mount volume</li>
+<li><code>-e, --env</code>: Set environment variables</li>
+<li><code>--name</code>: Assign name to container</li>
+<li><code>--rm</code>: Remove container when it exits</li>
+<li><code>-f, --force</code>: Force operation</li>
+</ul>
+<h3 id="port-mapping-options">Port Mapping Options</h3>
+<pre><code class="language-bash"># Map specific port
+-p 8080:80
+
+# Map to random host port
+-p 80
+
+# Map specific interface
+-p 127.0.0.1:8080:80
+
+# Map UDP port
+-p 8080:80/udp
+</code></pre>
+<h3 id="volume-mount-options">Volume Mount Options</h3>
+<pre><code class="language-bash"># Named volume
+-v volume_name:/path
+
+# Bind mount
+-v /host/path:/container/path
+
+# Read-only mount
+-v /host/path:/container/path:ro
+
+# Temporary filesystem
+--tmpfs /path
+</code></pre>
+<hr />
+<h2 id="practical-examples">Practical Examples</h2>
+<h3 id="example-1-web-application-with-database">Example 1: Web Application with Database</h3>
+<pre><code class="language-bash"># Create network
+docker network create webapp-net
+
+# Run MySQL database
+docker run -d \
+  --name mysql-db \
+  --network webapp-net \
+  -e MYSQL_ROOT_PASSWORD=secret \
+  -e MYSQL_DATABASE=myapp \
+  -v mysql-data:/var/lib/mysql \
+  mysql:8.0
+
+# Run web application
+docker run -d \
+  --name web-app \
+  --network webapp-net \
+  -p 8080:80 \
+  -e DB_HOST=mysql-db \
+  -e DB_NAME=myapp \
+  myapp:latest
+</code></pre>
+<h3 id="example-2-development-environment">Example 2: Development Environment</h3>
+<pre><code class="language-bash"># Run container with code volume for development
+docker run -it \
+  --name dev-env \
+  -v $(pwd):/workspace \
+  -p 3000:3000 \
+  -w /workspace \
+  node:16 \
+  bash
+</code></pre>
+<h3 id="example-3-temporary-testing-container">Example 3: Temporary Testing Container</h3>
+<pre><code class="language-bash"># Run temporary container that auto-removes
+docker run --rm -it \
+  -v $(pwd):/test \
+  -w /test \
+  python:3.9 \
+  python script.py
+</code></pre>
+<h3 id="example-4-multi-container-application-logs">Example 4: Multi-container Application Logs</h3>
+<pre><code class="language-bash"># View logs from multiple containers
+docker logs -f web-app &amp;
+docker logs -f mysql-db &amp;
+
+# Or use docker-compose
+docker-compose logs -f
+</code></pre>
+<hr />
+<h2 id="troubleshooting-commands">Troubleshooting Commands</h2>
+<h3 id="debugging-containers">Debugging Containers</h3>
+<pre><code class="language-bash"># Check container status
+docker ps -a
+
+# Inspect container configuration
+docker inspect container_name
+
+# Check container logs
+docker logs --details container_name
+
+# Get shell access to debug
+docker exec -it container_name /bin/sh
+
+# Check container processes
+docker top container_name
+
+# Monitor resource usage
+docker stats
+</code></pre>
+<h3 id="common-issues-solutions">Common Issues Solutions</h3>
+<pre><code class="language-bash"># Port already in use
+docker ps | grep :8080
+sudo lsof -i :8080
+
+# Container won't start
+docker logs container_name
+docker inspect container_name
+
+# Out of disk space
+docker system df
+docker system prune -a
+
+# Permission issues
+docker exec -it container_name ls -la /path
+</code></pre>
+<hr />
+<h2 id="quick-reference-cheat-sheet">Quick Reference Cheat Sheet</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker run</code></td>
+<td>Create and start container</td>
+</tr>
+<tr>
+<td><code>docker ps</code></td>
+<td>List running containers</td>
+</tr>
+<tr>
+<td><code>docker stop</code></td>
+<td>Stop container</td>
+</tr>
+<tr>
+<td><code>docker rm</code></td>
+<td>Remove container</td>
+</tr>
+<tr>
+<td><code>docker images</code></td>
+<td>List images</td>
+</tr>
+<tr>
+<td><code>docker rmi</code></td>
+<td>Remove image</td>
+</tr>
+<tr>
+<td><code>docker pull</code></td>
+<td>Download image</td>
+</tr>
+<tr>
+<td><code>docker build</code></td>
+<td>Build image</td>
+</tr>
+<tr>
+<td><code>docker logs</code></td>
+<td>View container logs</td>
+</tr>
+<tr>
+<td><code>docker exec</code></td>
+<td>Execute command in container</td>
+</tr>
+<tr>
+<td><code>docker inspect</code></td>
+<td>View detailed info</td>
+</tr>
+<tr>
+<td><code>docker network</code></td>
+<td>Manage networks</td>
+</tr>
+<tr>
+<td><code>docker volume</code></td>
+<td>Manage volumes</td>
+</tr>
+<tr>
+<td><code>docker system prune</code></td>
+<td>Clean up unused resources</td>
+</tr>
+</tbody>
+</table>
+<p>Remember: Always refer to <code>docker --help</code> or <code>docker COMMAND --help</code> for the most up-to-date information and additional options!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
