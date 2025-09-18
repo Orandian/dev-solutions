@@ -1,0 +1,2375 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../essential_docker_commands/">
+      
+      
+        <link rel="next" href="../../expo/expo_solutions_guide/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Comprehensive Guide - Dev Solutions</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#comprehensive-docker-guide-commands-and-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Dev Solutions" class="md-header__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Solutions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Comprehensive Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Dev Solutions" class="md-nav__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dev Solutions
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Git
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/merge-conflict/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Merge Conflict
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/detached-head/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detached Head
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/branching-merging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branching & Merging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/industry_git_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Industry Git Commands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hosting
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Hosting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hosting/vercel-deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vercel Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Caddy
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Caddy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../caddy/ssl-renewal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SSL Renewal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker_process_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spring boot process
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../essential_docker_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Essential Docker Commands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Comprehensive Guide
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Comprehensive Guide
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Docker?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Docker?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Benefits
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Core Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Core Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Container
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Volume
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Client
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-host-docker-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Host (Docker Daemon)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-registry-docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Registry (Docker Hub)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-cli-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker CLI Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker CLI Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#image-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Image Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#downloading-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Downloading Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listing Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Images
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Container Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Containers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Port Mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-mounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume Mounting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registry-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registry Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dockerfile Instructions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dockerfile Instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#essential-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential Instructions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Essential Instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-base-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      FROM - Base Image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workdir-working-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      WORKDIR - Working Directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy-copy-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      COPY - Copy Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-execute-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      RUN - Execute Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expose-port-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      EXPOSE - Port Declaration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENV - Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arg-build-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARG - Build Arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-mount-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      VOLUME - Mount Points
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmd-default-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      CMD - Default Command
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrypoint-main-executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENTRYPOINT - Main Executable
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerignore-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      .dockerignore File
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Compose
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Compose Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Compose Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composeyaml-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      compose.yaml Structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dockerfile Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-size-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Size Optimization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Workflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#most-used-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Most Used Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#essential-dockerfile-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential Dockerfile Instructions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Expo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Expo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expo/expo_solutions_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expo Solutions Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Docker?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Docker?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Benefits
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Core Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Core Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Container
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Volume
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Client
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-host-docker-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Host (Docker Daemon)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-registry-docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Registry (Docker Hub)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-cli-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker CLI Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker CLI Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#image-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Image Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#downloading-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Downloading Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listing Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building Images
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Images
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Container Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Containers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Port Mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-mounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume Mounting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registry-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registry Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dockerfile Instructions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dockerfile Instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#essential-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential Instructions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Essential Instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-base-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      FROM - Base Image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workdir-working-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      WORKDIR - Working Directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy-copy-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      COPY - Copy Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-execute-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      RUN - Execute Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expose-port-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      EXPOSE - Port Declaration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENV - Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arg-build-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARG - Build Arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-mount-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      VOLUME - Mount Points
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmd-default-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      CMD - Default Command
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrypoint-main-executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENTRYPOINT - Main Executable
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerignore-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      .dockerignore File
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Compose
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Compose Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Compose Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composeyaml-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      compose.yaml Structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dockerfile Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-size-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Size Optimization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Workflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#most-used-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Most Used Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#essential-dockerfile-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential Dockerfile Instructions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="comprehensive-docker-guide-commands-and-concepts">Comprehensive Docker Guide - Commands and Concepts</h1>
+<p>A complete reference guide to Docker containerization technology, covering core concepts, CLI commands, Dockerfile instructions, and Docker Compose for modern application development and deployment.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#what-is-docker">What is Docker?</a></li>
+<li><a href="#docker-core-concepts">Docker Core Concepts</a></li>
+<li><a href="#docker-cli-commands">Docker CLI Commands</a></li>
+<li><a href="#dockerfile-instructions">Dockerfile Instructions</a></li>
+<li><a href="#docker-compose">Docker Compose</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#common-workflows">Common Workflows</a></li>
+</ol>
+<hr />
+<h2 id="what-is-docker">What is Docker?</h2>
+<p>Docker is a containerization platform that packages applications with all their dependencies into lightweight, portable containers. Think of Docker as a <strong>"lunchbox" for your application</strong> - it packages your code with everything it needs to run consistently across different environments.</p>
+<h3 id="key-benefits">Key Benefits</h3>
+<ul>
+<li><strong>Consistency</strong>: Runs the same everywhere</li>
+<li><strong>Isolation</strong>: Applications don't interfere with each other</li>
+<li><strong>Portability</strong>: Move applications between environments easily</li>
+<li><strong>Efficiency</strong>: Lightweight compared to virtual machines</li>
+<li><strong>Version Control</strong>: Track and manage different versions</li>
+<li><strong>Scalability</strong>: Easy to scale applications up or down</li>
+<li><strong>DevOps Integration</strong>: Streamlines development and deployment</li>
+</ul>
+<hr />
+<h2 id="docker-core-concepts">Docker Core Concepts</h2>
+<h3 id="docker-image">Docker Image</h3>
+<p>A <strong>lightweight, standalone, executable package</strong> that includes everything needed to run software:
+- Application code
+- Runtime environment
+- Libraries and dependencies
+- System tools
+- Operating system components</p>
+<p>Think of it as a <strong>recipe for your application</strong>.</p>
+<h3 id="docker-container">Docker Container</h3>
+<p>A <strong>runnable instance</strong> of a Docker image. It represents the execution environment where your application actually runs. Multiple containers can be created from a single image.</p>
+<h3 id="docker-volume">Docker Volume</h3>
+<p>A <strong>persistent data storage mechanism</strong> that:
+- Shares data between container and host machine
+- Enables data sharing among multiple containers
+- Ensures data survives container restarts or removal
+- Provides data durability and persistence</p>
+<h3 id="docker-network">Docker Network</h3>
+<p>A <strong>communication channel</strong> that enables:
+- Container-to-container communication
+- Container-to-external world connectivity
+- Network isolation and security
+- Custom networking configurations</p>
+<h3 id="docker-client">Docker Client</h3>
+<p>The <strong>user interface</strong> for interacting with Docker through:
+- Command line interface (CLI)
+- Graphical user interfaces
+- API calls</p>
+<h3 id="docker-host-docker-daemon">Docker Host (Docker Daemon)</h3>
+<p>The <strong>background process</strong> that manages:
+- Container lifecycle
+- Image building and storage
+- Network and volume management
+- API request handling</p>
+<h3 id="docker-registry-docker-hub">Docker Registry (Docker Hub)</h3>
+<p>A <strong>centralized repository</strong> for Docker images:
+- Public and private image storage
+- Image versioning and distribution
+- Docker Hub is to Docker what GitHub is to Git</p>
+<hr />
+<h2 id="docker-cli-commands">Docker CLI Commands</h2>
+<h3 id="image-management">Image Management</h3>
+<h4 id="downloading-images">Downloading Images</h4>
+<pre><code class="language-bash"># Download image from Docker Hub
+docker pull &lt;image_name&gt;
+docker pull ubuntu
+docker pull node:18-alpine
+
+# Pull specific version/tag
+docker pull mysql:8.0
+docker pull nginx:latest
+</code></pre>
+<p><strong>Explanation</strong>: Downloads images from Docker Hub to your local machine. If no tag is specified, it pulls the <code>latest</code> tag by default.</p>
+<h4 id="listing-images">Listing Images</h4>
+<pre><code class="language-bash"># List all local images
+docker images
+docker image ls
+
+# Show image details
+docker image inspect &lt;image_name&gt;
+</code></pre>
+<p><strong>Explanation</strong>: Displays all Docker images stored locally with details like repository, tag, image ID, creation date, and size.</p>
+<h4 id="building-images">Building Images</h4>
+<pre><code class="language-bash"># Build image from Dockerfile
+docker build -t &lt;tag_name&gt; .
+docker build -t hello-docker .
+docker build -t myapp:v1.0 .
+
+# Build with custom Dockerfile name
+docker build -f Dockerfile.prod -t myapp:prod .
+
+# Build with build arguments
+docker build --build-arg NODE_ENV=production -t myapp .
+</code></pre>
+<p><strong>Explanation</strong>: Creates a Docker image from a Dockerfile. The <code>-t</code> flag assigns a name/tag to the image, and <code>.</code> indicates the build context (current directory).</p>
+<h4 id="managing-images">Managing Images</h4>
+<pre><code class="language-bash"># Tag an image
+docker tag &lt;source_image&gt; &lt;target_image&gt;
+docker tag react-docker username/react-docker:latest
+
+# Remove image
+docker rmi &lt;image_name&gt;
+docker rmi ubuntu:latest
+
+# Remove unused images
+docker image prune
+</code></pre>
+<h3 id="container-operations">Container Operations</h3>
+<h4 id="running-containers">Running Containers</h4>
+<pre><code class="language-bash"># Basic container run
+docker run &lt;image_name&gt;
+docker run hello-world
+
+# Run interactively with terminal
+docker run -it &lt;image_name&gt;
+docker run -it ubuntu bash
+
+# Run in detached mode (background)
+docker run -d nginx
+
+# Run with custom name
+docker run --name my-container nginx
+</code></pre>
+<h4 id="port-mapping">Port Mapping</h4>
+<pre><code class="language-bash"># Map container port to host port
+docker run -p &lt;host_port&gt;:&lt;container_port&gt; &lt;image_name&gt;
+docker run -p 8080:80 nginx
+docker run -p 5173:5173 react-app
+</code></pre>
+<p><strong>Explanation</strong>: The <code>-p</code> flag maps a port from the container to the host machine, making the container's service accessible externally.</p>
+<h4 id="volume-mounting">Volume Mounting</h4>
+<pre><code class="language-bash"># Mount host directory to container
+docker run -p 5173:5173 -v $(pwd):/app -v /app/node_modules react-docker
+</code></pre>
+<p><strong>Explanation</strong>: 
+- <code>-v $(pwd):/app</code>: Mounts current directory to <code>/app</code> in container (enables hot reloading)
+- <code>-v /app/node_modules</code>: Creates named volume for node_modules (preserves dependencies)</p>
+<h4 id="container-management">Container Management</h4>
+<pre><code class="language-bash"># List running containers
+docker ps
+
+# List all containers (including stopped)
+docker ps -a
+
+# Stop container
+docker stop &lt;container_id_or_name&gt;
+docker stop c3d  # Using first few characters of ID
+
+# Start stopped container
+docker start &lt;container_id_or_name&gt;
+
+# Restart container
+docker restart &lt;container_id_or_name&gt;
+
+# Remove container
+docker rm &lt;container_id_or_name&gt;
+docker rm --force &lt;container_id_or_name&gt;  # Force remove running container
+
+# Remove all stopped containers
+docker container prune
+</code></pre>
+<h3 id="registry-operations">Registry Operations</h3>
+<pre><code class="language-bash"># Login to Docker Hub
+docker login
+
+# Push image to registry
+docker push &lt;image_name&gt;
+docker push username/myapp:latest
+
+# Logout from registry
+docker logout
+</code></pre>
+<hr />
+<h2 id="dockerfile-instructions">Dockerfile Instructions</h2>
+<p>A <strong>Dockerfile</strong> is a text file containing instructions to build a Docker image. Each instruction creates a new layer in the image.</p>
+<h3 id="essential-instructions">Essential Instructions</h3>
+<h4 id="from-base-image">FROM - Base Image</h4>
+<pre><code class="language-dockerfile">FROM &lt;base_image&gt;:&lt;tag&gt;
+FROM node:20-alpine
+FROM ubuntu:22.04
+FROM python:3.9-slim
+</code></pre>
+<p><strong>Explanation</strong>: Specifies the base image. <strong>Must be the first instruction</strong> in every Dockerfile.</p>
+<h4 id="workdir-working-directory">WORKDIR - Working Directory</h4>
+<pre><code class="language-dockerfile">WORKDIR /app
+WORKDIR /usr/src/app
+</code></pre>
+<p><strong>Explanation</strong>: Sets the working directory for subsequent instructions (RUN, CMD, ENTRYPOINT, COPY, ADD).</p>
+<h4 id="copy-copy-files">COPY - Copy Files</h4>
+<pre><code class="language-dockerfile">COPY &lt;source&gt; &lt;destination&gt;
+COPY . .                    # Copy all files to current WORKDIR
+COPY package.json ./        # Copy specific file
+COPY src/ ./src/           # Copy directory
+</code></pre>
+<p><strong>Explanation</strong>: Copies files/directories from build context (local machine) to the image.</p>
+<h4 id="run-execute-commands">RUN - Execute Commands</h4>
+<pre><code class="language-dockerfile">RUN &lt;command&gt;
+RUN npm install
+RUN apt-get update &amp;&amp; apt-get install -y curl
+RUN pip install -r requirements.txt
+</code></pre>
+<p><strong>Explanation</strong>: Executes commands during image build, creating new layers. Use for installing dependencies and setting up the environment.</p>
+<h4 id="expose-port-declaration">EXPOSE - Port Declaration</h4>
+<pre><code class="language-dockerfile">EXPOSE &lt;port&gt;
+EXPOSE 3000
+EXPOSE 80 443
+</code></pre>
+<p><strong>Explanation</strong>: Documents which ports the container listens on. <strong>Informational only</strong> - doesn't actually publish ports.</p>
+<h4 id="env-environment-variables">ENV - Environment Variables</h4>
+<pre><code class="language-dockerfile">ENV &lt;key&gt;=&lt;value&gt;
+ENV NODE_ENV=production
+ENV API_URL=https://api.example.com
+ENV PORT=3000
+</code></pre>
+<p><strong>Explanation</strong>: Sets environment variables available during build and runtime.</p>
+<h4 id="arg-build-arguments">ARG - Build Arguments</h4>
+<pre><code class="language-dockerfile">ARG &lt;variable_name&gt;
+ARG NODE_VERSION=18
+ARG BUILD_ENV
+</code></pre>
+<p><strong>Explanation</strong>: Defines build-time variables passed with <code>--build-arg</code> flag during build.</p>
+<h4 id="volume-mount-points">VOLUME - Mount Points</h4>
+<pre><code class="language-dockerfile">VOLUME &lt;mount_point&gt;
+VOLUME /app/data
+VOLUME [&quot;/var/log&quot;, &quot;/var/db&quot;]
+</code></pre>
+<p><strong>Explanation</strong>: Creates mount point for external volumes, specifying persistent data locations.</p>
+<h4 id="cmd-default-command">CMD - Default Command</h4>
+<pre><code class="language-dockerfile">CMD [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]
+CMD [&quot;node&quot;, &quot;server.js&quot;]
+CMD [&quot;npm&quot;, &quot;start&quot;]
+</code></pre>
+<p><strong>Explanation</strong>: Provides default command when container starts. <strong>Can be overridden</strong> when running the container.</p>
+<h4 id="entrypoint-main-executable">ENTRYPOINT - Main Executable</h4>
+<pre><code class="language-dockerfile">ENTRYPOINT [&quot;executable&quot;, &quot;param1&quot;]
+ENTRYPOINT [&quot;node&quot;, &quot;app.js&quot;]
+</code></pre>
+<p><strong>Explanation</strong>: Sets the main command that <strong>cannot be easily overridden</strong>. Used with CMD for flexible argument passing.</p>
+<h3 id="dockerignore-file">.dockerignore File</h3>
+<pre><code>node_modules
+npm-debug.log
+.git
+.gitignore
+README.md
+.env
+.nyc_output
+coverage
+.DS_Store
+</code></pre>
+<p><strong>Explanation</strong>: Similar to <code>.gitignore</code>, excludes files/directories from build context, reducing image size and build time.</p>
+<hr />
+<h2 id="docker-compose">Docker Compose</h2>
+<p>Docker Compose manages <strong>multi-container applications</strong> using a YAML configuration file.</p>
+<h3 id="docker-compose-commands">Docker Compose Commands</h3>
+<h4 id="initialization">Initialization</h4>
+<pre><code class="language-bash"># Initialize new application
+docker init
+</code></pre>
+<p><strong>Explanation</strong>: CLI tool that generates Dockerfile, .dockerignore, and compose.yaml files based on your project.</p>
+<h4 id="application-management">Application Management</h4>
+<pre><code class="language-bash"># Start all services
+docker compose up
+
+# Start in detached mode with rebuild
+docker compose up -d --build
+
+# Stop all services
+docker compose down
+
+# Stop and remove volumes
+docker compose down -v
+
+# View running services
+docker compose ps
+
+# View logs
+docker compose logs
+docker compose logs &lt;service_name&gt;
+
+# Scale services
+docker compose up --scale web=3
+</code></pre>
+<h3 id="composeyaml-structure">compose.yaml Structure</h3>
+<pre><code class="language-yaml">version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - &quot;3000:3000&quot;
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - database
+
+  database:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=myapp
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+</code></pre>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="dockerfile-optimization">Dockerfile Optimization</h3>
+<pre><code class="language-dockerfile"># Use specific tags instead of 'latest'
+FROM node:18-alpine
+
+# Use multi-stage builds
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+
+FROM node:18-alpine AS runtime
+WORKDIR /app
+COPY --from=builder /app/node_modules ./node_modules
+COPY . .
+EXPOSE 3000
+CMD [&quot;npm&quot;, &quot;start&quot;]
+</code></pre>
+<h3 id="security-best-practices">Security Best Practices</h3>
+<pre><code class="language-dockerfile"># Create non-root user
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+# Use non-root user
+USER nextjs
+
+# Minimize attack surface
+RUN rm -rf /var/cache/apk/*
+</code></pre>
+<h3 id="image-size-optimization">Image Size Optimization</h3>
+<pre><code class="language-dockerfile"># Use alpine images
+FROM node:18-alpine
+
+# Combine RUN commands
+RUN apk add --no-cache git \
+    &amp;&amp; npm install \
+    &amp;&amp; apk del git
+
+# Use .dockerignore effectively
+</code></pre>
+<hr />
+<h2 id="common-workflows">Common Workflows</h2>
+<h3 id="development-workflow">Development Workflow</h3>
+<pre><code class="language-bash"># 1. Build image
+docker build -t myapp:dev .
+
+# 2. Run with volume mounting for hot reload
+docker run -p 3000:3000 -v $(pwd):/app -v /app/node_modules myapp:dev
+
+# 3. Use Docker Compose for full stack
+docker compose up -d --build
+</code></pre>
+<h3 id="production-workflow">Production Workflow</h3>
+<pre><code class="language-bash"># 1. Build production image
+docker build -t myapp:prod .
+
+# 2. Tag for registry
+docker tag myapp:prod username/myapp:latest
+
+# 3. Push to registry
+docker push username/myapp:latest
+
+# 4. Deploy
+docker run -d -p 80:3000 --name myapp-prod username/myapp:latest
+</code></pre>
+<h3 id="debugging-workflow">Debugging Workflow</h3>
+<pre><code class="language-bash"># View container logs
+docker logs &lt;container_name&gt;
+
+# Execute commands in running container
+docker exec -it &lt;container_name&gt; bash
+
+# Inspect container details
+docker inspect &lt;container_name&gt;
+
+# Check resource usage
+docker stats &lt;container_name&gt;
+</code></pre>
+<hr />
+<h2 id="quick-reference">Quick Reference</h2>
+<h3 id="most-used-commands">Most Used Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker build -t name .</code></td>
+<td>Build image from Dockerfile</td>
+</tr>
+<tr>
+<td><code>docker run -p 8080:80 image</code></td>
+<td>Run container with port mapping</td>
+</tr>
+<tr>
+<td><code>docker ps</code></td>
+<td>List running containers</td>
+</tr>
+<tr>
+<td><code>docker ps -a</code></td>
+<td>List all containers</td>
+</tr>
+<tr>
+<td><code>docker stop container</code></td>
+<td>Stop running container</td>
+</tr>
+<tr>
+<td><code>docker rm container</code></td>
+<td>Remove stopped container</td>
+</tr>
+<tr>
+<td><code>docker images</code></td>
+<td>List local images</td>
+</tr>
+<tr>
+<td><code>docker rmi image</code></td>
+<td>Remove image</td>
+</tr>
+<tr>
+<td><code>docker compose up -d</code></td>
+<td>Start services in background</td>
+</tr>
+<tr>
+<td><code>docker compose down</code></td>
+<td>Stop and remove services</td>
+</tr>
+</tbody>
+</table>
+<h3 id="essential-dockerfile-instructions">Essential Dockerfile Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FROM</code></td>
+<td>Base image</td>
+</tr>
+<tr>
+<td><code>WORKDIR</code></td>
+<td>Set working directory</td>
+</tr>
+<tr>
+<td><code>COPY</code></td>
+<td>Copy files to image</td>
+</tr>
+<tr>
+<td><code>RUN</code></td>
+<td>Execute commands during build</td>
+</tr>
+<tr>
+<td><code>EXPOSE</code></td>
+<td>Document port usage</td>
+</tr>
+<tr>
+<td><code>ENV</code></td>
+<td>Set environment variables</td>
+</tr>
+<tr>
+<td><code>CMD</code></td>
+<td>Default startup command</td>
+</tr>
+</tbody>
+</table>
+<p>Docker revolutionizes application deployment by providing consistency, isolation, and portability across all environments. Master these commands and concepts to efficiently containerize and manage your applications!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
