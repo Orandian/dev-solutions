@@ -1,0 +1,2292 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../docker/essential_docker_commands/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Expo Solutions Guide - Dev Solutions</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#complete-expo-react-native-solutions-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Dev Solutions" class="md-header__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Solutions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Expo Solutions Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Dev Solutions" class="md-nav__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dev Solutions
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Git
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/merge-conflict/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Merge Conflict
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/detached-head/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detached Head
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/branching-merging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branching & Merging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/industry_git_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Industry Git Commands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hosting
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Hosting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hosting/vercel-deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vercel Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Caddy
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Caddy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../caddy/ssl-renewal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SSL Renewal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker_process_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spring boot process
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/essential_docker_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Essential Docker Commands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Expo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Expo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Expo Solutions Guide
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expo Solutions Guide
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Initialization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-your-app-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Your App Locally
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Troubleshooting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-on-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing on Devices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-health-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Health &amp; Diagnostics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Health &amp; Diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#health-check-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Health Check Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependency Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eas-cli-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      EAS CLI Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EAS CLI Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation-and-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation and Authentication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-for-preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building for Preview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building for Preview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android-preview-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Android Preview Builds
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ios-preview-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      iOS Preview Builds
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-preview-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Preview Builds
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Builds
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Production Builds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-for-app-stores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building for App Stores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-profiles-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Profiles Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-store-submission" class="md-nav__link">
+    <span class="md-ellipsis">
+      App Store Submission
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="App Store Submission">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#google-play-store-submission" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Play Store Submission
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apple-app-store-submission" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apple App Store Submission
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updates-hot-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updates &amp; Hot Fixes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Updates &amp; Hot Fixes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eas-update-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      EAS Update Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Updates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development and Debugging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues and Solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Issues and Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-development-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Development Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Development Workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete Development Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#daily-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Daily Development
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-release-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Release Checklist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hot-fix-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hot Fix Workflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Configuration Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#essential-scripts-packagejson" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential Scripts (package.json)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#most-used-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Most Used Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Profiles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platforms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Initialization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-your-app-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Your App Locally
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Troubleshooting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-on-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing on Devices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-health-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Health &amp; Diagnostics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Health &amp; Diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#health-check-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Health Check Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependency Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eas-cli-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      EAS CLI Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EAS CLI Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation-and-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation and Authentication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-for-preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building for Preview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building for Preview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android-preview-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Android Preview Builds
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ios-preview-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      iOS Preview Builds
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-preview-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Preview Builds
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Builds
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Production Builds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-for-app-stores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building for App Stores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-profiles-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Profiles Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-store-submission" class="md-nav__link">
+    <span class="md-ellipsis">
+      App Store Submission
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="App Store Submission">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#google-play-store-submission" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Play Store Submission
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apple-app-store-submission" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apple App Store Submission
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updates-hot-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updates &amp; Hot Fixes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Updates &amp; Hot Fixes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eas-update-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      EAS Update Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Updates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development and Debugging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues and Solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Issues and Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-development-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Development Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Development Workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete Development Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#daily-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Daily Development
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-release-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Release Checklist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hot-fix-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hot Fix Workflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Configuration Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#essential-scripts-packagejson" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential Scripts (package.json)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#most-used-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Most Used Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Profiles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platforms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="complete-expo-react-native-solutions-guide">Complete Expo React Native Solutions Guide</h1>
+<p>A comprehensive guide to developing, building, and deploying React Native applications using Expo, covering everything from local development to app store submission.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#local-development">Local Development</a></li>
+<li><a href="#project-health--diagnostics">Project Health &amp; Diagnostics</a></li>
+<li><a href="#eas-cli-setup">EAS CLI Setup</a></li>
+<li><a href="#building-for-preview">Building for Preview</a></li>
+<li><a href="#production-builds">Production Builds</a></li>
+<li><a href="#app-store-submission">App Store Submission</a></li>
+<li><a href="#updates--hot-fixes">Updates &amp; Hot Fixes</a></li>
+<li><a href="#advanced-commands">Advanced Commands</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ol>
+<hr />
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<pre><code class="language-bash"># Install Node.js (LTS version recommended)
+node --version
+npm --version
+
+# Install Expo CLI globally
+npm install -g @expo/cli
+
+# Verify installation
+expo --version
+</code></pre>
+<h3 id="project-initialization">Project Initialization</h3>
+<pre><code class="language-bash"># Create new Expo project
+npx create-expo-app MyApp
+cd MyApp
+
+# Initialize existing React Native project with Expo
+npx create-expo-app --template blank MyApp
+npx create-expo-app --template typescript MyApp
+
+# Install dependencies
+npm install
+</code></pre>
+<hr />
+<h2 id="local-development">Local Development</h2>
+<h3 id="running-your-app-locally">Running Your App Locally</h3>
+<pre><code class="language-bash"># Start development server
+npm start
+# or
+npx expo start
+
+# Start with specific options
+npx expo start --clear        # Clear cache
+npx expo start --offline      # Offline mode
+npx expo start --localhost    # Force localhost
+npx expo start --lan         # Use LAN instead of localhost
+npx expo start --dev-client  # Use development client
+</code></pre>
+<h3 id="network-troubleshooting">Network Troubleshooting</h3>
+<pre><code class="language-bash"># Use tunnel when local network doesn't work
+npx expo start --tunnel
+
+# Force tunnel mode
+npx expo start --tunnel --force
+
+# Start with specific host
+npx expo start --host tunnel
+npx expo start --host lan
+npx expo start --host localhost
+</code></pre>
+<h3 id="testing-on-devices">Testing on Devices</h3>
+<p><strong>Android:</strong>
+- Open Expo Go app
+- Scan QR code from terminal
+- Or manually enter the URL shown in terminal</p>
+<p><strong>iOS:</strong>
+- Use iPhone camera to scan QR code
+- Tap notification to open in Expo Go
+- Or use Expo Go app's scanner</p>
+<hr />
+<h2 id="project-health-diagnostics">Project Health &amp; Diagnostics</h2>
+<h3 id="health-check-commands">Health Check Commands</h3>
+<pre><code class="language-bash"># Check project configuration and dependencies
+npx expo-doctor
+
+# Install and run doctor
+npx expo install --fix
+
+# Check for common issues
+npx expo config
+
+# Validate app.json/app.config.js
+npx expo config --type public
+
+# Check dependencies compatibility
+npx expo install --check
+</code></pre>
+<h3 id="dependency-management">Dependency Management</h3>
+<pre><code class="language-bash"># Install Expo-compatible versions
+npx expo install package-name
+
+# Update dependencies to compatible versions
+npx expo install --fix
+
+# Check outdated packages
+npm outdated
+
+# Update specific package
+npx expo install react-native@latest
+</code></pre>
+<hr />
+<h2 id="eas-cli-setup">EAS CLI Setup</h2>
+<h3 id="installation-and-authentication">Installation and Authentication</h3>
+<pre><code class="language-bash"># Install EAS CLI globally
+npm install -g eas-cli
+
+# Verify installation
+eas --version
+
+# Login to your Expo account
+eas login
+
+# Check current user
+eas whoami
+
+# Logout
+eas logout
+</code></pre>
+<h3 id="project-configuration">Project Configuration</h3>
+<pre><code class="language-bash"># Initialize EAS in your project
+eas init
+
+# Configure build profiles
+eas build:configure
+
+# View current configuration
+eas config
+
+# Link project to Expo account
+eas project:init
+</code></pre>
+<hr />
+<h2 id="building-for-preview">Building for Preview</h2>
+<h3 id="android-preview-builds">Android Preview Builds</h3>
+<pre><code class="language-bash"># Build Android preview (APK)
+eas build --profile preview --platform android
+
+# Build with custom profile
+eas build --profile development --platform android
+
+# Build and auto-submit to internal testing
+eas build --profile preview --platform android --auto-submit
+</code></pre>
+<h3 id="ios-preview-builds">iOS Preview Builds</h3>
+<pre><code class="language-bash"># Build iOS preview (IPA for simulator)
+eas build --profile preview --platform ios
+
+# Build for device testing
+eas build --profile preview-device --platform ios
+
+# Build iOS simulator build
+eas build --profile preview --platform ios --simulator
+</code></pre>
+<h3 id="installing-preview-builds">Installing Preview Builds</h3>
+<p><strong>iOS:</strong>
+1. Download the <code>.tar.gz</code> file from EAS dashboard
+2. Extract the folder
+3. Drag the <code>.app</code> file to iOS Simulator
+4. App will install and appear on home screen</p>
+<p><strong>Android:</strong>
+1. Copy the download link from EAS dashboard
+2. Open link on Android device
+3. Download and install the APK file
+4. Enable "Install from unknown sources" if prompted</p>
+<hr />
+<h2 id="production-builds">Production Builds</h2>
+<h3 id="building-for-app-stores">Building for App Stores</h3>
+<pre><code class="language-bash"># Build for both platforms
+eas build
+
+# Build for specific platform
+eas build --platform android
+eas build --platform ios
+
+# Build with specific profile
+eas build --profile production
+
+# Build and auto-submit
+eas build --platform android --auto-submit
+</code></pre>
+<h3 id="build-profiles-configuration">Build Profiles Configuration</h3>
+<pre><code class="language-bash"># View build profiles
+cat eas.json
+
+# Build with custom message
+eas build --message &quot;Release version 1.0.0&quot;
+
+# Build specific version
+eas build --profile production --platform all
+</code></pre>
+<hr />
+<h2 id="app-store-submission">App Store Submission</h2>
+<h3 id="google-play-store-submission">Google Play Store Submission</h3>
+<pre><code class="language-bash"># Submit to Google Play Store
+eas submit --platform android
+
+# Submit with specific build
+eas submit --platform android --id [build-id]
+
+# Submit latest build
+eas submit --platform android --latest
+
+# Submit with custom track
+eas submit --platform android --track internal
+</code></pre>
+<h3 id="apple-app-store-submission">Apple App Store Submission</h3>
+<pre><code class="language-bash"># Submit to App Store
+eas submit --platform ios
+
+# Submit with specific build
+eas submit --platform ios --id [build-id]
+
+# Submit latest build
+eas submit --platform ios --latest
+
+# Submit to TestFlight only
+eas submit --platform ios --apple-team-id [team-id]
+</code></pre>
+<hr />
+<h2 id="updates-hot-fixes">Updates &amp; Hot Fixes</h2>
+<h3 id="eas-update-commands">EAS Update Commands</h3>
+<pre><code class="language-bash"># Create and publish update
+eas update
+
+# Update with message
+eas update --message &quot;Fix critical login bug&quot;
+
+# Update specific branch/channel
+eas update --branch production
+eas update --channel production
+
+# Update with automatic message
+eas update --auto
+
+# Republish latest update
+eas update --republish
+</code></pre>
+<h3 id="managing-updates">Managing Updates</h3>
+<pre><code class="language-bash"># View update history
+eas update:list
+
+# View update details
+eas update:view [update-id]
+
+# Delete update
+eas update:delete [update-id]
+
+# Roll back to previous update
+eas update:rollback
+</code></pre>
+<hr />
+<h2 id="advanced-commands">Advanced Commands</h2>
+<h3 id="development-and-debugging">Development and Debugging</h3>
+<pre><code class="language-bash"># Generate native code (for custom native code)
+eas prebuild
+
+# Prebuild for specific platform
+eas prebuild --platform android
+eas prebuild --platform ios
+
+# Clean prebuild
+eas prebuild --clean
+
+# Run with custom development client
+npx expo run:android
+npx expo run:ios
+</code></pre>
+<h3 id="build-management">Build Management</h3>
+<pre><code class="language-bash"># List all builds
+eas build:list
+
+# View build details
+eas build:view [build-id]
+
+# Cancel running build
+eas build:cancel [build-id]
+
+# Download build artifacts
+eas build:download [build-id]
+</code></pre>
+<h3 id="project-management">Project Management</h3>
+<pre><code class="language-bash"># View project information
+eas project:info
+
+# Transfer project ownership
+eas project:transfer
+
+# View build queue
+eas build:queue
+
+# Check account usage
+eas account:usage
+</code></pre>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues-and-solutions">Common Issues and Solutions</h3>
+<h4 id="local-development-issues">Local Development Issues</h4>
+<pre><code class="language-bash"># Clear Expo cache
+npx expo start --clear
+
+# Reset Metro cache
+npx expo start --reset-cache
+
+# Fix port conflicts
+npx expo start --port 8081
+
+# Debug network issues
+npx expo start --tunnel --offline
+</code></pre>
+<h4 id="build-issues">Build Issues</h4>
+<pre><code class="language-bash"># Check build logs
+eas build:list
+eas build:view [build-id]
+
+# Rebuild with clean state
+eas build --clear-cache
+
+# Check credentials
+eas credentials
+
+# Reset credentials
+eas credentials --reset
+</code></pre>
+<h4 id="update-issues">Update Issues</h4>
+<pre><code class="language-bash"># Check update status
+eas channel:list
+eas branch:list
+
+# Fix update not showing
+eas update --force
+
+# Clear update cache on device
+# (Restart Expo Go or development client)
+</code></pre>
+<h3 id="debugging-commands">Debugging Commands</h3>
+<pre><code class="language-bash"># Enable verbose logging
+DEBUG=* eas build
+
+# Check system info
+npx expo diagnostics
+
+# Validate configuration
+npx expo config --type public
+
+# Check environment
+npx expo env:info
+</code></pre>
+<hr />
+<h2 id="complete-development-workflow">Complete Development Workflow</h2>
+<h3 id="daily-development">Daily Development</h3>
+<pre><code class="language-bash"># 1. Start development
+npx expo start
+
+# 2. Install new packages
+npx expo install package-name
+
+# 3. Check project health
+npx expo-doctor
+
+# 4. Test on devices via QR code
+</code></pre>
+<h3 id="pre-release-checklist">Pre-Release Checklist</h3>
+<pre><code class="language-bash"># 1. Health check
+npx expo-doctor
+
+# 2. Update dependencies
+npx expo install --fix
+
+# 3. Build preview
+eas build --profile preview --platform all
+
+# 4. Test preview builds
+# 5. Create production build
+eas build --profile production
+
+# 6. Submit to stores
+eas submit --platform all
+</code></pre>
+<h3 id="hot-fix-workflow">Hot Fix Workflow</h3>
+<pre><code class="language-bash"># 1. Fix the issue in code
+# 2. Test locally
+npx expo start
+
+# 3. Publish update
+eas update --message &quot;Fix critical issue&quot;
+
+# 4. Monitor deployment
+eas update:list
+</code></pre>
+<hr />
+<h2 id="configuration-files">Configuration Files</h2>
+<h3 id="key-configuration-files">Key Configuration Files</h3>
+<pre><code>├── app.json              # Expo configuration
+├── eas.json              # EAS Build configuration
+├── package.json          # Dependencies and scripts
+├── babel.config.js       # Babel configuration
+└── .easignore           # Files to ignore during build
+</code></pre>
+<h3 id="essential-scripts-packagejson">Essential Scripts (package.json)</h3>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;expo start&quot;,
+    &quot;android&quot;: &quot;expo start --android&quot;,
+    &quot;ios&quot;: &quot;expo start --ios&quot;,
+    &quot;web&quot;: &quot;expo start --web&quot;,
+    &quot;build&quot;: &quot;eas build&quot;,
+    &quot;build:preview&quot;: &quot;eas build --profile preview&quot;,
+    &quot;submit&quot;: &quot;eas submit&quot;,
+    &quot;update&quot;: &quot;eas update&quot;
+  }
+}
+</code></pre>
+<hr />
+<h2 id="quick-reference">Quick Reference</h2>
+<h3 id="most-used-commands">Most Used Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>npx expo start</code></td>
+<td>Start development server</td>
+</tr>
+<tr>
+<td><code>npx expo start --tunnel</code></td>
+<td>Start with tunnel (network issues)</td>
+</tr>
+<tr>
+<td><code>npx expo-doctor</code></td>
+<td>Check project health</td>
+</tr>
+<tr>
+<td><code>eas login</code></td>
+<td>Login to Expo account</td>
+</tr>
+<tr>
+<td><code>eas build --profile preview</code></td>
+<td>Build preview version</td>
+</tr>
+<tr>
+<td><code>eas build</code></td>
+<td>Build for production</td>
+</tr>
+<tr>
+<td><code>eas submit</code></td>
+<td>Submit to app stores</td>
+</tr>
+<tr>
+<td><code>eas update</code></td>
+<td>Deploy hot fix update</td>
+</tr>
+</tbody>
+</table>
+<h3 id="build-profiles">Build Profiles</h3>
+<ul>
+<li><strong>development</strong>: For development with debugging</li>
+<li><strong>preview</strong>: For internal testing (APK/IPA)</li>
+<li><strong>production</strong>: For app store submission</li>
+</ul>
+<h3 id="platforms">Platforms</h3>
+<ul>
+<li><strong>android</strong>: Google Play Store</li>
+<li><strong>ios</strong>: Apple App Store</li>
+<li><strong>all</strong>: Both platforms</li>
+</ul>
+<p>Remember to always run <code>npx expo-doctor</code> before building to ensure your project is configured correctly!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
