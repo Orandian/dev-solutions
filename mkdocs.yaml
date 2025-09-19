@@ -3,7 +3,6 @@ site_description: Documentation for Dev Solutions projects
 site_author: Yan Naing Htwe
 site_url: https://orandian.github.io/dev-solutions/
 
-# Enable full Material theme features
 theme:
   name: material
   palette:

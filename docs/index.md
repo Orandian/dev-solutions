@@ -83,7 +83,7 @@ This experience has given me insights into what developers really need in their 
 
 Want to learn more about my work or discuss these topics further?
 
-- **Portfolio**: [yannainghtwe.vercel.app](https://yannainghtwe.vercel.app/)
+- **Portfolio**: [yannainghtwe-portfolio.vercel.app](https://yannainghtwe-portfolio.vercel.app/)
 - **Location**: Tokyo, Japan
 - **Expertise**: Full-Stack Development, Mobile Applications, System Architecture
 
@@ -103,4 +103,4 @@ Whether you're a junior developer looking to learn industry practices or a senio
 
 ---
 
-*Last updated: January 2025*
+*Last updated: September 2025*
