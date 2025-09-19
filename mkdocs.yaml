@@ -1,6 +1,32 @@
 site_name: Dev Solutions
+site_description: Documentation for Dev Solutions projects
+site_author: Yan Naing Htwe
+site_url: https://orandian.github.io/dev-solutions/
+
+# Enable full Material theme features
 theme:
   name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  features:
+    - navigation.expand      # Expand nested nav automatically
+    - navigation.tabs        # Show top-level nav as tabs
+    - content.code.copy      # Copy button for code blocks
+    - search.highlight       # Highlight search results
+    - search.suggest         # Suggest search results as typing
+    - header.autohide        # Hide header when scrolling
+
 nav:
   - Home: index.md
   - Git:
