@@ -1,0 +1,3369 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for Dev Solutions projects">
+      
+      
+        <meta name="author" content="Yan Naing Htwe">
+      
+      
+        <link rel="canonical" href="https://orandian.github.io/dev-solutions/kubernetes/kubernetes_comprehensive_guide/">
+      
+      
+        <link rel="prev" href="../../docker/docker_comprehensive_guide/">
+      
+      
+        <link rel="next" href="../../expo/expo_solutions_guide/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Kubernetes Comprehensive Guide - Dev Solutions</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#complete-kubernetes-guide-commands-and-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Dev Solutions" class="md-header__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Solutions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kubernetes Comprehensive Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Dev Solutions" class="md-nav__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dev Solutions
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Git
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/merge-conflict/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Merge Conflict
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/detached-head/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detached Head
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/branching-merging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branching & Merging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/industry_git_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Industry Git Commands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hosting
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Hosting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hosting/vercel-deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vercel Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Caddy
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Caddy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../caddy/ssl-renewal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SSL Renewal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker_process_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spring boot process
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/essential_docker_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Essential Docker Commands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker_comprehensive_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Comprehensive Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Kubernetes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes Comprehensive Guide
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes Comprehensive Guide
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Kubernetes?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Kubernetes?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-kubernetes-is-necessary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Kubernetes is Necessary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-kubernetes-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Kubernetes Works
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-kubernetes-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Kubernetes Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Kubernetes Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Cluster
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Pods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-replicaset" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. ReplicaSet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-configmaps-and-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. ConfigMaps and Secrets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-ingress" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Ingress
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Volumes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-plane-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Plane Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-node-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Worker Node Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-and-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation and Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation and Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-kubectl-kubernetes-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing kubectl (Kubernetes CLI)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing kubectl (Kubernetes CLI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos-apple-silicon" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOS (Apple Silicon)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos-intel" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOS (Intel)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-minikube-local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Minikube (Local Development)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Minikube (Local Development)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify Installation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-local-development-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alternative Local Development Options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#essential-kubectl-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential kubectl Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Essential kubectl Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cluster-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cluster Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-with-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describing-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describing Resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-and-managing-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating and Managing Resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-yaml-manifests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with YAML Manifests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with YAML Manifests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pod-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod Manifest
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment Manifest
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Manifest
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configmap-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConfigMap Manifest
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secret-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secret Manifest
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#networking-and-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Networking and Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Networking and Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingress-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingress Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Policies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-and-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage and Volumes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage and Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persistent-volume-pv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Volume (PV)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistent-volume-claim-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Volume Claim (PVC)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-volumes-in-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Volumes in Pods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configmaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConfigMaps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secrets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-and-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scaling and Updates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaling and Updates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rolling-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rolling Updates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-pod-autoscaler-hpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Horizontal Pod Autoscaler (HPA)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Debugging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring and Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pod-logs-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod Logs and Debugging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-usage-and-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Usage and Events
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Topics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Topics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Namespaces
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labels-and-selectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Labels and Selectors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jobs-and-cronjobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jobs and CronJobs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Health Checks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automated-deployment-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automated Deployment Script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-deployment-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Deployment Checklist
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#essential-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-short-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Short Names
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Flags
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Expo
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Expo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expo/expo_solutions_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expo Solutions Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Kubernetes?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Kubernetes?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-kubernetes-is-necessary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Kubernetes is Necessary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-kubernetes-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Kubernetes Works
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-kubernetes-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Kubernetes Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Kubernetes Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Cluster
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Pods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-replicaset" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. ReplicaSet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-configmaps-and-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. ConfigMaps and Secrets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-ingress" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Ingress
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Volumes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-plane-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Plane Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-node-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Worker Node Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-and-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation and Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation and Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-kubectl-kubernetes-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing kubectl (Kubernetes CLI)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing kubectl (Kubernetes CLI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos-apple-silicon" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOS (Apple Silicon)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos-intel" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOS (Intel)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-minikube-local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Minikube (Local Development)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Minikube (Local Development)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify Installation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-local-development-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alternative Local Development Options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#essential-kubectl-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential kubectl Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Essential kubectl Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cluster-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cluster Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-with-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describing-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describing Resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-and-managing-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating and Managing Resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-yaml-manifests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with YAML Manifests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with YAML Manifests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pod-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod Manifest
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment Manifest
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Manifest
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configmap-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConfigMap Manifest
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secret-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secret Manifest
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#networking-and-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Networking and Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Networking and Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingress-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingress Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Policies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-and-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage and Volumes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage and Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persistent-volume-pv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Volume (PV)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistent-volume-claim-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Volume Claim (PVC)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-volumes-in-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Volumes in Pods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configmaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConfigMaps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secrets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-and-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scaling and Updates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaling and Updates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rolling-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rolling Updates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-pod-autoscaler-hpa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Horizontal Pod Autoscaler (HPA)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Debugging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring and Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pod-logs-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod Logs and Debugging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-usage-and-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Usage and Events
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Topics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Topics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Namespaces
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#labels-and-selectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Labels and Selectors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jobs-and-cronjobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jobs and CronJobs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resource-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Health Checks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automated-deployment-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automated Deployment Script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-deployment-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Deployment Checklist
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#essential-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-short-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Short Names
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Flags
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="complete-kubernetes-guide-commands-and-concepts">Complete Kubernetes Guide - Commands and Concepts</h1>
+<p>A comprehensive guide to Kubernetes (K8s) container orchestration platform, covering core concepts, CLI commands, deployment strategies, and best practices for managing containerized applications at scale.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#what-is-kubernetes">What is Kubernetes?</a></li>
+<li><a href="#core-kubernetes-concepts">Core Kubernetes Concepts</a></li>
+<li><a href="#kubernetes-architecture">Kubernetes Architecture</a></li>
+<li><a href="#installation-and-setup">Installation and Setup</a></li>
+<li><a href="#essential-kubectl-commands">Essential kubectl Commands</a></li>
+<li><a href="#working-with-yaml-manifests">Working with YAML Manifests</a></li>
+<li><a href="#networking-and-services">Networking and Services</a></li>
+<li><a href="#storage-and-volumes">Storage and Volumes</a></li>
+<li><a href="#configuration-management">Configuration Management</a></li>
+<li><a href="#scaling-and-updates">Scaling and Updates</a></li>
+<li><a href="#monitoring-and-debugging">Monitoring and Debugging</a></li>
+<li><a href="#advanced-topics">Advanced Topics</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#common-workflows">Common Workflows</a></li>
+</ol>
+<hr />
+<h2 id="what-is-kubernetes">What is Kubernetes?</h2>
+<p>Kubernetes (K8s) is an <strong>open-source container orchestration platform</strong> that automates the deployment, scaling, and management of containerized applications across a cluster of machines.</p>
+<h3 id="why-kubernetes-is-necessary">Why Kubernetes is Necessary</h3>
+<p><strong>The Problem:</strong>
+- Single containers can't handle increasing traffic (CPU/memory bottlenecks)
+- Single point of failure - if one container fails, entire application goes down
+- Manual scaling and management becomes complex
+- No built-in load balancing or service discovery</p>
+<p><strong>The Solution:</strong>
+- <strong>Multiple replicas</strong> of applications for high availability
+- <strong>Automatic scaling</strong> based on demand
+- <strong>Self-healing</strong> - replaces failed containers automatically
+- <strong>Load balancing</strong> and service discovery
+- <strong>Rolling updates</strong> without downtime</p>
+<h3 id="how-kubernetes-works">How Kubernetes Works</h3>
+<ul>
+<li><strong>Docker</strong> provides individual containers that package your applications</li>
+<li><strong>Kubernetes</strong> decides how, where, and when these containers run</li>
+<li><strong>Declarative approach</strong> - you describe desired state using YAML files</li>
+<li><strong>Kubernetes maintains</strong> that state automatically</li>
+</ul>
+<hr />
+<h2 id="core-kubernetes-concepts">Core Kubernetes Concepts</h2>
+<h3 id="1-cluster">1. Cluster</h3>
+<p>A <strong>group of physical or virtual machines</strong> working as a single system.</p>
+<p><strong>Components:</strong>
+- <strong>Control Plane</strong>: Makes decisions, schedules pods, reconciles states, monitors health
+- <strong>Worker Nodes</strong>: Machines where containers actually run</p>
+<h3 id="2-pods">2. Pods</h3>
+<p>The <strong>smallest deployable unit</strong> in Kubernetes:
+- Wraps one or more containers
+- Each pod gets its own IP address
+- Containers in a pod share storage and network
+- Ephemeral - pods can be created and destroyed</p>
+<h3 id="3-replicaset">3. ReplicaSet</h3>
+<p>Ensures a <strong>specified number of identical pods</strong> are always running:
+- If a pod dies, automatically spins up a new one
+- Maintains desired state
+- Handles pod lifecycle management</p>
+<h3 id="4-deployment">4. Deployment</h3>
+<p>A <strong>higher-level object</strong> that manages ReplicaSets:
+- Enables rolling updates
+- Gradually replaces old pods with new ones
+- Zero-downtime deployments
+- Rollback capabilities</p>
+<h3 id="5-service">5. Service</h3>
+<p>A <strong>stable network endpoint</strong> that routes traffic to available pods:
+- Permanent IP or DNS name
+- Load balances requests across multiple replicas
+- Abstracts away pod temporary nature
+- Service discovery mechanism</p>
+<h3 id="6-configmaps-and-secrets">6. ConfigMaps and Secrets</h3>
+<ul>
+<li><strong>ConfigMaps</strong>: Store non-sensitive configuration data (database URLs, settings)</li>
+<li><strong>Secrets</strong>: Store sensitive data (passwords, API keys, certificates)</li>
+<li>Both are securely injected into pods</li>
+</ul>
+<h3 id="7-ingress">7. Ingress</h3>
+<p>Acts as a <strong>smart router</strong>:
+- Exposes HTTP/HTTPS routes from outside cluster
+- Routes to internal services
+- SSL termination
+- Load balancing</p>
+<h3 id="8-volumes">8. Volumes</h3>
+<p>Provide <strong>persistent storage</strong>:
+- Data survives pod restarts
+- Can be shared between pods
+- Various storage backends supported</p>
+<hr />
+<h2 id="kubernetes-architecture">Kubernetes Architecture</h2>
+<h3 id="control-plane-components">Control Plane Components</h3>
+<pre><code>┌─────────────────────────────────────────┐
+│              Control Plane              │
+├─────────────────────────────────────────┤
+│  API Server  │  etcd  │  Scheduler     │
+│  Controller Manager   │  Cloud Manager │
+└─────────────────────────────────────────┘
+</code></pre>
+<h3 id="worker-node-components">Worker Node Components</h3>
+<pre><code>┌─────────────────────────────────────────┐
+│              Worker Node                │
+├─────────────────────────────────────────┤
+│  Kubelet  │  Container Runtime  │ Proxy │
+│           │     (Docker/containerd)      │
+└─────────────────────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="installation-and-setup">Installation and Setup</h2>
+<h3 id="installing-kubectl-kubernetes-cli">Installing kubectl (Kubernetes CLI)</h3>
+<h4 id="macos-apple-silicon">macOS (Apple Silicon)</h4>
+<pre><code class="language-bash"># Download kubectl
+curl -LO &quot;https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/arm64/kubectl&quot;
+
+# Make executable
+chmod +x kubectl
+
+# Move to PATH
+sudo mv kubectl /usr/local/bin/
+
+# Verify installation
+kubectl version --client
+</code></pre>
+<h4 id="macos-intel">macOS (Intel)</h4>
+<pre><code class="language-bash">curl -LO &quot;https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl&quot;
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+</code></pre>
+<h4 id="linux">Linux</h4>
+<pre><code class="language-bash">curl -LO &quot;https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl&quot;
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+</code></pre>
+<h4 id="windows">Windows</h4>
+<pre><code class="language-bash">curl -LO &quot;https://dl.k8s.io/release/v1.28.0/bin/windows/amd64/kubectl.exe&quot;
+</code></pre>
+<h3 id="installing-minikube-local-development">Installing Minikube (Local Development)</h3>
+<h4 id="macos">macOS</h4>
+<pre><code class="language-bash"># Using Homebrew
+brew install minikube
+
+# Or direct download
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-arm64
+sudo install minikube-darwin-arm64 /usr/local/bin/minikube
+</code></pre>
+<h4 id="linux_1">Linux</h4>
+<pre><code class="language-bash">curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+</code></pre>
+<h4 id="verify-installation">Verify Installation</h4>
+<pre><code class="language-bash">minikube version
+</code></pre>
+<h3 id="alternative-local-development-options">Alternative Local Development Options</h3>
+<pre><code class="language-bash"># Kind (Kubernetes in Docker)
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+
+# K3s (Lightweight Kubernetes)
+curl -sfL https://get.k3s.io | sh -
+</code></pre>
+<hr />
+<h2 id="essential-kubectl-commands">Essential kubectl Commands</h2>
+<h3 id="cluster-management">Cluster Management</h3>
+<pre><code class="language-bash"># Start local Minikube cluster
+minikube start
+
+# Start with specific resources
+minikube start --memory=4096 --cpus=2
+
+# Start with specific Kubernetes version
+minikube start --kubernetes-version=v1.28.0
+
+# Stop Minikube cluster
+minikube stop
+
+# Delete Minikube cluster
+minikube delete
+
+# Get cluster information
+kubectl cluster-info
+kubectl cluster-info dump
+
+# Check cluster nodes
+kubectl get nodes
+kubectl get nodes -o wide
+
+# Check cluster status
+kubectl get componentstatuses
+</code></pre>
+<h3 id="working-with-resources">Working with Resources</h3>
+<h4 id="viewing-resources">Viewing Resources</h4>
+<pre><code class="language-bash"># List all pods
+kubectl get pods
+kubectl get po  # Short form
+
+# List pods with more details
+kubectl get pods -o wide
+
+# List pods in all namespaces
+kubectl get pods --all-namespaces
+kubectl get pods -A
+
+# Watch pods in real-time
+kubectl get pods -w
+kubectl get pods --watch
+
+# List other resources
+kubectl get services
+kubectl get deployments
+kubectl get replicasets
+kubectl get configmaps
+kubectl get secrets
+kubectl get ingress
+kubectl get pv,pvc  # Persistent volumes and claims
+</code></pre>
+<h4 id="describing-resources">Describing Resources</h4>
+<pre><code class="language-bash"># Get detailed information about a pod
+kubectl describe pod &lt;pod-name&gt;
+
+# Describe other resources
+kubectl describe service &lt;service-name&gt;
+kubectl describe deployment &lt;deployment-name&gt;
+kubectl describe node &lt;node-name&gt;
+</code></pre>
+<h4 id="creating-and-managing-resources">Creating and Managing Resources</h4>
+<pre><code class="language-bash"># Apply configuration from file
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+
+# Apply all files in directory
+kubectl apply -f k8s/
+kubectl apply -f . --recursive
+
+# Create resource imperatively
+kubectl create deployment nginx --image=nginx
+kubectl create service clusterip my-service --tcp=80:80
+
+# Delete resources
+kubectl delete -f deployment.yaml
+kubectl delete deployment &lt;deployment-name&gt;
+kubectl delete pod &lt;pod-name&gt;
+
+# Delete all resources in namespace
+kubectl delete all --all
+</code></pre>
+<hr />
+<h2 id="working-with-yaml-manifests">Working with YAML Manifests</h2>
+<h3 id="pod-manifest">Pod Manifest</h3>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  labels:
+    app: my-app
+spec:
+  containers:
+  - name: my-container
+    image: nginx:1.21
+    ports:
+    - containerPort: 80
+    env:
+    - name: ENV_VAR
+      value: &quot;production&quot;
+    resources:
+      requests:
+        memory: &quot;64Mi&quot;
+        cpu: &quot;250m&quot;
+      limits:
+        memory: &quot;128Mi&quot;
+        cpu: &quot;500m&quot;
+</code></pre>
+<h3 id="deployment-manifest">Deployment Manifest</h3>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+  labels:
+    app: my-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app
+        image: my-app:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: database-url
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: api-key
+</code></pre>
+<h3 id="service-manifest">Service Manifest</h3>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  selector:
+    app: my-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP  # ClusterIP, NodePort, LoadBalancer
+</code></pre>
+<h3 id="configmap-manifest">ConfigMap Manifest</h3>
+<pre><code class="language-yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  database-url: &quot;postgresql://db:5432/myapp&quot;
+  log-level: &quot;info&quot;
+  config.properties: |
+    property1=value1
+    property2=value2
+</code></pre>
+<h3 id="secret-manifest">Secret Manifest</h3>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secrets
+type: Opaque
+data:
+  api-key: YWJjZGVmZ2hpams=  # base64 encoded
+  password: cGFzc3dvcmQ=     # base64 encoded
+</code></pre>
+<hr />
+<h2 id="networking-and-services">Networking and Services</h2>
+<h3 id="service-types">Service Types</h3>
+<pre><code class="language-bash"># ClusterIP (default) - Internal cluster access only
+kubectl expose deployment my-app --port=80 --target-port=8080
+
+# NodePort - Access via node IP:port
+kubectl expose deployment my-app --type=NodePort --port=80
+
+# LoadBalancer - External load balancer (cloud providers)
+kubectl expose deployment my-app --type=LoadBalancer --port=80
+
+# Access service in Minikube
+minikube service my-app-service
+minikube service my-app-service --url
+</code></pre>
+<h3 id="ingress-configuration">Ingress Configuration</h3>
+<pre><code class="language-yaml">apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-app-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: my-app.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-app-service
+            port:
+              number: 80
+</code></pre>
+<h3 id="network-policies">Network Policies</h3>
+<pre><code class="language-yaml">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+</code></pre>
+<hr />
+<h2 id="storage-and-volumes">Storage and Volumes</h2>
+<h3 id="persistent-volume-pv">Persistent Volume (PV)</h3>
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: /data/my-app
+</code></pre>
+<h3 id="persistent-volume-claim-pvc">Persistent Volume Claim (PVC)</h3>
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+</code></pre>
+<h3 id="using-volumes-in-pods">Using Volumes in Pods</h3>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+    volumeMounts:
+    - name: my-storage
+      mountPath: /data
+  volumes:
+  - name: my-storage
+    persistentVolumeClaim:
+      claimName: my-pvc
+</code></pre>
+<h3 id="storage-commands">Storage Commands</h3>
+<pre><code class="language-bash"># List persistent volumes
+kubectl get pv
+
+# List persistent volume claims
+kubectl get pvc
+
+# Describe storage
+kubectl describe pv my-pv
+kubectl describe pvc my-pvc
+</code></pre>
+<hr />
+<h2 id="configuration-management">Configuration Management</h2>
+<h3 id="configmaps">ConfigMaps</h3>
+<pre><code class="language-bash"># Create ConfigMap from literal values
+kubectl create configmap app-config --from-literal=key1=value1 --from-literal=key2=value2
+
+# Create ConfigMap from file
+kubectl create configmap app-config --from-file=config.properties
+
+# Create ConfigMap from directory
+kubectl create configmap app-config --from-file=config/
+
+# Get ConfigMap
+kubectl get configmap
+kubectl describe configmap app-config
+
+# Edit ConfigMap
+kubectl edit configmap app-config
+</code></pre>
+<h3 id="secrets">Secrets</h3>
+<pre><code class="language-bash"># Create Secret from literal values
+kubectl create secret generic app-secrets --from-literal=username=admin --from-literal=password=secret
+
+# Create Secret from files
+kubectl create secret generic app-secrets --from-file=username.txt --from-file=password.txt
+
+# Create Docker registry secret
+kubectl create secret docker-registry regcred \
+  --docker-server=docker.io \
+  --docker-username=myuser \
+  --docker-password=mypass \
+  --docker-email=myemail@example.com
+
+# Get Secrets
+kubectl get secrets
+kubectl describe secret app-secrets
+
+# Decode secret values
+kubectl get secret app-secrets -o jsonpath='{.data.password}' | base64 --decode
+</code></pre>
+<hr />
+<h2 id="scaling-and-updates">Scaling and Updates</h2>
+<h3 id="manual-scaling">Manual Scaling</h3>
+<pre><code class="language-bash"># Scale deployment
+kubectl scale deployment my-app --replicas=5
+
+# Scale ReplicaSet
+kubectl scale rs my-replicaset --replicas=3
+
+# Auto-scaling (Horizontal Pod Autoscaler)
+kubectl autoscale deployment my-app --min=2 --max=10 --cpu-percent=80
+</code></pre>
+<h3 id="rolling-updates">Rolling Updates</h3>
+<pre><code class="language-bash"># Update deployment image
+kubectl set image deployment/my-app container-name=new-image:tag
+
+# Update with new image
+kubectl set image deployment/my-app my-app=my-app:v2
+
+# Check rollout status
+kubectl rollout status deployment/my-app
+
+# Check rollout history
+kubectl rollout history deployment/my-app
+
+# Rollback to previous version
+kubectl rollout undo deployment/my-app
+
+# Rollback to specific revision
+kubectl rollout undo deployment/my-app --to-revision=2
+
+# Pause rollout
+kubectl rollout pause deployment/my-app
+
+# Resume rollout
+kubectl rollout resume deployment/my-app
+</code></pre>
+<h3 id="horizontal-pod-autoscaler-hpa">Horizontal Pod Autoscaler (HPA)</h3>
+<pre><code class="language-yaml">apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: my-app-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-app
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+</code></pre>
+<hr />
+<h2 id="monitoring-and-debugging">Monitoring and Debugging</h2>
+<h3 id="pod-logs-and-debugging">Pod Logs and Debugging</h3>
+<pre><code class="language-bash"># View pod logs
+kubectl logs &lt;pod-name&gt;
+kubectl logs &lt;pod-name&gt; -c &lt;container-name&gt;  # Multi-container pod
+
+# Follow logs in real-time
+kubectl logs -f &lt;pod-name&gt;
+
+# Get logs from previous container instance
+kubectl logs &lt;pod-name&gt; --previous
+
+# Get logs from all containers in pod
+kubectl logs &lt;pod-name&gt; --all-containers
+
+# Execute commands in pod
+kubectl exec -it &lt;pod-name&gt; -- /bin/bash
+kubectl exec -it &lt;pod-name&gt; -c &lt;container-name&gt; -- /bin/sh
+
+# Copy files to/from pod
+kubectl cp &lt;pod-name&gt;:/path/to/file ./local-file
+kubectl cp ./local-file &lt;pod-name&gt;:/path/to/file
+
+# Port forwarding for debugging
+kubectl port-forward &lt;pod-name&gt; 8080:80
+kubectl port-forward service/&lt;service-name&gt; 8080:80
+</code></pre>
+<h3 id="resource-usage-and-events">Resource Usage and Events</h3>
+<pre><code class="language-bash"># Check resource usage
+kubectl top nodes
+kubectl top pods
+kubectl top pods --containers
+
+# View cluster events
+kubectl get events
+kubectl get events --sort-by='.metadata.creationTimestamp'
+
+# Check resource quotas
+kubectl get resourcequota
+kubectl describe resourcequota
+
+# Check limits
+kubectl get limitrange
+kubectl describe limitrange
+</code></pre>
+<hr />
+<h2 id="advanced-topics">Advanced Topics</h2>
+<h3 id="namespaces">Namespaces</h3>
+<pre><code class="language-bash"># Create namespace
+kubectl create namespace production
+kubectl create ns dev  # Short form
+
+# List namespaces
+kubectl get namespaces
+kubectl get ns
+
+# Set default namespace
+kubectl config set-context --current --namespace=production
+
+# Delete namespace
+kubectl delete namespace dev
+
+# Work with specific namespace
+kubectl get pods -n production
+kubectl apply -f deployment.yaml -n production
+</code></pre>
+<h3 id="labels-and-selectors">Labels and Selectors</h3>
+<pre><code class="language-bash"># Add labels to resources
+kubectl label pod my-pod environment=production
+kubectl label pod my-pod version=v1.0
+
+# Remove labels
+kubectl label pod my-pod environment-
+
+# Select resources by labels
+kubectl get pods -l environment=production
+kubectl get pods -l 'environment in (production,staging)'
+kubectl get pods -l environment=production,version=v1.0
+
+# Show labels
+kubectl get pods --show-labels
+</code></pre>
+<h3 id="jobs-and-cronjobs">Jobs and CronJobs</h3>
+<pre><code class="language-yaml"># Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: my-job
+        image: busybox
+        command: [&quot;echo&quot;, &quot;Hello World&quot;]
+      restartPolicy: Never
+  backoffLimit: 4
+
+# CronJob
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: my-cronjob
+spec:
+  schedule: &quot;0 2 * * *&quot;  # Daily at 2 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: my-cronjob
+            image: busybox
+            command: [&quot;echo&quot;, &quot;Scheduled task&quot;]
+          restartPolicy: Never
+</code></pre>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="resource-management">Resource Management</h3>
+<pre><code class="language-yaml"># Always set resource requests and limits
+resources:
+  requests:
+    memory: &quot;64Mi&quot;
+    cpu: &quot;250m&quot;
+  limits:
+    memory: &quot;128Mi&quot;
+    cpu: &quot;500m&quot;
+</code></pre>
+<h3 id="health-checks">Health Checks</h3>
+<pre><code class="language-yaml"># Liveness and readiness probes
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 5
+</code></pre>
+<h3 id="security-best-practices">Security Best Practices</h3>
+<pre><code class="language-yaml"># Security context
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+    - ALL
+</code></pre>
+<hr />
+<h2 id="common-workflows">Common Workflows</h2>
+<h3 id="development-workflow">Development Workflow</h3>
+<pre><code class="language-bash"># 1. Prepare Docker image
+docker build -t my-app:latest .
+docker tag my-app:latest username/my-app:latest
+docker push username/my-app:latest
+
+# 2. Deploy to Kubernetes
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+
+# 3. Check deployment
+kubectl get pods -w
+kubectl get services
+
+# 4. Access application
+minikube service my-app-service
+</code></pre>
+<h3 id="automated-deployment-script">Automated Deployment Script</h3>
+<pre><code class="language-bash">#!/bin/bash
+# deploy.sh
+
+set -e
+
+IMAGE=&quot;username/my-app:latest&quot;
+NAME=&quot;my-app&quot;
+
+echo &quot;Building Docker image...&quot;
+docker build -t $IMAGE .
+
+echo &quot;Pushing to Docker Hub...&quot;
+docker push $IMAGE
+
+echo &quot;Deploying to Kubernetes...&quot;
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+
+echo &quot;Checking deployment status...&quot;
+kubectl get pods
+kubectl get services
+
+echo &quot;Getting service URL...&quot;
+minikube service $NAME-service --url
+
+echo &quot;Deployment completed successfully!&quot;
+</code></pre>
+<h3 id="production-deployment-checklist">Production Deployment Checklist</h3>
+<pre><code class="language-bash"># 1. Resource limits set
+kubectl describe pod &lt;pod-name&gt; | grep -A 5 &quot;Limits&quot;
+
+# 2. Health checks configured
+kubectl describe pod &lt;pod-name&gt; | grep -A 5 &quot;Liveness&quot;
+
+# 3. Security context applied
+kubectl describe pod &lt;pod-name&gt; | grep -A 10 &quot;Security Context&quot;
+
+# 4. Monitoring and logging
+kubectl logs &lt;pod-name&gt;
+kubectl top pod &lt;pod-name&gt;
+
+# 5. Backup and disaster recovery
+kubectl get all -o yaml &gt; backup.yaml
+</code></pre>
+<hr />
+<h2 id="quick-reference">Quick Reference</h2>
+<h3 id="essential-commands">Essential Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get pods</code></td>
+<td>List all pods</td>
+</tr>
+<tr>
+<td><code>kubectl apply -f file.yaml</code></td>
+<td>Apply configuration</td>
+</tr>
+<tr>
+<td><code>kubectl describe pod &lt;name&gt;</code></td>
+<td>Get detailed pod info</td>
+</tr>
+<tr>
+<td><code>kubectl logs &lt;pod-name&gt;</code></td>
+<td>View pod logs</td>
+</tr>
+<tr>
+<td><code>kubectl exec -it &lt;pod&gt; -- bash</code></td>
+<td>Shell into pod</td>
+</tr>
+<tr>
+<td><code>kubectl scale deployment &lt;name&gt; --replicas=3</code></td>
+<td>Scale deployment</td>
+</tr>
+<tr>
+<td><code>kubectl delete pod &lt;name&gt;</code></td>
+<td>Delete pod</td>
+</tr>
+<tr>
+<td><code>kubectl get services</code></td>
+<td>List services</td>
+</tr>
+<tr>
+<td><code>minikube service &lt;name&gt;</code></td>
+<td>Access service in Minikube</td>
+</tr>
+<tr>
+<td><code>kubectl rollout restart deployment/&lt;name&gt;</code></td>
+<td>Restart deployment</td>
+</tr>
+</tbody>
+</table>
+<h3 id="resource-short-names">Resource Short Names</h3>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Short Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pods</td>
+<td>po</td>
+</tr>
+<tr>
+<td>services</td>
+<td>svc</td>
+</tr>
+<tr>
+<td>deployments</td>
+<td>deploy</td>
+</tr>
+<tr>
+<td>replicasets</td>
+<td>rs</td>
+</tr>
+<tr>
+<td>namespaces</td>
+<td>ns</td>
+</tr>
+<tr>
+<td>configmaps</td>
+<td>cm</td>
+</tr>
+<tr>
+<td>persistentvolumes</td>
+<td>pv</td>
+</tr>
+<tr>
+<td>persistentvolumeclaims</td>
+<td>pvc</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-flags">Common Flags</h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-n &lt;namespace&gt;</code></td>
+<td>Specify namespace</td>
+</tr>
+<tr>
+<td><code>-o wide</code></td>
+<td>Show more columns</td>
+</tr>
+<tr>
+<td><code>-o yaml</code></td>
+<td>Output in YAML format</td>
+</tr>
+<tr>
+<td><code>-w, --watch</code></td>
+<td>Watch for changes</td>
+</tr>
+<tr>
+<td><code>--dry-run=client</code></td>
+<td>Preview without applying</td>
+</tr>
+<tr>
+<td><code>-f &lt;file&gt;</code></td>
+<td>Specify file</td>
+</tr>
+</tbody>
+</table>
+<p>Kubernetes provides powerful orchestration capabilities for containerized applications, enabling scalable, resilient, and manageable deployments across distributed systems!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "content.code.copy", "search.highlight", "search.suggest", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
