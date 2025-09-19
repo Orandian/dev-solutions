@@ -21,7 +21,6 @@ theme:
         name: Switch to light mode
   features:
     - navigation.expand      # Expand nested nav automatically
-    - navigation.tabs        # Show top-level nav as tabs
     - content.code.copy      # Copy button for code blocks
     - search.highlight       # Highlight search results
     - search.suggest         # Suggest search results as typing
