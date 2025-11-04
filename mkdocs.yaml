@@ -23,7 +23,7 @@ theme:
     - content.code.copy      # Copy button for code blocks
     - search.highlight       # Highlight search results
     - search.suggest         # Suggest search results as typing
-    - header.autohide        # Hide header when scrolling
+    - header.autohide        # Hide header when scrolling 
 
 nav:
   - Home: index.md
