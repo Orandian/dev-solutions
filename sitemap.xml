@@ -2,50 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://orandian.github.io/dev-solutions/</loc>
-         <lastmod>2025-09-19</lastmod>
+         <lastmod>2025-11-04</lastmod>
+    </url>
+    <url>
+         <loc>https://orandian.github.io/dev-solutions/CI_CD/spring_boot_ci_cd_setup_guide/</loc>
+         <lastmod>2025-11-04</lastmod>
     </url>
     <url>
          <loc>https://orandian.github.io/dev-solutions/caddy/ssl-renewal/</loc>
-         <lastmod>2025-09-19</lastmod>
+         <lastmod>2025-11-04</lastmod>
     </url>
     <url>
          <loc>https://orandian.github.io/dev-solutions/docker/docker_comprehensive_guide/</loc>
-         <lastmod>2025-09-19</lastmod>
+         <lastmod>2025-11-04</lastmod>
     </url>
     <url>
          <loc>https://orandian.github.io/dev-solutions/docker/docker_process_guide/</loc>
-         <lastmod>2025-09-19</lastmod>
+         <lastmod>2025-11-04</lastmod>
     </url>
     <url>
          <loc>https://orandian.github.io/dev-solutions/docker/essential_docker_commands/</loc>
-         <lastmod>2025-09-19</lastmod>
+         <lastmod>2025-11-04</lastmod>
     </url>
     <url>
          <loc>https://orandian.github.io/dev-solutions/expo/expo_solutions_guide/</loc>
-         <lastmod>2025-09-19</lastmod>
+         <lastmod>2025-11-04</lastmod>
     </url>
     <url>
          <loc>https://orandian.github.io/dev-solutions/git/branching-merging/</loc>
-         <lastmod>2025-09-19</lastmod>
+         <lastmod>2025-11-04</lastmod>
     </url>
     <url>
          <loc>https://orandian.github.io/dev-solutions/git/detached-head/</loc>
-         <lastmod>2025-09-19</lastmod>
+         <lastmod>2025-11-04</lastmod>
     </url>
     <url>
          <loc>https://orandian.github.io/dev-solutions/git/industry_git_commands/</loc>
-         <lastmod>2025-09-19</lastmod>
+         <lastmod>2025-11-04</lastmod>
     </url>
     <url>
          <loc>https://orandian.github.io/dev-solutions/git/merge-conflict/</loc>
-         <lastmod>2025-09-19</lastmod>
+         <lastmod>2025-11-04</lastmod>
     </url>
     <url>
          <loc>https://orandian.github.io/dev-solutions/hosting/vercel-deploy/</loc>
-         <lastmod>2025-09-19</lastmod>
+         <lastmod>2025-11-04</lastmod>
     </url>
     <url>
          <loc>https://orandian.github.io/dev-solutions/kubernetes/kubernetes_comprehensive_guide/</loc>
-         <lastmod>2025-09-19</lastmod>
+         <lastmod>2025-11-04</lastmod>
     </url>
 </urlset>
