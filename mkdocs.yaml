@@ -37,7 +37,7 @@ nav:
   - Caddy:
       - SSL Renewal: caddy/ssl-renewal.md
   - CI/CD:
-      - Spring Boot CI/CD Setup Guide: ci_cd/spring_boot_ci_cd_setup_guide.md
+      - Spring Boot CI/CD Setup Guide: CI_CD/spring_boot_ci_cd_setup_guide.md
   - Docker:
       - Spring boot process: docker/docker_process_guide.md
       - Essential Docker Commands: docker/essential_docker_commands.md
