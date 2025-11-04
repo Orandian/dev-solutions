@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://orandian.github.io/dev-solutions/CI_CD/spring_boot_ci_cd_setup_guide/">
       
       
+        <link rel="prev" href="../../caddy/ssl-renewal/">
+      
+      
+        <link rel="next" href="../../docker/docker_process_guide/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -532,20 +536,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -561,7 +565,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             CI/CD
@@ -572,10 +576,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../ci_cd/spring_boot_ci_cd_setup_guide.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Spring Boot CI/CD Setup Guide
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -586,6 +612,578 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#automated-deployment-to-ec2-ubuntu-with-github-actions-caddy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automated Deployment to EC2 Ubuntu with GitHub Actions &amp; Caddy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Machine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Account
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ec2-server-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      EC2 Server Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EC2 Server Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-launch-ec2-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Launch EC2 Instance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configure-security-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Configure Security Groups
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Configure Security Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ec2-security-group-inbound-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      EC2 Security Group Inbound Rules:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rds-security-group-inbound-rules-if-using-rds" class="md-nav__link">
+    <span class="md-ellipsis">
+      RDS Security Group Inbound Rules (if using RDS):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-install-java-17-on-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Install Java 17 on EC2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-create-application-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Create Application Directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-install-caddy-optional-for-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Install Caddy (Optional - for HTTPS)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-application-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secure Application Properties
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Secure Application Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-update-applicationproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Update application.properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-envexample" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Create .env.example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-update-gitignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Update .gitignore
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-actions-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Actions Workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Actions Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-githubworkflowsdeploy-devyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create .github/workflows/deploy-dev.yml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caddy-reverse-proxy-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caddy Reverse Proxy Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Caddy Reverse Proxy Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-caddyfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Create Caddyfile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-add-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Add Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-reload-caddy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Reload Caddy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-secrets-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Secrets Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Secrets Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Secrets:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-get-ssh-key-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Get SSH Key Content:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing &amp; Verification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing &amp; Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-test-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Test Locally
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-test-cicd-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Test CI/CD Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-monitor-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Monitor Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verify-on-ec2" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Verify on EC2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-test-application-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Test Application Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#application-wont-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Won't Start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-connection-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Connection Failed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-certificate-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSL Certificate Error
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow Failed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-service-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Service Status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-disk-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Disk Space
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Memory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-caddy-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      View Caddy Logs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directory Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Reference Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Reference Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-ec2-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      On EC2 Server:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-local-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      On Local Machine:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-features-to-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Features to Add
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Features to Add">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#health-check-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Health Check Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple Environments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automated-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automated Rollback
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Migrations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support &amp; Resources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      License
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
