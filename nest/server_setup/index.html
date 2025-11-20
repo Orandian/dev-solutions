@@ -12,13 +12,13 @@
         <meta name="author" content="Yan Naing Htwe">
       
       
-        <link rel="canonical" href="https://orandian.github.io/dev-solutions/git/merge-conflict/">
+        <link rel="canonical" href="https://orandian.github.io/dev-solutions/nest/server_setup/">
       
       
-        <link rel="prev" href="../../nest/server_setup/">
+        <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../detached-head/">
+        <link rel="next" href="../../git/merge-conflict/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Merge Conflict - Dev Solutions</title>
+        <title>Server Setup - Dev Solutions</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fixing-merge-conflict-in-git" class="md-skip">
+        <a href="#nestjs-server-setup-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Merge Conflict
+              Server Setup
             
           </span>
         </div>
@@ -264,20 +264,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -298,96 +298,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
   
     Nest
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../nest/server_setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Server Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Git
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Git
   
 
           </label>
@@ -409,7 +325,350 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-copy-project-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Copy Project to Server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-server-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Server Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configure-pm2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configure PM2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-configure-caddy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Configure Caddy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configure-ec2-security-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Configure EC2 Security Group
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Configure EC2 Security Group">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#via-aws-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Via AWS Console:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#via-aws-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Via AWS CLI:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-verify-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Verify Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-pm2-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful PM2 Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-caddy-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful Caddy Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-the-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating the Application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#application-not-starting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application not starting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cant-access-from-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can't access from browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-certificate-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL Certificate issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Recommendations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Git
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/merge-conflict/" class="md-nav__link">
         
   
   
@@ -425,7 +684,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -438,7 +696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../detached-head/" class="md-nav__link">
+      <a href="../../git/detached-head/" class="md-nav__link">
         
   
   
@@ -466,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../branching-merging/" class="md-nav__link">
+      <a href="../../git/branching-merging/" class="md-nav__link">
         
   
   
@@ -494,7 +752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../industry_git_commands/" class="md-nav__link">
+      <a href="../../git/industry_git_commands/" class="md-nav__link">
         
   
   
@@ -1102,6 +1360,235 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-copy-project-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Copy Project to Server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-server-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Server Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configure-pm2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configure PM2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-configure-caddy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Configure Caddy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configure-ec2-security-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Configure EC2 Security Group
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Configure EC2 Security Group">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#via-aws-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Via AWS Console:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#via-aws-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Via AWS CLI:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-verify-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Verify Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-pm2-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful PM2 Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-caddy-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful Caddy Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-the-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating the Application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#application-not-starting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application not starting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cant-access-from-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can't access from browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-certificate-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL Certificate issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Recommendations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1117,15 +1604,181 @@
 
 
 
-<h1 id="fixing-merge-conflict-in-git">Fixing Merge Conflict in Git</h1>
-<p><strong>Problem</strong><br />
-<code>error: Your local changes to the following files would be overwritten by merge</code></p>
-<p><strong>Solution</strong></p>
-<pre><code class="language-bash">git stash
-git pull origin main
-git stash pop
-# Resolve any merge conflicts if they arise
+<h1 id="nestjs-server-setup-guide">NestJS Server Setup Guide</h1>
+<p>This guide covers deploying a NestJS application to an EC2 server with PM2 for process management and Caddy as a reverse proxy.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Ubuntu EC2 instance</li>
+<li>SSH access with PEM key</li>
+<li>Node.js and npm installed on server</li>
+<li>PM2 installed globally (<code>npm install -g pm2</code>)</li>
+<li>Caddy web server installed</li>
+</ul>
+<h2 id="1-copy-project-to-server">1. Copy Project to Server</h2>
+<p>Copy your NestJS project to the server, excluding <code>node_modules</code>:</p>
+<pre><code class="language-bash">rsync -avz --exclude 'node_modules' -e &quot;ssh -i server.pem&quot; server-folder ubuntu@**.**.**.***:~/
 </code></pre>
+<h2 id="2-server-setup">2. Server Setup</h2>
+<p>SSH into your server:</p>
+<pre><code class="language-bash">ssh -i server.pem ubuntu@**.**.**.***
+</code></pre>
+<p>Navigate to project directory:</p>
+<pre><code class="language-bash">cd ~/server-folder
+</code></pre>
+<p>Install dependencies:</p>
+<pre><code class="language-bash">npm install
+</code></pre>
+<p>Build the application:</p>
+<pre><code class="language-bash">npm run build
+</code></pre>
+<h2 id="3-configure-pm2">3. Configure PM2</h2>
+<p>Create a PM2 ecosystem configuration file:</p>
+<pre><code class="language-bash">cat &gt; ecosystem.config.js &lt;&lt; 'EOF'
+module.exports = {
+  apps: [{
+    name: 'server-name',
+    script: 'dist/main.js',
+    instances: 1,
+    exec_mode: 'cluster',
+    env: {
+      NODE_ENV: 'production'
+    },
+    error_file: './logs/pm2-error.log',
+    out_file: './logs/pm2-out.log',
+    log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+    merge_logs: true,
+    autorestart: true,
+    watch: false,
+    max_memory_restart: '1G'
+  }]
+};
+EOF
+</code></pre>
+<p>Start the application with PM2:</p>
+<pre><code class="language-bash">pm2 start ecosystem.config.js
+</code></pre>
+<p>Save PM2 process list:</p>
+<pre><code class="language-bash">pm2 save
+</code></pre>
+<p>Configure PM2 to start on system boot:</p>
+<pre><code class="language-bash">sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
+</code></pre>
+<h2 id="4-configure-caddy">4. Configure Caddy</h2>
+<p>Edit the Caddyfile:</p>
+<pre><code class="language-bash">sudo nano /etc/caddy/Caddyfile
+</code></pre>
+<p>Add the following configuration (replace with your domain):</p>
+<pre><code>**.**.**.***.nip.io {
+    reverse_proxy localhost:3000
+}
+</code></pre>
+<p>Reload Caddy:</p>
+<pre><code class="language-bash">sudo systemctl reload caddy
+</code></pre>
+<h2 id="5-configure-ec2-security-group">5. Configure EC2 Security Group</h2>
+<p>Ensure your EC2 Security Group allows inbound traffic:</p>
+<ul>
+<li><strong>Port 22 (SSH)</strong>: From your IP</li>
+<li><strong>Port 80 (HTTP)</strong>: From 0.0.0.0/0</li>
+<li><strong>Port 443 (HTTPS)</strong>: From 0.0.0.0/0</li>
+</ul>
+<h3 id="via-aws-console">Via AWS Console:</h3>
+<ol>
+<li>Go to EC2 → Instances</li>
+<li>Select your instance</li>
+<li>Click on the Security tab</li>
+<li>Click on the Security Group link</li>
+<li>Edit inbound rules</li>
+<li>Add rules for ports 80 and 443</li>
+</ol>
+<h3 id="via-aws-cli">Via AWS CLI:</h3>
+<pre><code class="language-bash">aws ec2 authorize-security-group-ingress --group-id &lt;YOUR_SECURITY_GROUP_ID&gt; --protocol tcp --port 80 --cidr 0.0.0.0/0
+aws ec2 authorize-security-group-ingress --group-id &lt;YOUR_SECURITY_GROUP_ID&gt; --protocol tcp --port 443 --cidr 0.0.0.0/0
+</code></pre>
+<h2 id="6-verify-setup">6. Verify Setup</h2>
+<p>Check PM2 status:</p>
+<pre><code class="language-bash">pm2 status
+</code></pre>
+<p>Check application logs:</p>
+<pre><code class="language-bash">pm2 logs server-name
+</code></pre>
+<p>Test local connection:</p>
+<pre><code class="language-bash">curl http://localhost:3000
+</code></pre>
+<p>Check Caddy status:</p>
+<pre><code class="language-bash">sudo systemctl status caddy
+</code></pre>
+<h2 id="useful-pm2-commands">Useful PM2 Commands</h2>
+<ul>
+<li><code>pm2 status</code> - Check application status</li>
+<li><code>pm2 logs [app-name]</code> - View logs</li>
+<li><code>pm2 restart [app-name]</code> - Restart application</li>
+<li><code>pm2 stop [app-name]</code> - Stop application</li>
+<li><code>pm2 delete [app-name]</code> - Remove application from PM2</li>
+<li><code>pm2 monit</code> - Monitor in real-time</li>
+<li><code>pm2 save</code> - Save current process list</li>
+<li><code>pm2 resurrect</code> - Restore saved processes</li>
+</ul>
+<h2 id="useful-caddy-commands">Useful Caddy Commands</h2>
+<ul>
+<li><code>sudo systemctl status caddy</code> - Check Caddy status</li>
+<li><code>sudo systemctl reload caddy</code> - Reload configuration</li>
+<li><code>sudo systemctl restart caddy</code> - Restart Caddy</li>
+<li><code>sudo journalctl -u caddy -f</code> - View Caddy logs in real-time</li>
+<li><code>caddy validate --config /etc/caddy/Caddyfile</code> - Validate configuration</li>
+</ul>
+<h2 id="updating-the-application">Updating the Application</h2>
+<p>When you need to update the application:</p>
+<pre><code class="language-bash"># On your local machine, sync changes
+rsync -avz --exclude 'node_modules' -e &quot;ssh -i BusPinDev.pem&quot; ybs-app-server ubuntu@54.249.36.137:~/
+
+# On the server
+cd ~/server-folder
+npm install  # If dependencies changed
+npm run build
+pm2 restart server-name
+</code></pre>
+<h2 id="environment-variables">Environment Variables</h2>
+<p>Ensure your <code>.env</code> file is properly configured on the server with production values:</p>
+<pre><code class="language-bash">PORT=3000
+NODE_ENV=production
+DATABASE_URL=your_database_url
+JWT_SECRET=your_jwt_secret
+# Add other environment variables as needed
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="application-not-starting">Application not starting</h3>
+<p>Check PM2 logs:</p>
+<pre><code class="language-bash">pm2 logs server-name --err
+</code></pre>
+<h3 id="cant-access-from-browser">Can't access from browser</h3>
+<ol>
+<li>Check if the app is running: <code>pm2 status</code></li>
+<li>Check if Caddy is running: <code>sudo systemctl status caddy</code></li>
+<li>Verify security group allows ports 80 and 443</li>
+<li>Check local connectivity: <code>curl http://localhost:3000</code></li>
+</ol>
+<h3 id="ssl-certificate-issues">SSL Certificate issues</h3>
+<p>Caddy automatically obtains SSL certificates. If there are issues:</p>
+<pre><code class="language-bash">sudo journalctl -u caddy -n 50
+</code></pre>
+<p>Ensure your domain points to the correct IP address.</p>
+<h2 id="security-recommendations">Security Recommendations</h2>
+<ol>
+<li>Keep your PEM key secure and never commit it to version control</li>
+<li>Use environment variables for sensitive data</li>
+<li>Regularly update packages: <code>npm audit fix</code></li>
+<li>Configure proper firewall rules (UFW or Security Groups)</li>
+<li>Set up regular backups of your data</li>
+<li>Monitor application logs for suspicious activity</li>
+<li>Use strong passwords for database and other services</li>
+</ol>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="https://pm2.keymetrics.io/docs/">PM2 Documentation</a></li>
+<li><a href="https://caddyserver.com/docs/">Caddy Documentation</a></li>
+<li><a href="https://docs.nestjs.com/">NestJS Documentation</a></li>
+</ul>
 
 
 
