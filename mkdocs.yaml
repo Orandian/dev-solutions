@@ -27,6 +27,8 @@ theme:
 
 nav:
   - Home: index.md
+  - Nest:
+      - Server Setup: nest/server_setup.md
   - Git:
       - Merge Conflict: git/merge-conflict.md
       - Detached Head: git/detached-head.md
