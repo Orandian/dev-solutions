@@ -244,6 +244,6 @@ Ensure your domain points to the correct IP address.
 
 ## Additional Resources
 
-- [PM2 Documentation](https://pm2.keymetrics.io/docs/)
+- [PM2 Documentation](https://pm2.keymetrics.io/docs/usage/quick-start/)
 - [Caddy Documentation](https://caddyserver.com/docs/)
 - [NestJS Documentation](https://docs.nestjs.com/)
