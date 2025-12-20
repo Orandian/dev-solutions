@@ -12,13 +12,13 @@
         <meta name="author" content="Yan Naing Htwe">
       
       
-        <link rel="canonical" href="https://orandian.github.io/dev-solutions/docker/docker_process_guide/">
+        <link rel="canonical" href="https://orandian.github.io/dev-solutions/aws/aws-sqs-guide/">
       
       
-        <link rel="prev" href="../../CI_CD/spring_boot_ci_cd_setup_guide/">
+        <link rel="prev" href="../../docker/essential_docker_commands/">
       
       
-        <link rel="next" href="../essential_docker_commands/">
+        <link rel="next" href="../../kubernetes/kubernetes_comprehensive_guide/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Spring boot process - Dev Solutions</title>
+        <title>SQS Guide - Dev Solutions</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker-process-guide" class="md-skip">
+        <a href="#aws-sqs-developer-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Spring boot process
+              SQS Guide
             
           </span>
         </div>
@@ -768,20 +768,20 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -802,12 +802,124 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
   
     Docker
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker_process_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring boot process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/essential_docker_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Essential Docker Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AWS
   
 
           </label>
@@ -836,7 +948,7 @@
   <span class="md-ellipsis">
     
   
-    Spring boot process
+    SQS Guide
   
 
     
@@ -854,7 +966,7 @@
   <span class="md-ellipsis">
     
   
-    Spring boot process
+    SQS Guide
   
 
     
@@ -891,55 +1003,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#spring-boot-docker-image-creation" class="md-nav__link">
+  <a href="#what-is-aws-sqs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Spring Boot Docker Image Creation
+        What is AWS SQS
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Spring Boot Docker Image Creation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-sqs-fits-in-an-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where SQS Fits in an Application
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Where SQS Fits in an Application">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#building-the-docker-image" class="md-nav__link">
+  <a href="#typical-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Building the Docker Image
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pushing-to-docker-hub" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pushing to Docker Hub
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#running-the-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Running the Application
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#monitoring-the-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Monitoring the Application
+        Typical Architecture
       
     </span>
   </a>
@@ -952,22 +1042,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#essential-docker-commands" class="md-nav__link">
+  <a href="#standard-sqs-queue" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Essential Docker Commands
+        Standard SQS Queue
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Essential Docker Commands">
+    <nav class="md-nav" aria-label="Standard SQS Queue">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#image-management" class="md-nav__link">
+  <a href="#characteristics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Image Management
+        Characteristics
       
     </span>
   </a>
@@ -975,10 +1065,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#container-management" class="md-nav__link">
+  <a href="#use-cases" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Container Management
+        Use Cases
       
     </span>
   </a>
@@ -986,10 +1076,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#container-interaction" class="md-nav__link">
+  <a href="#notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Container Interaction
+        Notes
       
     </span>
   </a>
@@ -1002,22 +1092,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#postgresql-database-setup" class="md-nav__link">
+  <a href="#fifo-sqs-queue" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PostgreSQL Database Setup
+        FIFO SQS Queue
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="PostgreSQL Database Setup">
+    <nav class="md-nav" aria-label="FIFO SQS Queue">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#basic-postgresql-container" class="md-nav__link">
+  <a href="#guarantees" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic PostgreSQL Container
+        Guarantees
       
     </span>
   </a>
@@ -1025,10 +1115,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pgadmin-web-interface" class="md-nav__link">
+  <a href="#required-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PgAdmin Web Interface
+        Required Rules
       
     </span>
   </a>
@@ -1036,10 +1126,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#testing-container-communication" class="md-nav__link">
+  <a href="#ordering-behavior" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Testing Container Communication
+        Ordering Behavior
       
     </span>
   </a>
@@ -1047,10 +1137,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cleanup" class="md-nav__link">
+  <a href="#use-cases_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cleanup
+        Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-recommended-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not Recommended For
       
     </span>
   </a>
@@ -1063,22 +1164,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#docker-network-configuration" class="md-nav__link">
+  <a href="#message-visibility-timeout-retries" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Docker Network Configuration
+        Message Visibility Timeout &amp; Retries
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Docker Network Configuration">
+    <nav class="md-nav" aria-label="Message Visibility Timeout &amp; Retries">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#creating-a-custom-network" class="md-nav__link">
+  <a href="#visibility-timeout" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creating a Custom Network
+        Visibility Timeout
       
     </span>
   </a>
@@ -1086,21 +1187,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#running-containers-on-custom-network" class="md-nav__link">
+  <a href="#retry-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Running Containers on Custom Network
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verify-network-connectivity" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Verify Network Connectivity
+        Retry Flow
       
     </span>
   </a>
@@ -1113,22 +1203,155 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#postgresql-service-management" class="md-nav__link">
+  <a href="#dead-letter-queue-dlq" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PostgreSQL Service Management
+        Dead Letter Queue (DLQ)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="PostgreSQL Service Management">
+    <nav class="md-nav" aria-label="Dead Letter Queue (DLQ)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#stopping-local-postgresql-services" class="md-nav__link">
+  <a href="#how-dlq-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stopping Local PostgreSQL Services
+        How DLQ Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-facts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Facts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#long-polling-vs-short-polling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Long Polling vs Short Polling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Long Polling vs Short Polling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-polling-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Short Polling (Default)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-polling-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Long Polling (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-application-example-order-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Application Example: Order &amp; Email
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real Application Example: Order &amp; Email">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Worker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failure-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery Steps
       
     </span>
   </a>
@@ -1152,10 +1375,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting-tips" class="md-nav__link">
+  <a href="#common-exam-interview-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Troubleshooting Tips
+        Common Exam &amp; Interview Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
       
     </span>
   </a>
@@ -1166,118 +1400,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../essential_docker_commands/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Essential Docker Commands
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-        
-          
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    AWS
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    AWS
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../aws/aws-sqs-guide/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    SQS Guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1496,55 +1618,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#spring-boot-docker-image-creation" class="md-nav__link">
+  <a href="#what-is-aws-sqs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Spring Boot Docker Image Creation
+        What is AWS SQS
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Spring Boot Docker Image Creation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-sqs-fits-in-an-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where SQS Fits in an Application
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Where SQS Fits in an Application">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#building-the-docker-image" class="md-nav__link">
+  <a href="#typical-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Building the Docker Image
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pushing-to-docker-hub" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pushing to Docker Hub
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#running-the-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Running the Application
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#monitoring-the-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Monitoring the Application
+        Typical Architecture
       
     </span>
   </a>
@@ -1557,22 +1657,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#essential-docker-commands" class="md-nav__link">
+  <a href="#standard-sqs-queue" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Essential Docker Commands
+        Standard SQS Queue
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Essential Docker Commands">
+    <nav class="md-nav" aria-label="Standard SQS Queue">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#image-management" class="md-nav__link">
+  <a href="#characteristics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Image Management
+        Characteristics
       
     </span>
   </a>
@@ -1580,10 +1680,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#container-management" class="md-nav__link">
+  <a href="#use-cases" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Container Management
+        Use Cases
       
     </span>
   </a>
@@ -1591,10 +1691,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#container-interaction" class="md-nav__link">
+  <a href="#notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Container Interaction
+        Notes
       
     </span>
   </a>
@@ -1607,22 +1707,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#postgresql-database-setup" class="md-nav__link">
+  <a href="#fifo-sqs-queue" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PostgreSQL Database Setup
+        FIFO SQS Queue
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="PostgreSQL Database Setup">
+    <nav class="md-nav" aria-label="FIFO SQS Queue">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#basic-postgresql-container" class="md-nav__link">
+  <a href="#guarantees" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic PostgreSQL Container
+        Guarantees
       
     </span>
   </a>
@@ -1630,10 +1730,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pgadmin-web-interface" class="md-nav__link">
+  <a href="#required-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PgAdmin Web Interface
+        Required Rules
       
     </span>
   </a>
@@ -1641,10 +1741,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#testing-container-communication" class="md-nav__link">
+  <a href="#ordering-behavior" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Testing Container Communication
+        Ordering Behavior
       
     </span>
   </a>
@@ -1652,10 +1752,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cleanup" class="md-nav__link">
+  <a href="#use-cases_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cleanup
+        Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-recommended-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not Recommended For
       
     </span>
   </a>
@@ -1668,22 +1779,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#docker-network-configuration" class="md-nav__link">
+  <a href="#message-visibility-timeout-retries" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Docker Network Configuration
+        Message Visibility Timeout &amp; Retries
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Docker Network Configuration">
+    <nav class="md-nav" aria-label="Message Visibility Timeout &amp; Retries">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#creating-a-custom-network" class="md-nav__link">
+  <a href="#visibility-timeout" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creating a Custom Network
+        Visibility Timeout
       
     </span>
   </a>
@@ -1691,21 +1802,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#running-containers-on-custom-network" class="md-nav__link">
+  <a href="#retry-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Running Containers on Custom Network
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verify-network-connectivity" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Verify Network Connectivity
+        Retry Flow
       
     </span>
   </a>
@@ -1718,22 +1818,155 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#postgresql-service-management" class="md-nav__link">
+  <a href="#dead-letter-queue-dlq" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PostgreSQL Service Management
+        Dead Letter Queue (DLQ)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="PostgreSQL Service Management">
+    <nav class="md-nav" aria-label="Dead Letter Queue (DLQ)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#stopping-local-postgresql-services" class="md-nav__link">
+  <a href="#how-dlq-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stopping Local PostgreSQL Services
+        How DLQ Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-facts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Facts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#long-polling-vs-short-polling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Long Polling vs Short Polling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Long Polling vs Short Polling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-polling-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Short Polling (Default)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-polling-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Long Polling (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-application-example-order-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Application Example: Order &amp; Email
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real Application Example: Order &amp; Email">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Worker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failure-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery Steps
       
     </span>
   </a>
@@ -1757,10 +1990,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting-tips" class="md-nav__link">
+  <a href="#common-exam-interview-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Troubleshooting Tips
+        Common Exam &amp; Interview Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
       
     </span>
   </a>
@@ -1784,171 +2028,233 @@
 
 
 
-<h1 id="docker-process-guide">Docker Process Guide</h1>
-<p>This guide covers the complete Docker workflow from building Spring Boot applications to managing PostgreSQL databases with Docker.</p>
+<h1 id="aws-sqs-developer-guide">AWS SQS Developer Guide</h1>
+<p>This guide explains <strong>Amazon SQS concepts</strong> in a <strong>practical, developer-focused way</strong>, including <strong>Standard queues, FIFO queues, DLQ, retries, and polling strategies</strong>, using real application examples.</p>
+<hr />
 <h2 id="table-of-contents">Table of Contents</h2>
 <ol>
-<li><a href="#spring-boot-docker-image-creation">Spring Boot Docker Image Creation</a></li>
-<li><a href="#essential-docker-commands">Essential Docker Commands</a></li>
-<li><a href="#postgresql-database-setup">PostgreSQL Database Setup</a></li>
-<li><a href="#docker-network-configuration">Docker Network Configuration</a></li>
-<li><a href="#postgresql-service-management">PostgreSQL Service Management</a></li>
+<li><a href="#what-is-aws-sqs">What is AWS SQS</a></li>
+<li><a href="#where-sqs-fits-in-an-application">Where SQS Fits in an Application</a></li>
+<li><a href="#standard-sqs-queue">Standard SQS Queue</a></li>
+<li><a href="#fifo-sqs-queue">FIFO SQS Queue</a></li>
+<li><a href="#message-visibility-timeout--retries">Message Visibility Timeout &amp; Retries</a></li>
+<li><a href="#dead-letter-queue-dlq">Dead Letter Queue (DLQ)</a></li>
+<li><a href="#long-polling-vs-short-polling">Long Polling vs Short Polling</a></li>
+<li><a href="#real-application-example-order--email">Real Application Example: Order &amp; Email</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#common-exam--interview-notes">Common Exam &amp; Interview Notes</a></li>
 </ol>
 <hr />
-<h2 id="spring-boot-docker-image-creation">Spring Boot Docker Image Creation</h2>
-<h3 id="building-the-docker-image">Building the Docker Image</h3>
-<pre><code class="language-bash">./mvnw spring-boot:build-image &quot;-Dspring-boot.build-image.imageName=orandian2511/jobappimage&quot;
-</code></pre>
-<p><strong>Explanation</strong>: This command uses Maven Wrapper to build a Docker image for your Spring Boot application. The <code>-Dspring-boot.build-image.imageName</code> parameter specifies the image name and tag. Spring Boot's build-image goal uses Cloud Native Buildpacks to create an optimized Docker image.</p>
-<h3 id="pushing-to-docker-hub">Pushing to Docker Hub</h3>
-<pre><code class="language-bash">docker push orandian2511/jobappimage
-</code></pre>
-<p><strong>Explanation</strong>: Uploads your locally built Docker image to Docker Hub registry under the username <code>orandian2511</code>. This makes the image available for deployment on any system with Docker.</p>
-<h3 id="running-the-application">Running the Application</h3>
-<pre><code class="language-bash"># Run in foreground (interactive mode)
-docker run -p 8080:8080 orandian2511/jobappimage
-
-# Run in background (detached mode)
-docker run -d -p 8080:8080 orandian2511/jobappimage
-</code></pre>
-<p><strong>Explanation</strong>: 
-- <code>-p 8080:8080</code>: Maps port 8080 on your host machine to port 8080 inside the container
-- <code>-d</code>: Runs the container in detached mode (background)</p>
-<h3 id="monitoring-the-application">Monitoring the Application</h3>
-<pre><code class="language-bash"># List running containers
-docker ps
-
-# View container logs
-docker logs a6c0aa9393dc
-</code></pre>
-<p><strong>Explanation</strong>: <code>docker ps</code> shows active containers, while <code>docker logs</code> displays the output from a specific container using its ID.</p>
+<h2 id="what-is-aws-sqs">What is AWS SQS</h2>
+<p><strong>Amazon SQS (Simple Queue Service)</strong> is a <strong>fully managed message queue</strong> that enables <strong>asynchronous communication</strong> between application components.</p>
+<p><strong>Core idea</strong>:</p>
+<blockquote>
+<p>SQS decouples your API from background or failure-prone tasks.</p>
+</blockquote>
 <hr />
-<h2 id="essential-docker-commands">Essential Docker Commands</h2>
-<h3 id="image-management">Image Management</h3>
-<pre><code class="language-bash"># Pull an image from registry
-docker pull &lt;image&gt;
-
-# Push an image to registry
-docker push &lt;username/image&gt;
-
-# Build an image from Dockerfile
-docker build -t &lt;username/image&gt; .
-
-# List all images
-docker images
-
-# Remove an image
-docker rmi &lt;image-id/image-name&gt;
+<h2 id="where-sqs-fits-in-an-application">Where SQS Fits in an Application</h2>
+<h3 id="typical-architecture">Typical Architecture</h3>
+<pre><code>Frontend (Amplify / Web)
+        ↓
+Backend API (EC2 / Spring Boot)
+        ↓
+       RDS
+        ↓
+       SQS  ← async tasks
+        ↓
+Worker (EC2 / Lambda)
 </code></pre>
-<h3 id="container-management">Container Management</h3>
-<pre><code class="language-bash"># Run a container
-docker run -it -d -p &lt;host-port&gt;:&lt;container-port&gt; --name &lt;name&gt; &lt;image&gt;
-
-# Stop a running container
-docker stop &lt;container-id/container-name&gt;
-
-# Start a stopped container
-docker start &lt;container-id/container-name&gt;
-
-# Remove a container
-docker rm &lt;container-id/container-name&gt;
-
-# List running containers
-docker ps
-
-# List all containers (including stopped)
-docker ps -a
-</code></pre>
-<h3 id="container-interaction">Container Interaction</h3>
-<pre><code class="language-bash"># Execute commands inside a running container
-docker exec -it &lt;container-name/container-id&gt; bash
-
-# View container logs
-docker logs &lt;container-name/container-id&gt;
-
-# Inspect container configuration
-docker inspect &lt;container-name/container-id&gt;
-</code></pre>
-<p><strong>Key Flags Explained</strong>:
-- <code>-it</code>: Interactive terminal mode
-- <code>-d</code>: Detached mode (runs in background)
-- <code>-p</code>: Port mapping
-- <code>--name</code>: Assigns a custom name to the container</p>
+<p><strong>Use SQS when</strong>:</p>
+<ul>
+<li>Tasks are slow or heavy</li>
+<li>Tasks may fail</li>
+<li>Tasks should not block user requests</li>
+</ul>
 <hr />
-<h2 id="postgresql-database-setup">PostgreSQL Database Setup</h2>
-<h3 id="basic-postgresql-container">Basic PostgreSQL Container</h3>
-<pre><code class="language-bash"># Run PostgreSQL database
-docker run -d --name db -e POSTGRES_PASSWORD=postgres postgres
-</code></pre>
-<p><strong>Explanation</strong>: Creates a PostgreSQL container named <code>db</code> with the default password set to <code>postgres</code>. The <code>-e</code> flag sets environment variables.</p>
-<h3 id="pgadmin-web-interface">PgAdmin Web Interface</h3>
-<pre><code class="language-bash"># Run PgAdmin for database management
-docker run -d --name pgadmin \
-  -e PGADMIN_DEFAULT_EMAIL=admin@gmail.com \
-  -e PGADMIN_DEFAULT_PASSWORD=admin \
-  dpage/pgadmin4
-</code></pre>
-<p><strong>Explanation</strong>: Starts PgAdmin4 web interface for PostgreSQL management. You can access it via a web browser once the container is running.</p>
-<h3 id="testing-container-communication">Testing Container Communication</h3>
-<pre><code class="language-bash"># Test network connectivity between containers
-docker exec -it pgadmin ping db
-</code></pre>
-<p><strong>Explanation</strong>: This command attempts to ping the <code>db</code> container from inside the <code>pgadmin</code> container. Initially, this may fail because containers aren't on the same network.</p>
-<h3 id="cleanup">Cleanup</h3>
-<pre><code class="language-bash"># Force remove both containers
-docker rm -f db pgadmin
-</code></pre>
-<p><strong>Explanation</strong>: The <code>-f</code> flag forcefully stops and removes running containers.</p>
+<h2 id="standard-sqs-queue">Standard SQS Queue</h2>
+<h3 id="characteristics">Characteristics</h3>
+<ul>
+<li>Unlimited throughput</li>
+<li>At-least-once delivery</li>
+<li>Order is <strong>not guaranteed</strong></li>
+</ul>
+<h3 id="use-cases">Use Cases</h3>
+<ul>
+<li>Sending emails</li>
+<li>Background jobs</li>
+<li>Image processing</li>
+<li>Analytics events</li>
+</ul>
+<h3 id="notes">Notes</h3>
+<ul>
+<li>Messages may be delivered more than once</li>
+<li>Consumers must be <strong>idempotent</strong></li>
+</ul>
 <hr />
-<h2 id="docker-network-configuration">Docker Network Configuration</h2>
-<h3 id="creating-a-custom-network">Creating a Custom Network</h3>
-<pre><code class="language-bash"># Create a user-defined bridge network
-docker network create my-network
+<h2 id="fifo-sqs-queue">FIFO SQS Queue</h2>
+<p><strong>FIFO = First In, First Out</strong></p>
+<h3 id="guarantees">Guarantees</h3>
+<ul>
+<li>Exactly-once processing</li>
+<li>Strict ordering (per MessageGroupId)</li>
+</ul>
+<h3 id="required-rules">Required Rules</h3>
+<ul>
+<li>Queue name must end with:</li>
+</ul>
+<pre><code>.fifo
 </code></pre>
-<p><strong>Explanation</strong>: Creates a custom network that allows containers to communicate using container names as hostnames.</p>
-<h3 id="running-containers-on-custom-network">Running Containers on Custom Network</h3>
-<pre><code class="language-bash"># Run PostgreSQL on custom network
-docker run -d --name db --network my-network \
-  -e POSTGRES_PASSWORD=postgres postgres
-
-# Run PgAdmin on the same network
-docker run -d --name pgadmin --network my-network \
-  -e PGADMIN_DEFAULT_EMAIL=user@domain.com \
-  -e PGADMIN_DEFAULT_PASSWORD=SuperSecret \
-  dpage/pgadmin4
+<ul>
+<li>Every message must include:</li>
+</ul>
+<pre><code>MessageGroupId
 </code></pre>
-<p><strong>Explanation</strong>: Both containers are now on the same custom network, enabling them to communicate using container names (<code>db</code>, <code>pgadmin</code>) as hostnames.</p>
-<h3 id="verify-network-connectivity">Verify Network Connectivity</h3>
-<pre><code class="language-bash"># Test connectivity between networked containers
-docker exec -it pgadmin ping db
-</code></pre>
-<p><strong>Explanation</strong>: This should now work successfully since both containers are on the same network.</p>
+<h3 id="ordering-behavior">Ordering Behavior</h3>
+<p>Ordering is guaranteed <strong>within a MessageGroupId</strong>, not globally.</p>
+<h3 id="use-cases_1">Use Cases</h3>
+<ul>
+<li>Payments</li>
+<li>Order state transitions</li>
+<li>Inventory updates</li>
+</ul>
+<h3 id="not-recommended-for">Not Recommended For</h3>
+<ul>
+<li>Emails</li>
+<li>Logs</li>
+<li>High-throughput background jobs</li>
+</ul>
 <hr />
-<h2 id="postgresql-service-management">PostgreSQL Service Management</h2>
-<h3 id="stopping-local-postgresql-services">Stopping Local PostgreSQL Services</h3>
-<pre><code class="language-bash"># Stop PostgreSQL service (macOS with Homebrew)
-sudo brew services stop postgresql
-
-# Kill any running PostgreSQL processes
-sudo pkill -f postgres
+<h2 id="message-visibility-timeout-retries">Message Visibility Timeout &amp; Retries</h2>
+<h3 id="visibility-timeout">Visibility Timeout</h3>
+<p>When a consumer receives a message:</p>
+<ul>
+<li>Message becomes invisible</li>
+<li>Default: <strong>30 seconds</strong></li>
+</ul>
+<h3 id="retry-flow">Retry Flow</h3>
+<pre><code>Receive → Fail → Visibility Timeout → Retry
 </code></pre>
-<p><strong>Explanation</strong>: These commands stop local PostgreSQL installations that might conflict with Docker containers. This is useful when you want to use PostgreSQL in Docker instead of a local installation.</p>
+<p>If the message is not deleted, it becomes visible again and can be retried.</p>
+<hr />
+<h2 id="dead-letter-queue-dlq">Dead Letter Queue (DLQ)</h2>
+<p>A <strong>Dead Letter Queue (DLQ)</strong> is a separate SQS queue that stores messages that <strong>fail processing multiple times</strong>.</p>
+<h3 id="how-dlq-works">How DLQ Works</h3>
+<ul>
+<li>Configure <code>MaxReceiveCount</code> (e.g. 5)</li>
+<li>
+<p>After exceeding retries:</p>
+</li>
+<li>
+<p>Message is moved to DLQ</p>
+</li>
+<li>Message is removed from the main queue</li>
+</ul>
+<h3 id="important-facts">Important Facts</h3>
+<ul>
+<li>DLQ does <strong>not retry</strong> messages</li>
+<li>DLQ does <strong>not process</strong> messages</li>
+<li>DLQ requires <strong>manual intervention</strong></li>
+</ul>
+<h3 id="purpose">Purpose</h3>
+<ul>
+<li>Prevent infinite retry loops</li>
+<li>Isolate poison messages</li>
+<li>Enable debugging and recovery</li>
+</ul>
+<hr />
+<h2 id="long-polling-vs-short-polling">Long Polling vs Short Polling</h2>
+<h3 id="short-polling-default">Short Polling (Default)</h3>
+<p><strong>Behavior</strong>:</p>
+<ul>
+<li>Returns immediately</li>
+<li>Often returns empty responses</li>
+</ul>
+<p><strong>Problems</strong>:</p>
+<ul>
+<li>Higher cost</li>
+<li>Wasted CPU</li>
+</ul>
+<pre><code>Worker → SQS → Empty
+Worker → SQS → Empty
+</code></pre>
+<hr />
+<h3 id="long-polling-recommended">Long Polling (Recommended)</h3>
+<p><strong>Behavior</strong>:</p>
+<ul>
+<li>Waits up to 20 seconds</li>
+<li>Responds immediately when a message arrives</li>
+</ul>
+<p><strong>Benefits</strong>:</p>
+<ul>
+<li>Lower cost</li>
+<li>Fewer empty responses</li>
+<li>Better performance</li>
+</ul>
+<pre><code>Worker → SQS (wait)
+SQS → Worker (message)
+</code></pre>
+<h3 id="configuration">Configuration</h3>
+<ul>
+<li><code>WaitTimeSeconds</code>: 1–20 seconds</li>
+<li>Can be set per queue or per request</li>
+</ul>
+<hr />
+<h2 id="real-application-example-order-email">Real Application Example: Order &amp; Email</h2>
+<h3 id="flow">Flow</h3>
+<pre><code>User places order
+        ↓
+API saves order to RDS
+        ↓
+API sends SEND_EMAIL message to SQS
+        ↓
+User gets response immediately
+</code></pre>
+<h3 id="email-worker">Email Worker</h3>
+<pre><code>SQS → Worker → Send Email
+</code></pre>
+<h3 id="failure-scenario">Failure Scenario</h3>
+<ul>
+<li>Email fails multiple times</li>
+<li>Message is moved to DLQ</li>
+<li>Order is successful</li>
+<li>Email is not sent automatically</li>
+</ul>
+<h3 id="recovery-steps">Recovery Steps</h3>
+<ul>
+<li>CloudWatch alarm triggers</li>
+<li>Developer inspects DLQ message</li>
+<li>Fixes the issue</li>
+<li>Re-drives message to the main queue</li>
+</ul>
 <hr />
 <h2 id="best-practices">Best Practices</h2>
 <ol>
-<li><strong>Use specific tags</strong>: Instead of <code>latest</code>, use version tags for production</li>
-<li><strong>Environment variables</strong>: Store sensitive data in environment variables, not in the image</li>
-<li><strong>Volume mapping</strong>: Use volumes for persistent data storage</li>
-<li><strong>Resource limits</strong>: Set memory and CPU limits for containers</li>
-<li><strong>Health checks</strong>: Implement health checks for better monitoring</li>
-<li><strong>Multi-stage builds</strong>: Use multi-stage Dockerfiles for smaller production images</li>
+<li>Use <strong>Standard queues</strong> by default</li>
+<li>Use <strong>FIFO only when order matters</strong></li>
+<li>Always configure a <strong>DLQ</strong></li>
+<li>Enable <strong>long polling</strong></li>
+<li>Keep messages small (&lt;256 KB)</li>
+<li>Store large payloads in <strong>S3</strong></li>
+<li>Make consumers <strong>idempotent</strong></li>
+<li>Monitor DLQ with <strong>CloudWatch alarms</strong></li>
 </ol>
-<h2 id="troubleshooting-tips">Troubleshooting Tips</h2>
+<hr />
+<h2 id="common-exam-interview-notes">Common Exam &amp; Interview Notes</h2>
 <ul>
-<li>Use <code>docker logs &lt;container-name&gt;</code> to debug container issues</li>
-<li>Check port conflicts with <code>netstat -tlnp | grep :8080</code></li>
-<li>Verify network connectivity with <code>docker network ls</code> and <code>docker network inspect</code></li>
-<li>Clean up unused resources with <code>docker system prune</code></li>
+<li>FIFO ordering is per <code>MessageGroupId</code></li>
+<li>DLQ does not retry messages</li>
+<li>Long polling reduces cost and latency</li>
+<li>SQS is pull-based</li>
+<li>SQS enables decoupled, async processing</li>
+</ul>
+<hr />
+<h2 id="summary">Summary</h2>
+<ul>
+<li>SQS handles asynchronous work</li>
+<li>Standard queues are fast and scalable</li>
+<li>FIFO queues are ordered and safe</li>
+<li>DLQ isolates failures</li>
+<li>Long polling improves efficiency</li>
 </ul>
 
 
