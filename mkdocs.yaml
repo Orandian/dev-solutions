@@ -43,7 +43,8 @@ nav:
   - Docker:
       - Spring boot process: docker/docker_process_guide.md
       - Essential Docker Commands: docker/essential_docker_commands.md
-      - Comprehensive Guide: docker/docker_comprehensive_guide.md
+  - AWS:
+      - SQS Guide: aws/aws-sqs-guide.md
   - Kubernetes:
       - Kubernetes Comprehensive Guide: kubernetes/kubernetes_comprehensive_guide.md
   - Expo:
