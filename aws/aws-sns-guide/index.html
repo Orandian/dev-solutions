@@ -12,13 +12,13 @@
         <meta name="author" content="Yan Naing Htwe">
       
       
-        <link rel="canonical" href="https://orandian.github.io/dev-solutions/aws/aws-sqs-guide/">
+        <link rel="canonical" href="https://orandian.github.io/dev-solutions/aws/aws-sns-guide/">
       
       
-        <link rel="prev" href="../../docker/essential_docker_commands/">
+        <link rel="prev" href="../aws-sqs-guide/">
       
       
-        <link rel="next" href="../aws-sns-guide/">
+        <link rel="next" href="../aws-kinesis-data-streams/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>SQS Guide - Dev Solutions</title>
+        <title>SNS Guide - Dev Solutions</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aws-sqs-developer-guide" class="md-skip">
+        <a href="#amazon-sns-simple-notification-service" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SQS Guide
+              SNS Guide
             
           </span>
         </div>
@@ -929,6 +929,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-sqs-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQS Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -948,7 +976,7 @@
   <span class="md-ellipsis">
     
   
-    SQS Guide
+    SNS Guide
   
 
     
@@ -966,7 +994,7 @@
   <span class="md-ellipsis">
     
   
-    SQS Guide
+    SNS Guide
   
 
     
@@ -992,10 +1020,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
+  <a href="#what-is-amazon-sns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Table of Contents
+        What is Amazon SNS
       
     </span>
   </a>
@@ -1003,10 +1031,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-is-aws-sqs" class="md-nav__link">
+  <a href="#where-sns-fits-in-an-application" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What is AWS SQS
+        Where SNS Fits in an Application
       
     </span>
   </a>
@@ -1014,22 +1042,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#where-sqs-fits-in-an-application" class="md-nav__link">
+  <a href="#sns-message-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Where SQS Fits in an Application
+        SNS Message Flow
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Where SQS Fits in an Application">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sns-usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SNS Usage Example
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SNS Usage Example">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#typical-architecture" class="md-nav__link">
+  <a href="#order-created-event" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Typical Architecture
+        Order Created Event
       
     </span>
   </a>
@@ -1042,324 +1081,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-sqs-queue" class="md-nav__link">
+  <a href="#key-characteristics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard SQS Queue
+        Key Characteristics
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Standard SQS Queue">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#characteristics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Characteristics
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Use Cases
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Notes
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fifo-sqs-queue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        FIFO SQS Queue
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="FIFO SQS Queue">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#guarantees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Guarantees
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#required-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Required Rules
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ordering-behavior" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ordering Behavior
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-cases_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Use Cases
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#not-recommended-for" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Not Recommended For
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#message-visibility-timeout-retries" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Message Visibility Timeout &amp; Retries
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Message Visibility Timeout &amp; Retries">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#visibility-timeout" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Visibility Timeout
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#retry-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Retry Flow
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dead-letter-queue-dlq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dead Letter Queue (DLQ)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Dead Letter Queue (DLQ)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#how-dlq-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How DLQ Works
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#important-facts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Important Facts
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Purpose
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#long-polling-vs-short-polling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Long Polling vs Short Polling
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Long Polling vs Short Polling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#short-polling-default" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Short Polling (Default)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#long-polling-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Long Polling (Recommended)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#real-application-example-order-email" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real Application Example: Order &amp; Email
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Real Application Example: Order &amp; Email">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flow
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#email-worker" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Email Worker
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#failure-scenario" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Failure Scenario
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recovery-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Recovery Steps
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1374,60 +1102,10 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#common-exam-interview-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Exam &amp; Interview Notes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../aws-sns-guide/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    SNS Guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1719,10 +1397,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#table-of-contents" class="md-nav__link">
+  <a href="#what-is-amazon-sns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Table of Contents
+        What is Amazon SNS
       
     </span>
   </a>
@@ -1730,10 +1408,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-is-aws-sqs" class="md-nav__link">
+  <a href="#where-sns-fits-in-an-application" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What is AWS SQS
+        Where SNS Fits in an Application
       
     </span>
   </a>
@@ -1741,22 +1419,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#where-sqs-fits-in-an-application" class="md-nav__link">
+  <a href="#sns-message-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Where SQS Fits in an Application
+        SNS Message Flow
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Where SQS Fits in an Application">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sns-usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SNS Usage Example
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SNS Usage Example">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#typical-architecture" class="md-nav__link">
+  <a href="#order-created-event" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Typical Architecture
+        Order Created Event
       
     </span>
   </a>
@@ -1769,324 +1458,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-sqs-queue" class="md-nav__link">
+  <a href="#key-characteristics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard SQS Queue
+        Key Characteristics
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Standard SQS Queue">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#characteristics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Characteristics
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Use Cases
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Notes
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fifo-sqs-queue" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        FIFO SQS Queue
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="FIFO SQS Queue">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#guarantees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Guarantees
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#required-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Required Rules
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ordering-behavior" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ordering Behavior
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-cases_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Use Cases
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#not-recommended-for" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Not Recommended For
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#message-visibility-timeout-retries" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Message Visibility Timeout &amp; Retries
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Message Visibility Timeout &amp; Retries">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#visibility-timeout" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Visibility Timeout
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#retry-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Retry Flow
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dead-letter-queue-dlq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dead Letter Queue (DLQ)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Dead Letter Queue (DLQ)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#how-dlq-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How DLQ Works
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#important-facts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Important Facts
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Purpose
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#long-polling-vs-short-polling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Long Polling vs Short Polling
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Long Polling vs Short Polling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#short-polling-default" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Short Polling (Default)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#long-polling-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Long Polling (Recommended)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#real-application-example-order-email" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real Application Example: Order &amp; Email
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Real Application Example: Order &amp; Email">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flow
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#email-worker" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Email Worker
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#failure-scenario" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Failure Scenario
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recovery-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Recovery Steps
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2095,28 +1473,6 @@
     <span class="md-ellipsis">
       
         Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-exam-interview-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Exam &amp; Interview Notes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
       
     </span>
   </a>
@@ -2140,233 +1496,55 @@
 
 
 
-<h1 id="aws-sqs-developer-guide">AWS SQS Developer Guide</h1>
-<p>This guide explains <strong>Amazon SQS concepts</strong> in a <strong>practical, developer-focused way</strong>, including <strong>Standard queues, FIFO queues, DLQ, retries, and polling strategies</strong>, using real application examples.</p>
+<h1 id="amazon-sns-simple-notification-service">Amazon SNS (Simple Notification Service)</h1>
+<h2 id="what-is-amazon-sns">What is Amazon SNS</h2>
+<p>Amazon SNS is a fully managed <strong>publish–subscribe (pub/sub) messaging service</strong> that allows messages to be <strong>pushed</strong> to multiple subscribers.</p>
+<p>A producer publishes a message to a <strong>topic</strong>, and SNS delivers that message to all subscribed endpoints.</p>
 <hr />
-<h2 id="table-of-contents">Table of Contents</h2>
+<h2 id="where-sns-fits-in-an-application">Where SNS Fits in an Application</h2>
+<p>Typical architecture:</p>
+<p>Service → SNS Topic → Subscribers</p>
+<p>Subscribers can be:
+- Amazon SQS
+- AWS Lambda
+- Email / SMS
+- HTTP / HTTPS endpoints
+- Mobile push notifications</p>
+<p>SNS is ideal for <strong>event fan-out</strong>.</p>
+<hr />
+<h2 id="sns-message-flow">SNS Message Flow</h2>
 <ol>
-<li><a href="#what-is-aws-sqs">What is AWS SQS</a></li>
-<li><a href="#where-sqs-fits-in-an-application">Where SQS Fits in an Application</a></li>
-<li><a href="#standard-sqs-queue">Standard SQS Queue</a></li>
-<li><a href="#fifo-sqs-queue">FIFO SQS Queue</a></li>
-<li><a href="#message-visibility-timeout--retries">Message Visibility Timeout &amp; Retries</a></li>
-<li><a href="#dead-letter-queue-dlq">Dead Letter Queue (DLQ)</a></li>
-<li><a href="#long-polling-vs-short-polling">Long Polling vs Short Polling</a></li>
-<li><a href="#real-application-example-order--email">Real Application Example: Order &amp; Email</a></li>
-<li><a href="#best-practices">Best Practices</a></li>
-<li><a href="#common-exam--interview-notes">Common Exam &amp; Interview Notes</a></li>
+<li>Publisher sends a message to an SNS topic</li>
+<li>SNS pushes the message to all subscribers</li>
+<li>Each subscriber processes the message independently</li>
 </ol>
 <hr />
-<h2 id="what-is-aws-sqs">What is AWS SQS</h2>
-<p><strong>Amazon SQS (Simple Queue Service)</strong> is a <strong>fully managed message queue</strong> that enables <strong>asynchronous communication</strong> between application components.</p>
-<p><strong>Core idea</strong>:</p>
-<blockquote>
-<p>SQS decouples your API from background or failure-prone tasks.</p>
-</blockquote>
+<h2 id="sns-usage-example">SNS Usage Example</h2>
+<h3 id="order-created-event">Order Created Event</h3>
+<ol>
+<li>Order Service publishes <code>OrderCreated</code> to SNS</li>
+<li>SNS delivers the message to:</li>
+<li>Email Service</li>
+<li>Analytics Service</li>
+<li>Inventory Service</li>
+<li>Order Service returns immediately</li>
+</ol>
+<p>This enables loose coupling and scalability.</p>
 <hr />
-<h2 id="where-sqs-fits-in-an-application">Where SQS Fits in an Application</h2>
-<h3 id="typical-architecture">Typical Architecture</h3>
-<pre><code>Frontend (Amplify / Web)
-        ↓
-Backend API (EC2 / Spring Boot)
-        ↓
-       RDS
-        ↓
-       SQS  ← async tasks
-        ↓
-Worker (EC2 / Lambda)
-</code></pre>
-<p><strong>Use SQS when</strong>:</p>
+<h2 id="key-characteristics">Key Characteristics</h2>
 <ul>
-<li>Tasks are slow or heavy</li>
-<li>Tasks may fail</li>
-<li>Tasks should not block user requests</li>
-</ul>
-<hr />
-<h2 id="standard-sqs-queue">Standard SQS Queue</h2>
-<h3 id="characteristics">Characteristics</h3>
-<ul>
-<li>Unlimited throughput</li>
-<li>At-least-once delivery</li>
-<li>Order is <strong>not guaranteed</strong></li>
-</ul>
-<h3 id="use-cases">Use Cases</h3>
-<ul>
-<li>Sending emails</li>
-<li>Background jobs</li>
-<li>Image processing</li>
-<li>Analytics events</li>
-</ul>
-<h3 id="notes">Notes</h3>
-<ul>
-<li>Messages may be delivered more than once</li>
-<li>Consumers must be <strong>idempotent</strong></li>
-</ul>
-<hr />
-<h2 id="fifo-sqs-queue">FIFO SQS Queue</h2>
-<p><strong>FIFO = First In, First Out</strong></p>
-<h3 id="guarantees">Guarantees</h3>
-<ul>
-<li>Exactly-once processing</li>
-<li>Strict ordering (per MessageGroupId)</li>
-</ul>
-<h3 id="required-rules">Required Rules</h3>
-<ul>
-<li>Queue name must end with:</li>
-</ul>
-<pre><code>.fifo
-</code></pre>
-<ul>
-<li>Every message must include:</li>
-</ul>
-<pre><code>MessageGroupId
-</code></pre>
-<h3 id="ordering-behavior">Ordering Behavior</h3>
-<p>Ordering is guaranteed <strong>within a MessageGroupId</strong>, not globally.</p>
-<h3 id="use-cases_1">Use Cases</h3>
-<ul>
-<li>Payments</li>
-<li>Order state transitions</li>
-<li>Inventory updates</li>
-</ul>
-<h3 id="not-recommended-for">Not Recommended For</h3>
-<ul>
-<li>Emails</li>
-<li>Logs</li>
-<li>High-throughput background jobs</li>
-</ul>
-<hr />
-<h2 id="message-visibility-timeout-retries">Message Visibility Timeout &amp; Retries</h2>
-<h3 id="visibility-timeout">Visibility Timeout</h3>
-<p>When a consumer receives a message:</p>
-<ul>
-<li>Message becomes invisible</li>
-<li>Default: <strong>30 seconds</strong></li>
-</ul>
-<h3 id="retry-flow">Retry Flow</h3>
-<pre><code>Receive → Fail → Visibility Timeout → Retry
-</code></pre>
-<p>If the message is not deleted, it becomes visible again and can be retried.</p>
-<hr />
-<h2 id="dead-letter-queue-dlq">Dead Letter Queue (DLQ)</h2>
-<p>A <strong>Dead Letter Queue (DLQ)</strong> is a separate SQS queue that stores messages that <strong>fail processing multiple times</strong>.</p>
-<h3 id="how-dlq-works">How DLQ Works</h3>
-<ul>
-<li>Configure <code>MaxReceiveCount</code> (e.g. 5)</li>
-<li>
-<p>After exceeding retries:</p>
-</li>
-<li>
-<p>Message is moved to DLQ</p>
-</li>
-<li>Message is removed from the main queue</li>
-</ul>
-<h3 id="important-facts">Important Facts</h3>
-<ul>
-<li>DLQ does <strong>not retry</strong> messages</li>
-<li>DLQ does <strong>not process</strong> messages</li>
-<li>DLQ requires <strong>manual intervention</strong></li>
-</ul>
-<h3 id="purpose">Purpose</h3>
-<ul>
-<li>Prevent infinite retry loops</li>
-<li>Isolate poison messages</li>
-<li>Enable debugging and recovery</li>
-</ul>
-<hr />
-<h2 id="long-polling-vs-short-polling">Long Polling vs Short Polling</h2>
-<h3 id="short-polling-default">Short Polling (Default)</h3>
-<p><strong>Behavior</strong>:</p>
-<ul>
-<li>Returns immediately</li>
-<li>Often returns empty responses</li>
-</ul>
-<p><strong>Problems</strong>:</p>
-<ul>
-<li>Higher cost</li>
-<li>Wasted CPU</li>
-</ul>
-<pre><code>Worker → SQS → Empty
-Worker → SQS → Empty
-</code></pre>
-<hr />
-<h3 id="long-polling-recommended">Long Polling (Recommended)</h3>
-<p><strong>Behavior</strong>:</p>
-<ul>
-<li>Waits up to 20 seconds</li>
-<li>Responds immediately when a message arrives</li>
-</ul>
-<p><strong>Benefits</strong>:</p>
-<ul>
-<li>Lower cost</li>
-<li>Fewer empty responses</li>
-<li>Better performance</li>
-</ul>
-<pre><code>Worker → SQS (wait)
-SQS → Worker (message)
-</code></pre>
-<h3 id="configuration">Configuration</h3>
-<ul>
-<li><code>WaitTimeSeconds</code>: 1–20 seconds</li>
-<li>Can be set per queue or per request</li>
-</ul>
-<hr />
-<h2 id="real-application-example-order-email">Real Application Example: Order &amp; Email</h2>
-<h3 id="flow">Flow</h3>
-<pre><code>User places order
-        ↓
-API saves order to RDS
-        ↓
-API sends SEND_EMAIL message to SQS
-        ↓
-User gets response immediately
-</code></pre>
-<h3 id="email-worker">Email Worker</h3>
-<pre><code>SQS → Worker → Send Email
-</code></pre>
-<h3 id="failure-scenario">Failure Scenario</h3>
-<ul>
-<li>Email fails multiple times</li>
-<li>Message is moved to DLQ</li>
-<li>Order is successful</li>
-<li>Email is not sent automatically</li>
-</ul>
-<h3 id="recovery-steps">Recovery Steps</h3>
-<ul>
-<li>CloudWatch alarm triggers</li>
-<li>Developer inspects DLQ message</li>
-<li>Fixes the issue</li>
-<li>Re-drives message to the main queue</li>
+<li>Push-based delivery</li>
+<li>One message → many consumers</li>
+<li>No long-term message storage</li>
+<li>Near real-time delivery</li>
 </ul>
 <hr />
 <h2 id="best-practices">Best Practices</h2>
-<ol>
-<li>Use <strong>Standard queues</strong> by default</li>
-<li>Use <strong>FIFO only when order matters</strong></li>
-<li>Always configure a <strong>DLQ</strong></li>
-<li>Enable <strong>long polling</strong></li>
-<li>Keep messages small (&lt;256 KB)</li>
-<li>Store large payloads in <strong>S3</strong></li>
-<li>Make consumers <strong>idempotent</strong></li>
-<li>Monitor DLQ with <strong>CloudWatch alarms</strong></li>
-</ol>
-<hr />
-<h2 id="common-exam-interview-notes">Common Exam &amp; Interview Notes</h2>
 <ul>
-<li>FIFO ordering is per <code>MessageGroupId</code></li>
-<li>DLQ does not retry messages</li>
-<li>Long polling reduces cost and latency</li>
-<li>SQS is pull-based</li>
-<li>SQS enables decoupled, async processing</li>
-</ul>
-<hr />
-<h2 id="summary">Summary</h2>
-<ul>
-<li>SQS handles asynchronous work</li>
-<li>Standard queues are fast and scalable</li>
-<li>FIFO queues are ordered and safe</li>
-<li>DLQ isolates failures</li>
-<li>Long polling improves efficiency</li>
+<li>Combine SNS with SQS for durability</li>
+<li>Use message filtering</li>
+<li>Keep messages small</li>
+<li>Avoid heavy logic in SNS</li>
 </ul>
 
 
