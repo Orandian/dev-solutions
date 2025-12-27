@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://orandian.github.io/dev-solutions/aws/aws-apache-flink/">
       
       
+        <link rel="prev" href="../sqs-vs-sns-vs-kinesis/">
+      
+      
+        <link rel="next" href="../aws-data-firehose/">
       
       
         
@@ -25,7 +29,7 @@
     
     
       
-        <title>AWS Managed Service for Apache Flink Developer Guide - Dev Solutions</title>
+        <title>Amazon Managed Service for Apache Flink - Dev Solutions</title>
       
     
     
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AWS Managed Service for Apache Flink Developer Guide
+              Amazon Managed Service for Apache Flink
             
           </span>
         </div>
@@ -876,20 +880,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -910,7 +914,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1037,6 +1041,664 @@
                 
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Amazon Managed Service for Apache Flink
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Amazon Managed Service for Apache Flink
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-aws-managed-service-for-apache-flink" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is AWS Managed Service for Apache Flink
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is AWS Managed Service for Apache Flink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-flink-fits-in-an-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where Flink Fits in an Application
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Where Flink Fits in an Application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typical-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flink-vs-kinesis-data-analytics-vs-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flink vs Kinesis Data Analytics vs Lambda
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flink vs Kinesis Data Analytics vs Lambda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use What
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts-applications-and-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Concepts: Applications and State
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Concepts: Applications and State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flink-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flink Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-state-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why State Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-sources-and-destinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Sources and Destinations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Sources and Destinations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supported-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Sources
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-destinations-sinks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Destinations (Sinks)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flink-sql-for-stream-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flink SQL for Stream Processing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flink SQL for Stream Processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-query-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Query Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-sql-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key SQL Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windowing-and-aggregations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windowing and Aggregations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Windowing and Aggregations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-windowing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Windowing?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Window Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-tumbling-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Tumbling Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-hopping-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Hopping Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-session-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Session Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stateful-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stateful Processing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stateful Processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-stateful-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Stateful Processing?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-running-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Running Sum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-pattern-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Pattern Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-and-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling and Parallelism
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaling and Parallelism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parallelism-units-kpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallelism Units (KPUs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-scaling-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Scaling Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallelism-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallelism Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpoints-and-fault-tolerance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoints and Fault Tolerance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checkpoints and Fault Tolerance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-checkpoints-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Checkpoints Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exactly-once-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exactly-Once Processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-application-example-fraud-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Application Example: Fraud Detection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real Application Example: Fraud Detection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fraud-detection-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fraud Detection Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-exam-interview-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Exam &amp; Interview Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
@@ -1047,7 +1709,7 @@
   <span class="md-ellipsis">
     
   
-    Amazon Managed Service for Apache Flink
+    Amazon Data Firehose
   
 
     
