@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#amazon-kinesis-data-streams" class="md-skip">
+        <a href="#aws-kinesis-data-streams-developer-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -1048,10 +1048,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-kinesis-data-streams" class="md-nav__link">
+  <a href="#table-of-contents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What is Kinesis Data Streams
+        Table of Contents
       
     </span>
   </a>
@@ -1059,10 +1059,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#where-kinesis-fits" class="md-nav__link">
+  <a href="#what-is-aws-kinesis-data-streams" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Where Kinesis Fits
+        What is AWS Kinesis Data Streams
       
     </span>
   </a>
@@ -1070,22 +1070,78 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#where-kinesis-fits-in-an-application" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Concepts
+        Where Kinesis Fits in an Application
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Core Concepts">
+    <nav class="md-nav" aria-label="Where Kinesis Fits in an Application">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#shards" class="md-nav__link">
+  <a href="#typical-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Shards
+        Typical Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kinesis-vs-sqs-vs-sns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kinesis vs SQS vs SNS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kinesis vs SQS vs SNS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use What
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts-streams-and-shards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Concepts: Streams and Shards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Concepts: Streams and Shards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stream
       
     </span>
   </a>
@@ -1093,6 +1149,238 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#shard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shard-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shard Count
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition-keys-and-data-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partition Keys and Data Distribution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partition Keys and Data Distribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partition-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partition Key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordering-guarantee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordering Guarantee
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#producers-writing-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Producers: Writing Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Producers: Writing Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#producer-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Producer Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consumers-reading-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consumers: Reading Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consumers: Reading Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consumer-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consumer Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-kinesis-client-library-kcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Kinesis Client Library (KCL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-aws-sdk-getrecords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AWS SDK (GetRecords)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Lambda
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-kinesis-data-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Kinesis Data Analytics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data-retention" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1101,30 +1389,47 @@
     </span>
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Usage Example
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage Example">
+    <nav class="md-nav" aria-label="Data Retention">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#website-click-tracking" class="md-nav__link">
+  <a href="#default-retention" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Website Click Tracking
+        Default Retention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extended-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extended Retention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases-for-long-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases for Long Retention
       
     </span>
   </a>
@@ -1137,13 +1442,185 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-characteristics" class="md-nav__link">
+  <a href="#scaling-and-resharding" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Characteristics
+        Scaling and Resharding
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Scaling and Resharding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resharding-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resharding Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-demand-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On-Demand Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enhanced-fan-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhanced Fan-Out
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enhanced Fan-Out">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Consumer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhanced-fan-out-consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhanced Fan-Out Consumer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-application-example-clickstream-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Application Example: Clickstream Analytics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real Application Example: Clickstream Analytics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1152,6 +1629,28 @@
     <span class="md-ellipsis">
       
         Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-exam-interview-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Exam &amp; Interview Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
       
     </span>
   </a>
@@ -1425,10 +1924,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-kinesis-data-streams" class="md-nav__link">
+  <a href="#table-of-contents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What is Kinesis Data Streams
+        Table of Contents
       
     </span>
   </a>
@@ -1436,10 +1935,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#where-kinesis-fits" class="md-nav__link">
+  <a href="#what-is-aws-kinesis-data-streams" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Where Kinesis Fits
+        What is AWS Kinesis Data Streams
       
     </span>
   </a>
@@ -1447,22 +1946,78 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#where-kinesis-fits-in-an-application" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Concepts
+        Where Kinesis Fits in an Application
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Core Concepts">
+    <nav class="md-nav" aria-label="Where Kinesis Fits in an Application">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#shards" class="md-nav__link">
+  <a href="#typical-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Shards
+        Typical Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kinesis-vs-sqs-vs-sns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kinesis vs SQS vs SNS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kinesis vs SQS vs SNS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use What
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts-streams-and-shards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Concepts: Streams and Shards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Concepts: Streams and Shards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stream
       
     </span>
   </a>
@@ -1470,6 +2025,238 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#shard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shard-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shard Count
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition-keys-and-data-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partition Keys and Data Distribution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partition Keys and Data Distribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partition-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partition Key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordering-guarantee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordering Guarantee
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#producers-writing-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Producers: Writing Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Producers: Writing Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#producer-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Producer Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consumers-reading-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consumers: Reading Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consumers: Reading Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consumer-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consumer Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-kinesis-client-library-kcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Kinesis Client Library (KCL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-aws-sdk-getrecords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AWS SDK (GetRecords)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Lambda
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-kinesis-data-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Kinesis Data Analytics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data-retention" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1478,30 +2265,47 @@
     </span>
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Usage Example
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage Example">
+    <nav class="md-nav" aria-label="Data Retention">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#website-click-tracking" class="md-nav__link">
+  <a href="#default-retention" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Website Click Tracking
+        Default Retention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extended-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extended Retention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases-for-long-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases for Long Retention
       
     </span>
   </a>
@@ -1514,13 +2318,185 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-characteristics" class="md-nav__link">
+  <a href="#scaling-and-resharding" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Characteristics
+        Scaling and Resharding
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Scaling and Resharding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resharding-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resharding Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-demand-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On-Demand Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enhanced-fan-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhanced Fan-Out
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enhanced Fan-Out">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Consumer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhanced-fan-out-consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhanced Fan-Out Consumer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-application-example-clickstream-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Application Example: Clickstream Analytics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real Application Example: Clickstream Analytics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1529,6 +2505,28 @@
     <span class="md-ellipsis">
       
         Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-exam-interview-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Exam &amp; Interview Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
       
     </span>
   </a>
@@ -1552,56 +2550,451 @@
 
 
 
-<h1 id="amazon-kinesis-data-streams">Amazon Kinesis Data Streams</h1>
-<h2 id="what-is-kinesis-data-streams">What is Kinesis Data Streams</h2>
-<p>Amazon Kinesis Data Streams is a <strong>real-time streaming data service</strong> designed for <strong>high-throughput event ingestion and processing</strong>.</p>
-<p>It allows multiple consumers to read the same data stream independently.</p>
+<h1 id="aws-kinesis-data-streams-developer-guide">AWS Kinesis Data Streams Developer Guide</h1>
+<p>This guide explains <strong>Amazon Kinesis Data Streams concepts</strong> in a <strong>practical, developer-focused way</strong>, including <strong>shards, partition keys, consumers, scaling, and real-time processing</strong>, using real application examples.</p>
 <hr />
-<h2 id="where-kinesis-fits">Where Kinesis Fits</h2>
-<p>Producers → Kinesis Data Stream → Consumers</p>
-<p>Used for:
-- Clickstream data
-- Logs &amp; metrics
-- IoT data
-- Financial transactions</p>
-<hr />
-<h2 id="core-concepts">Core Concepts</h2>
-<h3 id="shards">Shards</h3>
-<ul>
-<li>Streams are divided into shards</li>
-<li>Shards control throughput and parallelism</li>
-<li>Ordering is guaranteed per shard</li>
-</ul>
-<h3 id="data-retention">Data Retention</h3>
-<ul>
-<li>Data retained for 24 hours to 7 days</li>
-<li>Consumers can replay data</li>
-</ul>
-<hr />
-<h2 id="usage-example">Usage Example</h2>
-<h3 id="website-click-tracking">Website Click Tracking</h3>
+<h2 id="table-of-contents">Table of Contents</h2>
 <ol>
-<li>Frontend sends click events to Kinesis</li>
-<li>Events are stored in shards</li>
-<li>Consumers process data for:</li>
-<li>Real-time dashboards</li>
-<li>Analytics</li>
-<li>Storage</li>
+<li><a href="#what-is-aws-kinesis-data-streams">What is AWS Kinesis Data Streams</a></li>
+<li><a href="#where-kinesis-fits-in-an-application">Where Kinesis Fits in an Application</a></li>
+<li><a href="#kinesis-vs-sqs-vs-sns">Kinesis vs SQS vs SNS</a></li>
+<li><a href="#core-concepts-streams-and-shards">Core Concepts: Streams and Shards</a></li>
+<li><a href="#partition-keys-and-data-distribution">Partition Keys and Data Distribution</a></li>
+<li><a href="#producers-writing-data">Producers: Writing Data</a></li>
+<li><a href="#consumers-reading-data">Consumers: Reading Data</a></li>
+<li><a href="#data-retention">Data Retention</a></li>
+<li><a href="#scaling-and-resharding">Scaling and Resharding</a></li>
+<li><a href="#enhanced-fan-out">Enhanced Fan-Out</a></li>
+<li><a href="#real-application-example-clickstream-analytics">Real Application Example: Clickstream Analytics</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#common-exam--interview-notes">Common Exam &amp; Interview Notes</a></li>
 </ol>
 <hr />
-<h2 id="key-characteristics">Key Characteristics</h2>
+<h2 id="what-is-aws-kinesis-data-streams">What is AWS Kinesis Data Streams</h2>
+<p><strong>Amazon Kinesis Data Streams</strong> is a <strong>real-time data streaming service</strong> that enables you to <strong>collect, process, and analyze streaming data at scale</strong>.</p>
+<p><strong>Core idea</strong>:</p>
+<blockquote>
+<p>Kinesis captures high-volume, real-time data and allows multiple consumers to process it independently.</p>
+</blockquote>
+<hr />
+<h2 id="where-kinesis-fits-in-an-application">Where Kinesis Fits in an Application</h2>
+<h3 id="typical-architecture">Typical Architecture</h3>
+<pre><code>IoT Devices / Apps / Logs
+        ↓
+   Kinesis Stream
+        ↓
+    ┌───┴────┬────────┬─────────┐
+    ↓        ↓        ↓         ↓
+Lambda   Lambda   Firehose   Analytics
+    ↓        ↓        ↓         ↓
+  DynamoDB  S3   Data Lake  Dashboard
+</code></pre>
+<p><strong>Use Kinesis when</strong>:</p>
 <ul>
-<li>Pull-based consumption</li>
-<li>High throughput</li>
-<li>Ordered data per shard</li>
-<li>Replayable events</li>
+<li>Processing real-time data streams</li>
+<li>Multiple consumers need the same data</li>
+<li>Data needs to be replayed</li>
+<li>High throughput required (MB/sec)</li>
+</ul>
+<hr />
+<h2 id="kinesis-vs-sqs-vs-sns">Kinesis vs SQS vs SNS</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Kinesis</th>
+<th>SQS</th>
+<th>SNS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pattern</strong></td>
+<td>Streaming</td>
+<td>Queue</td>
+<td>Pub/Sub</td>
+</tr>
+<tr>
+<td><strong>Data Flow</strong></td>
+<td>Pull</td>
+<td>Pull</td>
+<td>Push</td>
+</tr>
+<tr>
+<td><strong>Consumers</strong></td>
+<td>Multiple</td>
+<td>Single</td>
+<td>Multiple</td>
+</tr>
+<tr>
+<td><strong>Ordering</strong></td>
+<td>Per shard</td>
+<td>FIFO only</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Retention</strong></td>
+<td>1-365 days</td>
+<td>Up to 14 days</td>
+<td>None</td>
+</tr>
+<tr>
+<td><strong>Replay</strong></td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Throughput</strong></td>
+<td>MB/sec</td>
+<td>Messages/sec</td>
+<td>Messages/sec</td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>Real-time analytics</td>
+<td>Background jobs</td>
+<td>Notifications</td>
+</tr>
+</tbody>
+</table>
+<h3 id="when-to-use-what">When to Use What</h3>
+<p><strong>Kinesis</strong>:</p>
+<ul>
+<li>Real-time analytics</li>
+<li>Log aggregation</li>
+<li>Clickstream data</li>
+<li>IoT telemetry</li>
+</ul>
+<p><strong>SQS</strong>:</p>
+<ul>
+<li>Task queues</li>
+<li>Decoupling services</li>
+<li>Batch processing</li>
+</ul>
+<p><strong>SNS</strong>:</p>
+<ul>
+<li>Notifications</li>
+<li>Event broadcasting</li>
+<li>Alerts</li>
+</ul>
+<hr />
+<h2 id="core-concepts-streams-and-shards">Core Concepts: Streams and Shards</h2>
+<h3 id="stream">Stream</h3>
+<p>A <strong>stream</strong> is a logical grouping of shards that holds your data records.</p>
+<h3 id="shard">Shard</h3>
+<p>A <strong>shard</strong> is a unit of capacity in a stream.</p>
+<p><strong>Each shard provides</strong>:</p>
+<ul>
+<li><strong>Write capacity</strong>: 1 MB/sec or 1,000 records/sec</li>
+<li><strong>Read capacity</strong>: 2 MB/sec (standard) or 2 MB/sec per consumer (enhanced)</li>
+</ul>
+<h3 id="example">Example</h3>
+<pre><code>Stream: &quot;ClickstreamData&quot;
+    ├── Shard 1 (1 MB/sec write, 2 MB/sec read)
+    ├── Shard 2 (1 MB/sec write, 2 MB/sec read)
+    └── Shard 3 (1 MB/sec write, 2 MB/sec read)
+
+Total: 3 MB/sec write, 6 MB/sec read
+</code></pre>
+<h3 id="shard-count">Shard Count</h3>
+<ul>
+<li>Minimum: 1 shard</li>
+<li>Maximum: No limit (request increase)</li>
+<li>Cost: Per shard-hour</li>
+</ul>
+<hr />
+<h2 id="partition-keys-and-data-distribution">Partition Keys and Data Distribution</h2>
+<h3 id="partition-key">Partition Key</h3>
+<p>A <strong>partition key</strong> determines which shard receives the data record.</p>
+<h3 id="how-it-works">How It Works</h3>
+<pre><code>Data Record + Partition Key
+        ↓
+    MD5 Hash
+        ↓
+  Shard Selection (based on hash range)
+</code></pre>
+<h3 id="example_1">Example</h3>
+<pre><code>Record 1: userId = &quot;user123&quot; → Shard 1
+Record 2: userId = &quot;user456&quot; → Shard 2
+Record 3: userId = &quot;user123&quot; → Shard 1 (same user, same shard)
+</code></pre>
+<h3 id="ordering-guarantee">Ordering Guarantee</h3>
+<p>Records with the <strong>same partition key</strong> go to the <strong>same shard</strong> and maintain order.</p>
+<h3 id="important-rules">Important Rules</h3>
+<ul>
+<li>Choose partition keys with <strong>high cardinality</strong></li>
+<li>Avoid hot shards (uneven distribution)</li>
+<li>Same partition key = same shard = ordered</li>
+</ul>
+<hr />
+<h2 id="producers-writing-data">Producers: Writing Data</h2>
+<h3 id="producer-types">Producer Types</h3>
+<p><strong>AWS SDK</strong>:</p>
+<ul>
+<li>PutRecord (single record)</li>
+<li>PutRecords (batch up to 500 records)</li>
+</ul>
+<p><strong>Kinesis Producer Library (KPL)</strong>:</p>
+<ul>
+<li>Automatic batching</li>
+<li>Compression</li>
+<li>Retries</li>
+<li>Higher throughput</li>
+</ul>
+<p><strong>Kinesis Agent</strong>:</p>
+<ul>
+<li>For log files</li>
+<li>Pre-built monitoring</li>
+</ul>
+<h3 id="writing-data">Writing Data</h3>
+<pre><code class="language-java">PutRecordRequest request = PutRecordRequest.builder()
+    .streamName(&quot;ClickstreamData&quot;)
+    .partitionKey(&quot;user123&quot;)  // Determines shard
+    .data(SdkBytes.fromUtf8String(jsonData))
+    .build();
+
+kinesis.putRecord(request);
+</code></pre>
+<h3 id="limits">Limits</h3>
+<ul>
+<li>Maximum record size: <strong>1 MB</strong></li>
+<li>Maximum throughput per shard: <strong>1 MB/sec</strong> or <strong>1,000 records/sec</strong></li>
+</ul>
+<hr />
+<h2 id="consumers-reading-data">Consumers: Reading Data</h2>
+<h3 id="consumer-types">Consumer Types</h3>
+<h3 id="1-kinesis-client-library-kcl">1. Kinesis Client Library (KCL)</h3>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>Manages distributed consumption</li>
+<li>Checkpointing (DynamoDB)</li>
+<li>Load balancing across consumers</li>
+<li>2 MB/sec per shard (shared)</li>
+</ul>
+<p><strong>Use when</strong>: Multiple application instances reading</p>
+<h3 id="2-aws-sdk-getrecords">2. AWS SDK (GetRecords)</h3>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>Direct API calls</li>
+<li>Manual shard management</li>
+<li>2 MB/sec per shard (shared)</li>
+<li>5 GetRecords calls/sec per shard</li>
+</ul>
+<p><strong>Use when</strong>: Simple, single consumer</p>
+<h3 id="3-lambda">3. Lambda</h3>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>Event-driven processing</li>
+<li>Automatic scaling</li>
+<li>Built-in checkpointing</li>
+<li>Batch processing</li>
+</ul>
+<p><strong>Use when</strong>: Serverless processing needed</p>
+<h3 id="4-kinesis-data-analytics">4. Kinesis Data Analytics</h3>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>SQL queries on streams</li>
+<li>Real-time analytics</li>
+<li>No code required</li>
+</ul>
+<p><strong>Use when</strong>: SQL-based analysis</p>
+<hr />
+<h2 id="data-retention">Data Retention</h2>
+<h3 id="default-retention">Default Retention</h3>
+<ul>
+<li><strong>24 hours</strong> (default)</li>
+</ul>
+<h3 id="extended-retention">Extended Retention</h3>
+<ul>
+<li>Up to <strong>365 days</strong> (additional cost)</li>
+</ul>
+<h3 id="key-points">Key Points</h3>
+<ul>
+<li>Data is stored across 3 AZs</li>
+<li>Data can be replayed within retention period</li>
+<li>Older data automatically expires</li>
+</ul>
+<h3 id="use-cases-for-long-retention">Use Cases for Long Retention</h3>
+<ul>
+<li>Compliance requirements</li>
+<li>Late data processing</li>
+<li>Reprocessing for bug fixes</li>
+<li>Audit trails</li>
+</ul>
+<hr />
+<h2 id="scaling-and-resharding">Scaling and Resharding</h2>
+<h3 id="when-to-scale">When to Scale</h3>
+<p><strong>Scale Up</strong> (split shards):</p>
+<ul>
+<li>High write throughput</li>
+<li>ProvisionedThroughputExceeded errors</li>
+<li>Hot shard detected</li>
+</ul>
+<p><strong>Scale Down</strong> (merge shards):</p>
+<ul>
+<li>Low utilization</li>
+<li>Cost optimization</li>
+</ul>
+<h3 id="resharding-operations">Resharding Operations</h3>
+<p><strong>Split Shard</strong>:</p>
+<pre><code>Shard 1 (1 MB/sec)
+    ↓
+Shard 1.1 (1 MB/sec) + Shard 1.2 (1 MB/sec)
+</code></pre>
+<p><strong>Merge Shards</strong>:</p>
+<pre><code>Shard 1 (0.3 MB/sec) + Shard 2 (0.2 MB/sec)
+    ↓
+Shard 3 (1 MB/sec)
+</code></pre>
+<h3 id="important-notes">Important Notes</h3>
+<ul>
+<li>Resharding is not instant</li>
+<li>Old shards remain until data expires</li>
+<li>Sequential process (one operation at a time)</li>
+<li>Can take several minutes</li>
+</ul>
+<h3 id="on-demand-mode">On-Demand Mode</h3>
+<ul>
+<li>Automatic scaling</li>
+<li>No manual resharding</li>
+<li>Pay per GB</li>
+<li>4 MB/sec write per shard (default)</li>
+</ul>
+<hr />
+<h2 id="enhanced-fan-out">Enhanced Fan-Out</h2>
+<h3 id="standard-consumer">Standard Consumer</h3>
+<ul>
+<li>2 MB/sec per shard (shared among all consumers)</li>
+<li>5 GetRecords API calls/sec per shard</li>
+<li>200 ms latency</li>
+</ul>
+<h3 id="enhanced-fan-out-consumer">Enhanced Fan-Out Consumer</h3>
+<ul>
+<li>2 MB/sec per shard <strong>per consumer</strong></li>
+<li>Push model (SubscribeToShard)</li>
+<li>70 ms latency</li>
+<li>Higher cost</li>
+</ul>
+<h3 id="example_2">Example</h3>
+<pre><code>Standard:
+Shard 1 (2 MB/sec total)
+    ↓
+Consumer A (1 MB/sec) + Consumer B (1 MB/sec)
+
+Enhanced Fan-Out:
+Shard 1
+    ├── Consumer A (2 MB/sec)
+    └── Consumer B (2 MB/sec)
+</code></pre>
+<h3 id="when-to-use">When to Use</h3>
+<ul>
+<li>Multiple real-time consumers</li>
+<li>Low latency required</li>
+<li>Consumers need independent throughput</li>
+</ul>
+<hr />
+<h2 id="real-application-example-clickstream-analytics">Real Application Example: Clickstream Analytics</h2>
+<h3 id="scenario">Scenario</h3>
+<p>E-commerce site tracking user clicks in real-time.</p>
+<h3 id="architecture">Architecture</h3>
+<pre><code>Web Application
+    ↓
+Kinesis Stream (3 shards)
+    ↓
+  ┌─────┴─────┬──────────┬────────────┐
+  ↓           ↓          ↓            ↓
+Lambda    Lambda   Firehose    Analytics
+  ↓           ↓          ↓            ↓
+DynamoDB  Redshift     S3      Dashboard
+(real-time) (batch)  (archive) (monitoring)
+</code></pre>
+<h3 id="data-flow">Data Flow</h3>
+<p><strong>1. Producer (Web App)</strong>:</p>
+<pre><code class="language-javascript">kinesis.putRecord({
+  StreamName: &quot;ClickstreamData&quot;,
+  PartitionKey: userId, // Same user → same shard → ordered
+  Data: JSON.stringify({
+    userId: &quot;user123&quot;,
+    action: &quot;click&quot;,
+    product: &quot;laptop-x1&quot;,
+    timestamp: Date.now(),
+  }),
+});
+</code></pre>
+<p><strong>2. Consumer 1 (Lambda → DynamoDB)</strong>:</p>
+<ul>
+<li>Real-time user activity tracking</li>
+<li>Updates user profile</li>
+<li>Triggers personalized recommendations</li>
+</ul>
+<p><strong>3. Consumer 2 (Lambda → Redshift)</strong>:</p>
+<ul>
+<li>Batch analytics</li>
+<li>Aggregate hourly metrics</li>
+<li>Business intelligence</li>
+</ul>
+<p><strong>4. Consumer 3 (Firehose → S3)</strong>:</p>
+<ul>
+<li>Long-term storage</li>
+<li>Data lake for ML training</li>
+<li>Compliance archival</li>
+</ul>
+<p><strong>5. Consumer 4 (Kinesis Analytics)</strong>:</p>
+<ul>
+<li>Real-time dashboard</li>
+<li>Anomaly detection</li>
+<li>Live metrics</li>
+</ul>
+<h3 id="key-benefits">Key Benefits</h3>
+<ul>
+<li><strong>Real-time</strong>: User behavior tracked instantly</li>
+<li><strong>Multiple consumers</strong>: Different teams process independently</li>
+<li><strong>Replay</strong>: Can reprocess last 24 hours</li>
+<li><strong>Ordered</strong>: Each user's clicks processed in order</li>
+<li><strong>Scalable</strong>: Handles millions of events/sec</li>
 </ul>
 <hr />
 <h2 id="best-practices">Best Practices</h2>
+<ol>
+<li><strong>Choose partition keys wisely</strong>: High cardinality (userId, not status)</li>
+<li><strong>Monitor shard metrics</strong>: Watch for hot shards</li>
+<li><strong>Use KPL for producers</strong>: Better batching and throughput</li>
+<li><strong>Use KCL for consumers</strong>: Handles distributed processing</li>
+<li><strong>Enable enhanced fan-out</strong>: For multiple real-time consumers</li>
+<li><strong>Set appropriate retention</strong>: Balance cost vs replay needs</li>
+<li><strong>Use on-demand mode</strong>: For unpredictable workloads</li>
+<li><strong>Implement error handling</strong>: ProvisionedThroughputExceeded</li>
+<li><strong>Monitor CloudWatch metrics</strong>: IncomingBytes, IncomingRecords</li>
+<li><strong>Consider Kinesis Firehose</strong>: For simple S3/Redshift delivery</li>
+</ol>
+<hr />
+<h2 id="common-exam-interview-notes">Common Exam &amp; Interview Notes</h2>
 <ul>
-<li>Choose shard count carefully</li>
-<li>Use partition keys wisely</li>
-<li>Monitor lag and throughput</li>
+<li><strong>1 shard</strong> = 1 MB/sec write, 2 MB/sec read</li>
+<li><strong>Partition key</strong> determines shard assignment</li>
+<li>Same partition key = <strong>same shard</strong> = <strong>ordered</strong></li>
+<li>Data retention: <strong>24 hours to 365 days</strong></li>
+<li>Multiple consumers can read <strong>independently</strong></li>
+<li><strong>Enhanced fan-out</strong>: 2 MB/sec per consumer per shard</li>
+<li><strong>KCL</strong> uses DynamoDB for checkpointing</li>
+<li>Resharding is <strong>sequential</strong> and takes time</li>
+<li>Maximum record size: <strong>1 MB</strong></li>
+<li>Use <strong>Kinesis</strong> for streaming, <strong>SQS</strong> for queuing</li>
+<li><strong>On-demand mode</strong>: Auto-scaling, no shard management</li>
+<li>Data stored across <strong>3 AZs</strong></li>
+<li>Kinesis is <strong>real-time</strong> (sub-second to seconds)</li>
+</ul>
+<hr />
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Kinesis handles real-time streaming data at scale</li>
+<li>Shards provide predictable capacity units</li>
+<li>Partition keys ensure ordering and distribution</li>
+<li>Multiple consumers can process data independently</li>
+<li>Data can be replayed within retention period</li>
+<li>Enhanced fan-out enables low-latency, high-throughput consumption</li>
+<li>Essential for real-time analytics and event-driven architectures</li>
 </ul>
 
 

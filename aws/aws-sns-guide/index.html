@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#amazon-sns-simple-notification-service" class="md-skip">
+        <a href="#aws-sns-developer-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -1020,10 +1020,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-amazon-sns" class="md-nav__link">
+  <a href="#table-of-contents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What is Amazon SNS
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-aws-sns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is AWS SNS
       
     </span>
   </a>
@@ -1039,36 +1050,14 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sns-message-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SNS Message Flow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sns-usage-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SNS Usage Example
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SNS Usage Example">
+    <nav class="md-nav" aria-label="Where SNS Fits in an Application">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#order-created-event" class="md-nav__link">
+  <a href="#typical-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Order Created Event
+        Typical Architecture
       
     </span>
   </a>
@@ -1081,13 +1070,468 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-characteristics" class="md-nav__link">
+  <a href="#sns-topics-and-subscriptions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Characteristics
+        SNS Topics and Subscriptions
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="SNS Topics and Subscriptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscription
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Publishing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Message Publishing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publishing-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publishing Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subscription-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscription Protocols
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subscription Protocols">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#httphttps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP/HTTPS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email-JSON
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lambda
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-mobile-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application (Mobile Push)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firehose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firehose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Filtering
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Message Filtering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filter-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sns-sqs-fanout-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SNS + SQS Fanout Pattern
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SNS + SQS Fanout Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-use-this-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Use This Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Use Case
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-attributes-and-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Attributes and Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Message Attributes and Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raw-message-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Message Delivery
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delivery-policies-and-retries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delivery Policies and Retries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Delivery Policies and Retries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-retry-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Retry Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-delivery-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Delivery Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delivery-status-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delivery Status Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-application-example-order-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Application Example: Order Notifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real Application Example: Order Notifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscriptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1096,6 +1540,28 @@
     <span class="md-ellipsis">
       
         Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-exam-interview-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Exam &amp; Interview Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
       
     </span>
   </a>
@@ -1397,10 +1863,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-amazon-sns" class="md-nav__link">
+  <a href="#table-of-contents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What is Amazon SNS
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-aws-sns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is AWS SNS
       
     </span>
   </a>
@@ -1416,36 +1893,14 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sns-message-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SNS Message Flow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sns-usage-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SNS Usage Example
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SNS Usage Example">
+    <nav class="md-nav" aria-label="Where SNS Fits in an Application">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#order-created-event" class="md-nav__link">
+  <a href="#typical-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Order Created Event
+        Typical Architecture
       
     </span>
   </a>
@@ -1458,13 +1913,468 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-characteristics" class="md-nav__link">
+  <a href="#sns-topics-and-subscriptions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Characteristics
+        SNS Topics and Subscriptions
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="SNS Topics and Subscriptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscription
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Publishing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Message Publishing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publishing-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publishing Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subscription-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscription Protocols
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subscription Protocols">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#httphttps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP/HTTPS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email-JSON
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lambda
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-mobile-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application (Mobile Push)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firehose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firehose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Filtering
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Message Filtering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filter-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sns-sqs-fanout-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SNS + SQS Fanout Pattern
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SNS + SQS Fanout Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-use-this-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Use This Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Use Case
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-attributes-and-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Attributes and Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Message Attributes and Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raw-message-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Message Delivery
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delivery-policies-and-retries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delivery Policies and Retries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Delivery Policies and Retries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-retry-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Retry Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-delivery-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Delivery Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delivery-status-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delivery Status Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-application-example-order-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Application Example: Order Notifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real Application Example: Order Notifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscriptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1473,6 +2383,28 @@
     <span class="md-ellipsis">
       
         Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-exam-interview-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Exam &amp; Interview Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
       
     </span>
   </a>
@@ -1496,55 +2428,325 @@
 
 
 
-<h1 id="amazon-sns-simple-notification-service">Amazon SNS (Simple Notification Service)</h1>
-<h2 id="what-is-amazon-sns">What is Amazon SNS</h2>
-<p>Amazon SNS is a fully managed <strong>publish–subscribe (pub/sub) messaging service</strong> that allows messages to be <strong>pushed</strong> to multiple subscribers.</p>
-<p>A producer publishes a message to a <strong>topic</strong>, and SNS delivers that message to all subscribed endpoints.</p>
+<h1 id="aws-sns-developer-guide">AWS SNS Developer Guide</h1>
+<p>This guide explains <strong>Amazon SNS concepts</strong> in a <strong>practical, developer-focused way</strong>, including <strong>topics, subscriptions, message filtering, fanout patterns, and delivery policies</strong>, using real application examples.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#what-is-aws-sqs">What is AWS SNS</a></li>
+<li><a href="#where-sns-fits-in-an-application">Where SNS Fits in an Application</a></li>
+<li><a href="#sns-topics-and-subscriptions">SNS Topics and Subscriptions</a></li>
+<li><a href="#message-publishing">Message Publishing</a></li>
+<li><a href="#subscription-protocols">Subscription Protocols</a></li>
+<li><a href="#message-filtering">Message Filtering</a></li>
+<li><a href="#sns--sqs-fanout-pattern">SNS + SQS Fanout Pattern</a></li>
+<li><a href="#message-attributes-and-structure">Message Attributes and Structure</a></li>
+<li><a href="#delivery-policies-and-retries">Delivery Policies and Retries</a></li>
+<li><a href="#real-application-example-order-notifications">Real Application Example: Order Notifications</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#common-exam--interview-notes">Common Exam &amp; Interview Notes</a></li>
+</ol>
+<hr />
+<h2 id="what-is-aws-sns">What is AWS SNS</h2>
+<p><strong>Amazon SNS (Simple Notification Service)</strong> is a <strong>fully managed pub/sub messaging service</strong> that enables <strong>one-to-many message delivery</strong> to multiple subscribers.</p>
+<p><strong>Core idea</strong>:</p>
+<blockquote>
+<p>SNS broadcasts messages from publishers to multiple subscribers simultaneously.</p>
+</blockquote>
 <hr />
 <h2 id="where-sns-fits-in-an-application">Where SNS Fits in an Application</h2>
-<p>Typical architecture:</p>
-<p>Service → SNS Topic → Subscribers</p>
-<p>Subscribers can be:
-- Amazon SQS
-- AWS Lambda
-- Email / SMS
-- HTTP / HTTPS endpoints
-- Mobile push notifications</p>
-<p>SNS is ideal for <strong>event fan-out</strong>.</p>
-<hr />
-<h2 id="sns-message-flow">SNS Message Flow</h2>
-<ol>
-<li>Publisher sends a message to an SNS topic</li>
-<li>SNS pushes the message to all subscribers</li>
-<li>Each subscriber processes the message independently</li>
-</ol>
-<hr />
-<h2 id="sns-usage-example">SNS Usage Example</h2>
-<h3 id="order-created-event">Order Created Event</h3>
-<ol>
-<li>Order Service publishes <code>OrderCreated</code> to SNS</li>
-<li>SNS delivers the message to:</li>
-<li>Email Service</li>
-<li>Analytics Service</li>
-<li>Inventory Service</li>
-<li>Order Service returns immediately</li>
-</ol>
-<p>This enables loose coupling and scalability.</p>
-<hr />
-<h2 id="key-characteristics">Key Characteristics</h2>
+<h3 id="typical-architecture">Typical Architecture</h3>
+<pre><code>Backend API (EC2 / Lambda)
+        ↓
+      SNS Topic
+        ↓
+    ┌───┴───┬───────┬─────────┐
+    ↓       ↓       ↓         ↓
+  Email    SMS    SQS     Lambda
+</code></pre>
+<p><strong>Use SNS when</strong>:</p>
 <ul>
-<li>Push-based delivery</li>
-<li>One message → many consumers</li>
-<li>No long-term message storage</li>
-<li>Near real-time delivery</li>
+<li>Multiple systems need the same event</li>
+<li>You need to notify users (email, SMS, push)</li>
+<li>You want to decouple event producers from consumers</li>
+<li>You need to broadcast messages</li>
+</ul>
+<hr />
+<h2 id="sns-topics-and-subscriptions">SNS Topics and Subscriptions</h2>
+<h3 id="topic">Topic</h3>
+<p>A <strong>topic</strong> is a communication channel that acts as an access point for publishers and subscribers.</p>
+<p><strong>Key characteristics</strong>:</p>
+<ul>
+<li>Can have multiple subscribers</li>
+<li>Publishers send one message</li>
+<li>All subscribers receive a copy</li>
+</ul>
+<h3 id="subscription">Subscription</h3>
+<p>A <strong>subscription</strong> connects an endpoint (email, SQS, Lambda, etc.) to a topic.</p>
+<h3 id="example-flow">Example Flow</h3>
+<pre><code>Publisher → Topic → Subscription 1 (Email)
+                 → Subscription 2 (SQS)
+                 → Subscription 3 (Lambda)
+</code></pre>
+<hr />
+<h2 id="message-publishing">Message Publishing</h2>
+<h3 id="publishing-methods">Publishing Methods</h3>
+<ul>
+<li>AWS SDK</li>
+<li>AWS CLI</li>
+<li>AWS Console</li>
+<li>AWS Services (S3, CloudWatch, etc.)</li>
+</ul>
+<h3 id="message-structure">Message Structure</h3>
+<pre><code class="language-json">{
+  &quot;Message&quot;: &quot;Order #12345 has been shipped&quot;,
+  &quot;Subject&quot;: &quot;Order Update&quot;,
+  &quot;MessageAttributes&quot;: {
+    &quot;orderStatus&quot;: {
+      &quot;DataType&quot;: &quot;String&quot;,
+      &quot;StringValue&quot;: &quot;shipped&quot;
+    }
+  }
+}
+</code></pre>
+<h3 id="important-notes">Important Notes</h3>
+<ul>
+<li>Maximum message size: <strong>256 KB</strong></li>
+<li>Messages are not stored (fire and forget)</li>
+<li>No message replay capability</li>
+</ul>
+<hr />
+<h2 id="subscription-protocols">Subscription Protocols</h2>
+<p>SNS supports multiple protocols:</p>
+<h3 id="httphttps">HTTP/HTTPS</h3>
+<ul>
+<li>Webhooks to external services</li>
+<li>Requires endpoint confirmation</li>
+</ul>
+<h3 id="email">Email</h3>
+<ul>
+<li>Plain text email notifications</li>
+<li>Requires subscriber confirmation</li>
+</ul>
+<h3 id="email-json">Email-JSON</h3>
+<ul>
+<li>Structured JSON in email body</li>
+<li>For programmatic parsing</li>
+</ul>
+<h3 id="sms">SMS</h3>
+<ul>
+<li>Text messages to phone numbers</li>
+<li>Regional availability varies</li>
+</ul>
+<h3 id="sqs">SQS</h3>
+<ul>
+<li>Delivers to SQS queue</li>
+<li>Enables asynchronous processing</li>
+</ul>
+<h3 id="lambda">Lambda</h3>
+<ul>
+<li>Triggers Lambda function directly</li>
+<li>Serverless event processing</li>
+</ul>
+<h3 id="application-mobile-push">Application (Mobile Push)</h3>
+<ul>
+<li>Push notifications to mobile devices</li>
+<li>Supports iOS, Android, Fire OS</li>
+</ul>
+<h3 id="firehose">Firehose</h3>
+<ul>
+<li>Stream to data lakes</li>
+<li>For analytics and archival</li>
+</ul>
+<hr />
+<h2 id="message-filtering">Message Filtering</h2>
+<p><strong>Message filtering</strong> allows subscribers to receive only messages they're interested in.</p>
+<h3 id="filter-policy">Filter Policy</h3>
+<p>Defined in JSON format on the subscription:</p>
+<pre><code class="language-json">{
+  &quot;orderStatus&quot;: [&quot;shipped&quot;, &quot;delivered&quot;],
+  &quot;price&quot;: [{ &quot;numeric&quot;: [&quot;&gt;&quot;, 100] }]
+}
+</code></pre>
+<h3 id="how-it-works">How It Works</h3>
+<pre><code>SNS Topic
+    ↓
+  Filter Policy (orderStatus = &quot;shipped&quot;)
+    ↓
+Subscription (Email) ← Only receives shipped orders
+</code></pre>
+<h3 id="benefits">Benefits</h3>
+<ul>
+<li>Reduces unnecessary message delivery</li>
+<li>Lowers costs</li>
+<li>Simplifies subscriber logic</li>
+</ul>
+<hr />
+<h2 id="sns-sqs-fanout-pattern">SNS + SQS Fanout Pattern</h2>
+<p>The <strong>fanout pattern</strong> combines SNS and SQS for reliable, parallel processing.</p>
+<h3 id="architecture">Architecture</h3>
+<pre><code>Backend API
+    ↓
+SNS Topic
+    ↓
+  ┌─┴─────┬─────────┬──────────┐
+  ↓       ↓         ↓          ↓
+SQS 1   SQS 2    SQS 3      Email
+  ↓       ↓         ↓
+Worker  Worker   Worker
+</code></pre>
+<h3 id="why-use-this-pattern">Why Use This Pattern</h3>
+<ul>
+<li><strong>Reliability</strong>: SQS queues buffer messages</li>
+<li><strong>Parallel Processing</strong>: Multiple services process independently</li>
+<li><strong>Decoupling</strong>: Services don't know about each other</li>
+<li><strong>Retry Logic</strong>: Each SQS has its own retry policy</li>
+</ul>
+<h3 id="example-use-case">Example Use Case</h3>
+<p>Order placed:</p>
+<ul>
+<li>Inventory service receives message</li>
+<li>Shipping service receives message</li>
+<li>Analytics service receives message</li>
+<li>Customer receives email</li>
+</ul>
+<p>All happen simultaneously and independently.</p>
+<hr />
+<h2 id="message-attributes-and-structure">Message Attributes and Structure</h2>
+<h3 id="standard-format">Standard Format</h3>
+<p>When SNS delivers to SQS or HTTP, it wraps the message:</p>
+<pre><code class="language-json">{
+  &quot;Type&quot;: &quot;Notification&quot;,
+  &quot;MessageId&quot;: &quot;abc-123&quot;,
+  &quot;TopicArn&quot;: &quot;arn:aws:sns:us-east-1:123:MyTopic&quot;,
+  &quot;Subject&quot;: &quot;Order Update&quot;,
+  &quot;Message&quot;: &quot;Your actual message content&quot;,
+  &quot;Timestamp&quot;: &quot;2025-01-15T10:30:00.000Z&quot;,
+  &quot;MessageAttributes&quot;: {
+    &quot;orderStatus&quot;: {
+      &quot;Type&quot;: &quot;String&quot;,
+      &quot;Value&quot;: &quot;shipped&quot;
+    }
+  }
+}
+</code></pre>
+<h3 id="raw-message-delivery">Raw Message Delivery</h3>
+<p>For SQS and HTTP subscriptions, you can enable <strong>RawMessageDelivery</strong>:</p>
+<ul>
+<li>Skips SNS envelope</li>
+<li>Delivers original message directly</li>
+<li>Cleaner for consumers</li>
+</ul>
+<hr />
+<h2 id="delivery-policies-and-retries">Delivery Policies and Retries</h2>
+<h3 id="default-retry-policy">Default Retry Policy</h3>
+<p>SNS automatically retries failed deliveries:</p>
+<ul>
+<li>HTTP/HTTPS: 3 retries over 20 seconds</li>
+<li>Lambda: 2 retries</li>
+<li>SQS: Retries until delivery succeeds</li>
+</ul>
+<h3 id="custom-delivery-policy">Custom Delivery Policy</h3>
+<pre><code class="language-json">{
+  &quot;http&quot;: {
+    &quot;defaultHealthyRetryPolicy&quot;: {
+      &quot;minDelayTarget&quot;: 5,
+      &quot;maxDelayTarget&quot;: 300,
+      &quot;numRetries&quot;: 5,
+      &quot;backoffFunction&quot;: &quot;exponential&quot;
+    }
+  }
+}
+</code></pre>
+<h3 id="delivery-status-logging">Delivery Status Logging</h3>
+<ul>
+<li>Track successful and failed deliveries</li>
+<li>Logs to CloudWatch</li>
+<li>Useful for monitoring</li>
+</ul>
+<hr />
+<h2 id="real-application-example-order-notifications">Real Application Example: Order Notifications</h2>
+<h3 id="scenario">Scenario</h3>
+<p>User places an order for $150.</p>
+<h3 id="flow">Flow</h3>
+<pre><code>1. API receives order
+2. API saves to RDS
+3. API publishes to SNS &quot;OrderEvents&quot; topic
+</code></pre>
+<h3 id="message">Message</h3>
+<pre><code class="language-json">{
+  &quot;orderId&quot;: &quot;12345&quot;,
+  &quot;status&quot;: &quot;placed&quot;,
+  &quot;amount&quot;: 150,
+  &quot;userId&quot;: &quot;user-789&quot;
+}
+</code></pre>
+<h3 id="subscriptions">Subscriptions</h3>
+<p><strong>Email Subscription</strong> (with filter):</p>
+<ul>
+<li>Filter: <code>amount &gt; 100</code></li>
+<li>Action: Send order confirmation email</li>
+</ul>
+<p><strong>SQS Inventory Queue</strong>:</p>
+<ul>
+<li>No filter</li>
+<li>Action: Worker updates inventory</li>
+</ul>
+<p><strong>SQS Analytics Queue</strong>:</p>
+<ul>
+<li>No filter</li>
+<li>Action: Worker logs event to data warehouse</li>
+</ul>
+<p><strong>Lambda Function</strong>:</p>
+<ul>
+<li>Filter: <code>status = "placed"</code></li>
+<li>Action: Send push notification to mobile app</li>
+</ul>
+<h3 id="result">Result</h3>
+<ul>
+<li>User receives email (amount &gt; 100)</li>
+<li>Inventory is updated</li>
+<li>Analytics logged</li>
+<li>Push notification sent</li>
+<li>All happen simultaneously</li>
 </ul>
 <hr />
 <h2 id="best-practices">Best Practices</h2>
+<ol>
+<li><strong>Use SNS for broadcasting</strong>, SQS for queuing</li>
+<li><strong>Enable message filtering</strong> to reduce costs</li>
+<li><strong>Use fanout pattern</strong> for parallel processing</li>
+<li><strong>Enable raw message delivery</strong> for cleaner messages</li>
+<li><strong>Set up CloudWatch alarms</strong> for failed deliveries</li>
+<li><strong>Use message attributes</strong> for metadata</li>
+<li><strong>Confirm subscriptions</strong> properly (email, HTTP)</li>
+<li><strong>Consider message size limits</strong> (256 KB)</li>
+<li><strong>Use DLQ with SQS subscriptions</strong> for reliability</li>
+<li><strong>Monitor delivery metrics</strong> in CloudWatch</li>
+</ol>
+<hr />
+<h2 id="common-exam-interview-notes">Common Exam &amp; Interview Notes</h2>
 <ul>
-<li>Combine SNS with SQS for durability</li>
-<li>Use message filtering</li>
-<li>Keep messages small</li>
-<li>Avoid heavy logic in SNS</li>
+<li>SNS is <strong>push-based</strong>, SQS is <strong>pull-based</strong></li>
+<li>SNS delivers to <strong>multiple subscribers</strong> simultaneously</li>
+<li>Messages are <strong>not stored</strong> (no replay)</li>
+<li>Maximum message size: <strong>256 KB</strong></li>
+<li>SNS + SQS fanout enables <strong>parallel processing</strong></li>
+<li><strong>Message filtering</strong> reduces unnecessary deliveries</li>
+<li><strong>Raw message delivery</strong> removes SNS envelope</li>
+<li>Subscriptions require <strong>confirmation</strong> (email, HTTP)</li>
+<li>SNS supports <strong>mobile push notifications</strong></li>
+<li>Use SNS for <strong>event-driven architectures</strong></li>
+</ul>
+<hr />
+<h2 id="summary">Summary</h2>
+<ul>
+<li>SNS broadcasts messages to multiple subscribers</li>
+<li>Topics enable pub/sub patterns</li>
+<li>Supports multiple protocols (email, SMS, SQS, Lambda, HTTP)</li>
+<li>Message filtering reduces costs and complexity</li>
+<li>SNS + SQS fanout enables reliable parallel processing</li>
+<li>Essential for event-driven and microservices architectures</li>
 </ul>
 
 
