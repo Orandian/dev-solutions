@@ -45,6 +45,10 @@ nav:
       - Essential Docker Commands: docker/essential_docker_commands.md
   - AWS:
       - SQS Guide: aws/aws-sqs-guide.md
+      - SNS Guide: aws/aws-sns-guide.md
+      - Kinesis Data Streams: aws/aws-kinesis-data-streams.md
+      - SQS vs SNS vs Kinesis: aws/sqs-vs-sns-vs-kinesis.md
+      - Amazon Managed Service for Apache Flink: aws/aws-data-firehose.md
   - Kubernetes:
       - Kubernetes Comprehensive Guide: kubernetes/kubernetes_comprehensive_guide.md
   - Expo:
