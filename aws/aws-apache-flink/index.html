@@ -1,0 +1,2470 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for Dev Solutions projects">
+      
+      
+        <meta name="author" content="Yan Naing Htwe">
+      
+      
+        <link rel="canonical" href="https://orandian.github.io/dev-solutions/aws/aws-apache-flink/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>AWS Managed Service for Apache Flink Developer Guide - Dev Solutions</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aws-managed-service-for-apache-flink-developer-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Dev Solutions" class="md-header__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dev Solutions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWS Managed Service for Apache Flink Developer Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Dev Solutions" class="md-nav__button md-logo" aria-label="Dev Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dev Solutions
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nest
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Nest
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nest/server_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Git
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/merge-conflict/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merge Conflict
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/detached-head/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detached Head
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/branching-merging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Branching & Merging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/industry_git_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Industry Git Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosting
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hosting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hosting/vercel-deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vercel Deploy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caddy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Caddy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../caddy/ssl-renewal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSL Renewal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CI/CD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CI_CD/spring_boot_ci_cd_setup_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Boot CI/CD Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docker
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/docker_process_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring boot process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/essential_docker_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Essential Docker Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AWS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-sqs-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQS Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-sns-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNS Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-kinesis-data-streams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kinesis Data Streams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sqs-vs-sns-vs-kinesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQS vs SNS vs Kinesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-data-firehose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Amazon Managed Service for Apache Flink
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Kubernetes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kubernetes/kubernetes_comprehensive_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes Comprehensive Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expo
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Expo
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../expo/expo_solutions_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expo Solutions Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-aws-managed-service-for-apache-flink" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is AWS Managed Service for Apache Flink
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is AWS Managed Service for Apache Flink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-flink-fits-in-an-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where Flink Fits in an Application
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Where Flink Fits in an Application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typical-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flink-vs-kinesis-data-analytics-vs-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flink vs Kinesis Data Analytics vs Lambda
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flink vs Kinesis Data Analytics vs Lambda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use What
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts-applications-and-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Concepts: Applications and State
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Concepts: Applications and State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flink-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flink Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-state-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why State Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-sources-and-destinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Sources and Destinations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Sources and Destinations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supported-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Sources
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-destinations-sinks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Destinations (Sinks)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flink-sql-for-stream-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flink SQL for Stream Processing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flink SQL for Stream Processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-query-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Query Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-sql-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key SQL Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windowing-and-aggregations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windowing and Aggregations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Windowing and Aggregations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-windowing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Windowing?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Window Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-tumbling-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Tumbling Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-hopping-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Hopping Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-session-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Session Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stateful-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stateful Processing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stateful Processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-stateful-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Stateful Processing?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-running-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Running Sum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-pattern-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Pattern Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-and-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling and Parallelism
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaling and Parallelism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parallelism-units-kpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallelism Units (KPUs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-scaling-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Scaling Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallelism-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallelism Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpoints-and-fault-tolerance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoints and Fault Tolerance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checkpoints and Fault Tolerance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-checkpoints-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Checkpoints Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exactly-once-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exactly-Once Processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-application-example-fraud-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Application Example: Fraud Detection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real Application Example: Fraud Detection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fraud-detection-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fraud Detection Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-exam-interview-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Exam &amp; Interview Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="aws-managed-service-for-apache-flink-developer-guide">AWS Managed Service for Apache Flink Developer Guide</h1>
+<p>This guide explains <strong>Amazon Managed Service for Apache Flink concepts</strong> in a <strong>practical, developer-focused way</strong>, including <strong>stream processing, SQL queries, windowing, state management, and integration patterns</strong>, using real application examples.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#what-is-aws-managed-service-for-apache-flink">What is AWS Managed Service for Apache Flink</a></li>
+<li><a href="#where-flink-fits-in-an-application">Where Flink Fits in an Application</a></li>
+<li><a href="#flink-vs-kinesis-data-analytics-vs-lambda">Flink vs Kinesis Data Analytics vs Lambda</a></li>
+<li><a href="#core-concepts-applications-and-state">Core Concepts: Applications and State</a></li>
+<li><a href="#data-sources-and-destinations">Data Sources and Destinations</a></li>
+<li><a href="#flink-sql-for-stream-processing">Flink SQL for Stream Processing</a></li>
+<li><a href="#windowing-and-aggregations">Windowing and Aggregations</a></li>
+<li><a href="#stateful-processing">Stateful Processing</a></li>
+<li><a href="#scaling-and-parallelism">Scaling and Parallelism</a></li>
+<li><a href="#checkpoints-and-fault-tolerance">Checkpoints and Fault Tolerance</a></li>
+<li><a href="#real-application-example-fraud-detection">Real Application Example: Fraud Detection</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#common-exam--interview-notes">Common Exam &amp; Interview Notes</a></li>
+</ol>
+<hr />
+<h2 id="what-is-aws-managed-service-for-apache-flink">What is AWS Managed Service for Apache Flink</h2>
+<p><strong>Amazon Managed Service for Apache Flink</strong> (formerly Kinesis Data Analytics) is a <strong>fully managed service</strong> for <strong>processing and analyzing streaming data in real-time</strong> using <strong>Apache Flink</strong>.</p>
+<p><strong>Core idea</strong>:</p>
+<blockquote>
+<p>Flink transforms streaming data using SQL or Java/Scala code without managing infrastructure.</p>
+</blockquote>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li>Real-time stream processing</li>
+<li>SQL and programming APIs (Java, Scala, Python)</li>
+<li>Stateful computations</li>
+<li>Exactly-once processing</li>
+<li>Automatic scaling</li>
+<li>Built-in fault tolerance</li>
+</ul>
+<hr />
+<h2 id="where-flink-fits-in-an-application">Where Flink Fits in an Application</h2>
+<h3 id="typical-architecture">Typical Architecture</h3>
+<pre><code>Data Sources
+    ↓
+Kinesis / Kafka / MSK
+    ↓
+Managed Flink Application
+    ↓
+Kinesis / S3 / Redshift / OpenSearch
+    ↓
+Dashboards / Alerts
+</code></pre>
+<p><strong>Use Flink when</strong>:</p>
+<ul>
+<li>Complex stream transformations needed</li>
+<li>Real-time aggregations required</li>
+<li>Stateful processing is essential</li>
+<li>SQL queries on streaming data</li>
+<li>Low-latency analytics (sub-second)</li>
+</ul>
+<hr />
+<h2 id="flink-vs-kinesis-data-analytics-vs-lambda">Flink vs Kinesis Data Analytics vs Lambda</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Flink</th>
+<th>Kinesis Data Analytics</th>
+<th>Lambda</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Processing Model</strong></td>
+<td>Stream processing framework</td>
+<td>SQL on streams</td>
+<td>Event-driven functions</td>
+</tr>
+<tr>
+<td><strong>Language</strong></td>
+<td>Java, Scala, Python, SQL</td>
+<td>SQL only</td>
+<td>Multiple languages</td>
+</tr>
+<tr>
+<td><strong>State Management</strong></td>
+<td>Advanced stateful</td>
+<td>Limited</td>
+<td>Stateless (default)</td>
+</tr>
+<tr>
+<td><strong>Complexity</strong></td>
+<td>Complex transformations</td>
+<td>Simple queries</td>
+<td>Simple logic</td>
+</tr>
+<tr>
+<td><strong>Windowing</strong></td>
+<td>Advanced</td>
+<td>Basic</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td><strong>Exactly-Once</strong></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>At-least-once</td>
+</tr>
+<tr>
+<td><strong>Scaling</strong></td>
+<td>Automatic parallelism</td>
+<td>Automatic</td>
+<td>Concurrent executions</td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>Complex analytics</td>
+<td>Simple SQL queries</td>
+<td>Event processing</td>
+</tr>
+</tbody>
+</table>
+<h3 id="when-to-use-what">When to Use What</h3>
+<p><strong>Flink</strong>:</p>
+<ul>
+<li>Complex event processing</li>
+<li>Stateful computations</li>
+<li>Advanced windowing</li>
+<li>Pattern detection</li>
+<li>Machine learning on streams</li>
+</ul>
+<p><strong>Kinesis Data Analytics (SQL)</strong>:</p>
+<ul>
+<li>Simple SQL queries</li>
+<li>Quick prototyping</li>
+<li>Basic aggregations</li>
+<li>Low code requirements</li>
+</ul>
+<p><strong>Lambda</strong>:</p>
+<ul>
+<li>Simple transformations</li>
+<li>Event-driven logic</li>
+<li>Serverless architecture</li>
+<li>Integration with AWS services</li>
+</ul>
+<hr />
+<h2 id="core-concepts-applications-and-state">Core Concepts: Applications and State</h2>
+<h3 id="flink-application">Flink Application</h3>
+<p>A <strong>Flink application</strong> is a program that processes streaming data.</p>
+<p><strong>Components</strong>:</p>
+<ul>
+<li><strong>Source</strong>: Where data comes from (Kinesis, Kafka)</li>
+<li><strong>Processing</strong>: Transformations, aggregations, joins</li>
+<li><strong>Sink</strong>: Where data goes to (S3, Kinesis, Redshift)</li>
+</ul>
+<h3 id="state">State</h3>
+<p><strong>State</strong> is data that Flink maintains across events for stateful processing.</p>
+<p><strong>Types of State</strong>:</p>
+<p><strong>Keyed State</strong>:</p>
+<ul>
+<li>Associated with a specific key</li>
+<li>Example: User session data, account balance</li>
+</ul>
+<p><strong>Operator State</strong>:</p>
+<ul>
+<li>Associated with a processing operator</li>
+<li>Example: Buffered records, counters</li>
+</ul>
+<h3 id="why-state-matters">Why State Matters</h3>
+<ul>
+<li>Calculate running totals</li>
+<li>Detect patterns across events</li>
+<li>Maintain session information</li>
+<li>Track user behavior</li>
+</ul>
+<hr />
+<h2 id="data-sources-and-destinations">Data Sources and Destinations</h2>
+<h3 id="supported-sources">Supported Sources</h3>
+<p><strong>Amazon Kinesis Data Streams</strong>:</p>
+<ul>
+<li>Real-time data ingestion</li>
+<li>Most common source</li>
+</ul>
+<p><strong>Amazon MSK (Managed Kafka)</strong>:</p>
+<ul>
+<li>High-throughput streaming</li>
+<li>Kafka compatibility</li>
+</ul>
+<p><strong>Custom Sources</strong>:</p>
+<ul>
+<li>REST APIs</li>
+<li>Databases</li>
+<li>File systems</li>
+</ul>
+<h3 id="supported-destinations-sinks">Supported Destinations (Sinks)</h3>
+<p><strong>Amazon Kinesis Data Streams</strong>:</p>
+<ul>
+<li>Send processed data downstream</li>
+</ul>
+<p><strong>Amazon S3</strong>:</p>
+<ul>
+<li>Store results in data lake</li>
+<li>Parquet, JSON, CSV formats</li>
+</ul>
+<p><strong>Amazon Redshift</strong>:</p>
+<ul>
+<li>Load analytics results</li>
+<li>Business intelligence</li>
+</ul>
+<p><strong>Amazon OpenSearch</strong>:</p>
+<ul>
+<li>Search and visualization</li>
+<li>Real-time dashboards</li>
+</ul>
+<p><strong>Custom Sinks</strong>:</p>
+<ul>
+<li>DynamoDB (via Lambda)</li>
+<li>RDS (via Lambda)</li>
+<li>External APIs</li>
+</ul>
+<hr />
+<h2 id="flink-sql-for-stream-processing">Flink SQL for Stream Processing</h2>
+<h3 id="basic-query-structure">Basic Query Structure</h3>
+<pre><code class="language-sql">CREATE TABLE source_table (
+    user_id VARCHAR,
+    event_type VARCHAR,
+    amount DECIMAL,
+    event_time TIMESTAMP(3),
+    WATERMARK FOR event_time AS event_time - INTERVAL '5' SECOND
+)
+WITH (
+    'connector' = 'kinesis',
+    'stream' = 'input-stream',
+    'aws.region' = 'us-east-1'
+);
+
+CREATE TABLE destination_table (
+    user_id VARCHAR,
+    total_amount DECIMAL,
+    event_count BIGINT
+)
+WITH (
+    'connector' = 'kinesis',
+    'stream' = 'output-stream',
+    'aws.region' = 'us-east-1'
+);
+
+INSERT INTO destination_table
+SELECT
+    user_id,
+    SUM(amount) as total_amount,
+    COUNT(*) as event_count
+FROM source_table
+WHERE event_type = 'purchase'
+GROUP BY user_id;
+</code></pre>
+<h3 id="key-sql-features">Key SQL Features</h3>
+<p><strong>Filtering</strong>:</p>
+<pre><code class="language-sql">WHERE event_type = 'purchase' AND amount &gt; 100
+</code></pre>
+<p><strong>Aggregations</strong>:</p>
+<pre><code class="language-sql">SUM(amount), COUNT(*), AVG(price), MAX(quantity)
+</code></pre>
+<p><strong>Joins</strong> (Stream-to-Stream):</p>
+<pre><code class="language-sql">SELECT a.user_id, a.order_id, b.product_name
+FROM orders a
+JOIN products b
+ON a.product_id = b.product_id
+WHERE a.event_time BETWEEN b.event_time - INTERVAL '1' HOUR
+                       AND b.event_time + INTERVAL '1' HOUR
+</code></pre>
+<hr />
+<h2 id="windowing-and-aggregations">Windowing and Aggregations</h2>
+<h3 id="what-is-windowing">What is Windowing?</h3>
+<p><strong>Windowing</strong> groups streaming data into finite chunks for aggregation.</p>
+<h3 id="window-types">Window Types</h3>
+<h3 id="1-tumbling-window">1. Tumbling Window</h3>
+<p><strong>Fixed-size, non-overlapping windows</strong></p>
+<pre><code class="language-sql">SELECT
+    user_id,
+    TUMBLE_START(event_time, INTERVAL '5' MINUTE) as window_start,
+    SUM(amount) as total
+FROM transactions
+GROUP BY
+    user_id,
+    TUMBLE(event_time, INTERVAL '5' MINUTE)
+</code></pre>
+<p><strong>Visualization</strong>:</p>
+<pre><code>[0-5min] [5-10min] [10-15min]
+</code></pre>
+<p><strong>Use cases</strong>: Hourly metrics, daily summaries</p>
+<h3 id="2-hopping-window">2. Hopping Window</h3>
+<p><strong>Fixed-size, overlapping windows</strong></p>
+<pre><code class="language-sql">SELECT
+    user_id,
+    HOP_START(event_time, INTERVAL '1' MINUTE, INTERVAL '5' MINUTE) as window_start,
+    COUNT(*) as event_count
+FROM events
+GROUP BY
+    user_id,
+    HOP(event_time, INTERVAL '1' MINUTE, INTERVAL '5' MINUTE)
+</code></pre>
+<p><strong>Visualization</strong>:</p>
+<pre><code>[0-5min]
+  [1-6min]
+    [2-7min]
+</code></pre>
+<p><strong>Use cases</strong>: Moving averages, sliding metrics</p>
+<h3 id="3-session-window">3. Session Window</h3>
+<p><strong>Dynamic windows based on inactivity gaps</strong></p>
+<pre><code class="language-sql">SELECT
+    user_id,
+    SESSION_START(event_time, INTERVAL '15' MINUTE) as session_start,
+    COUNT(*) as clicks_in_session
+FROM clicks
+GROUP BY
+    user_id,
+    SESSION(event_time, INTERVAL '15' MINUTE)
+</code></pre>
+<p><strong>Visualization</strong>:</p>
+<pre><code>Activity → Gap (15min) → New Session
+[Session 1]  idle  [Session 2]
+</code></pre>
+<p><strong>Use cases</strong>: User sessions, engagement tracking</p>
+<hr />
+<h2 id="stateful-processing">Stateful Processing</h2>
+<h3 id="why-stateful-processing">Why Stateful Processing?</h3>
+<ul>
+<li>Maintain context across events</li>
+<li>Detect patterns</li>
+<li>Calculate running totals</li>
+<li>Track user journeys</li>
+</ul>
+<h3 id="example-running-sum">Example: Running Sum</h3>
+<pre><code class="language-sql">-- Calculate running total per user
+SELECT
+    user_id,
+    event_time,
+    amount,
+    SUM(amount) OVER (
+        PARTITION BY user_id
+        ORDER BY event_time
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) as running_total
+FROM transactions
+</code></pre>
+<h3 id="example-pattern-detection">Example: Pattern Detection</h3>
+<p>Detect 3 failed login attempts within 5 minutes:</p>
+<pre><code class="language-sql">SELECT *
+FROM login_events
+MATCH_RECOGNIZE (
+    PARTITION BY user_id
+    ORDER BY event_time
+    MEASURES
+        FIRST(A.event_time) as first_attempt,
+        LAST(C.event_time) as last_attempt
+    PATTERN (A B C)
+    DEFINE
+        A AS A.status = 'failed',
+        B AS B.status = 'failed',
+        C AS C.status = 'failed'
+)
+WHERE last_attempt - first_attempt &lt; INTERVAL '5' MINUTE
+</code></pre>
+<h3 id="state-backend">State Backend</h3>
+<p>Flink stores state in:</p>
+<ul>
+<li><strong>RocksDB</strong> (default): Disk-based, large state</li>
+<li><strong>Heap</strong>: Memory-based, fast but limited</li>
+</ul>
+<hr />
+<h2 id="scaling-and-parallelism">Scaling and Parallelism</h2>
+<h3 id="parallelism-units-kpus">Parallelism Units (KPUs)</h3>
+<p><strong>Kinesis Processing Unit (KPU)</strong>:</p>
+<ul>
+<li>1 KPU = 1 vCPU + 4 GB memory</li>
+<li>Minimum: 1 KPU</li>
+<li>Auto-scaling available</li>
+</ul>
+<h3 id="how-scaling-works">How Scaling Works</h3>
+<pre><code>Input Stream (multiple shards)
+    ↓
+Flink Application (multiple parallel tasks)
+    ↓
+Output Stream (multiple shards)
+</code></pre>
+<h3 id="parallelism-example">Parallelism Example</h3>
+<pre><code>3 Kinesis shards → 6 KPUs (2 per shard)
+    ↓
+Process 3x more data
+</code></pre>
+<h3 id="auto-scaling">Auto-Scaling</h3>
+<ul>
+<li>Monitors CPU and backpressure</li>
+<li>Adds/removes KPUs automatically</li>
+<li>Scales between min and max settings</li>
+</ul>
+<hr />
+<h2 id="checkpoints-and-fault-tolerance">Checkpoints and Fault Tolerance</h2>
+<h3 id="checkpoints">Checkpoints</h3>
+<p><strong>Checkpoints</strong> are periodic snapshots of application state.</p>
+<p><strong>Purpose</strong>:</p>
+<ul>
+<li>Enable fault recovery</li>
+<li>Guarantee exactly-once processing</li>
+<li>Allow application updates</li>
+</ul>
+<h3 id="how-checkpoints-work">How Checkpoints Work</h3>
+<pre><code>1. Flink triggers checkpoint
+2. State is saved to S3
+3. Processing continues
+4. If failure occurs → restore from last checkpoint
+</code></pre>
+<h3 id="configuration">Configuration</h3>
+<pre><code class="language-sql">SET 'execution.checkpointing.interval' = '60s';
+SET 'execution.checkpointing.mode' = 'EXACTLY_ONCE';
+</code></pre>
+<h3 id="exactly-once-processing">Exactly-Once Processing</h3>
+<p>Flink guarantees <strong>exactly-once</strong> semantics:</p>
+<ul>
+<li>Each record processed exactly once</li>
+<li>No duplicates</li>
+<li>No data loss</li>
+</ul>
+<h3 id="recovery-flow">Recovery Flow</h3>
+<pre><code>Application Running → Checkpoint Saved
+    ↓
+Failure Occurs
+    ↓
+Restore from Last Checkpoint
+    ↓
+Resume Processing
+</code></pre>
+<hr />
+<h2 id="real-application-example-fraud-detection">Real Application Example: Fraud Detection</h2>
+<h3 id="scenario">Scenario</h3>
+<p>E-commerce platform detecting fraudulent transactions in real-time.</p>
+<h3 id="architecture">Architecture</h3>
+<pre><code>Payment Events (Kinesis)
+    ↓
+Managed Flink Application
+    ↓
+├── Real-time Alerts (Kinesis → Lambda → SNS)
+└── Analytics Storage (S3)
+</code></pre>
+<h3 id="fraud-detection-rules">Fraud Detection Rules</h3>
+<p><strong>Rule 1</strong>: Multiple high-value transactions in short time</p>
+<pre><code class="language-sql">-- Detect 3+ transactions over $500 within 10 minutes
+SELECT
+    user_id,
+    TUMBLE_START(event_time, INTERVAL '10' MINUTE) as window_start,
+    COUNT(*) as transaction_count,
+    SUM(amount) as total_amount
+FROM transactions
+WHERE amount &gt; 500
+GROUP BY
+    user_id,
+    TUMBLE(event_time, INTERVAL '10' MINUTE)
+HAVING COUNT(*) &gt;= 3
+</code></pre>
+<p><strong>Rule 2</strong>: Transactions from multiple countries</p>
+<pre><code class="language-sql">-- Detect purchases from 2+ countries within 1 hour
+SELECT
+    user_id,
+    HOP_START(event_time, INTERVAL '5' MINUTE, INTERVAL '1' HOUR) as window_start,
+    COUNT(DISTINCT country) as country_count,
+    COLLECT(country) as countries
+FROM transactions
+GROUP BY
+    user_id,
+    HOP(event_time, INTERVAL '5' MINUTE, INTERVAL '1' HOUR)
+HAVING COUNT(DISTINCT country) &gt;= 2
+</code></pre>
+<p><strong>Rule 3</strong>: Failed → Successful pattern</p>
+<pre><code class="language-sql">-- Detect failed attempt followed by successful transaction
+SELECT *
+FROM transactions
+MATCH_RECOGNIZE (
+    PARTITION BY user_id, card_number
+    ORDER BY event_time
+    MEASURES
+        A.event_time as failed_time,
+        B.event_time as success_time,
+        B.amount as amount
+    PATTERN (A+ B)
+    WITHIN INTERVAL '30' MINUTE
+    DEFINE
+        A AS A.status = 'declined',
+        B AS B.status = 'approved' AND B.amount &gt; 1000
+)
+</code></pre>
+<h3 id="output-flow">Output Flow</h3>
+<p><strong>Suspicious Transaction Detected</strong>:</p>
+<ol>
+<li>Flink identifies pattern</li>
+<li>Sends alert to output Kinesis stream</li>
+<li>Lambda consumes alert</li>
+<li>SNS notifies fraud team</li>
+<li>Transaction flagged in DynamoDB</li>
+</ol>
+<p><strong>Benefits</strong>:</p>
+<ul>
+<li><strong>Real-time</strong>: Detect fraud in milliseconds</li>
+<li><strong>Stateful</strong>: Track patterns across events</li>
+<li><strong>Scalable</strong>: Handle millions of transactions</li>
+<li><strong>Accurate</strong>: Complex rules with low false positives</li>
+</ul>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li><strong>Choose appropriate windowing</strong>: Match business requirements</li>
+<li><strong>Configure checkpointing</strong>: Balance frequency vs performance</li>
+<li><strong>Use event time over processing time</strong>: More accurate results</li>
+<li><strong>Set watermarks correctly</strong>: Handle late data</li>
+<li><strong>Optimize parallelism</strong>: Match source partitions</li>
+<li><strong>Monitor metrics</strong>: Backpressure, checkpoint duration</li>
+<li><strong>Use Flink SQL for simple cases</strong>: Faster development</li>
+<li><strong>Use Java/Scala for complex logic</strong>: More flexibility</li>
+<li><strong>Test with production-like data</strong>: Avoid surprises</li>
+<li><strong>Enable auto-scaling</strong>: Handle variable workloads</li>
+<li><strong>Set appropriate state backend</strong>: RocksDB for large state</li>
+<li><strong>Handle late data</strong>: Use allowed lateness settings</li>
+</ol>
+<hr />
+<h2 id="common-exam-interview-notes">Common Exam &amp; Interview Notes</h2>
+<ul>
+<li>Flink provides <strong>exactly-once processing</strong> semantics</li>
+<li><strong>Stateful processing</strong> maintains context across events</li>
+<li><strong>Windowing</strong> groups unbounded streams into finite chunks</li>
+<li><strong>Tumbling windows</strong>: Non-overlapping, fixed-size</li>
+<li><strong>Hopping windows</strong>: Overlapping, fixed-size</li>
+<li><strong>Session windows</strong>: Dynamic, based on inactivity gaps</li>
+<li><strong>Checkpoints</strong> enable fault tolerance and recovery</li>
+<li><strong>KPU</strong> = 1 vCPU + 4 GB memory</li>
+<li>Supports <strong>Flink SQL</strong> and <strong>programming APIs</strong> (Java, Scala, Python)</li>
+<li>Integrates with <strong>Kinesis, MSK, S3, Redshift</strong></li>
+<li><strong>Event time</strong> vs <strong>processing time</strong> for windowing</li>
+<li><strong>Watermarks</strong> handle out-of-order data</li>
+<li>Better than Lambda for <strong>complex stream processing</strong></li>
+<li>Better than Kinesis Data Analytics for <strong>advanced use cases</strong></li>
+<li>Auto-scaling based on <strong>CPU and backpressure</strong></li>
+</ul>
+<hr />
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Managed Flink processes streaming data with SQL or code</li>
+<li>Stateful processing enables complex event patterns</li>
+<li>Windowing aggregates unbounded streams</li>
+<li>Exactly-once processing guarantees data accuracy</li>
+<li>Checkpoints provide fault tolerance</li>
+<li>Auto-scaling handles variable workloads</li>
+<li>Essential for real-time analytics and complex stream processing</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.expand", "content.code.copy", "search.highlight", "search.suggest", "header.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
