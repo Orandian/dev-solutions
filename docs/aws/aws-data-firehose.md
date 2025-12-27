@@ -1,622 +1,693 @@
-# AWS Managed Service for Apache Flink Developer Guide
+# AWS Data Firehose Developer Guide
 
-This guide explains **Amazon Managed Service for Apache Flink concepts** in a **practical, developer-focused way**, including **stream processing, SQL queries, windowing, state management, and integration patterns**, using real application examples.
+This guide explains **Amazon Data Firehose concepts** in a **practical, developer-focused way**, including **data ingestion, transformation, buffering, destinations, and delivery patterns**, using real application examples.
 
 ---
 
 ## Table of Contents
 
-1. [What is AWS Managed Service for Apache Flink](#what-is-aws-managed-service-for-apache-flink)
-2. [Where Flink Fits in an Application](#where-flink-fits-in-an-application)
-3. [Flink vs Kinesis Data Analytics vs Lambda](#flink-vs-kinesis-data-analytics-vs-lambda)
-4. [Core Concepts: Applications and State](#core-concepts-applications-and-state)
-5. [Data Sources and Destinations](#data-sources-and-destinations)
-6. [Flink SQL for Stream Processing](#flink-sql-for-stream-processing)
-7. [Windowing and Aggregations](#windowing-and-aggregations)
-8. [Stateful Processing](#stateful-processing)
-9. [Scaling and Parallelism](#scaling-and-parallelism)
-10. [Checkpoints and Fault Tolerance](#checkpoints-and-fault-tolerance)
-11. [Real Application Example: Fraud Detection](#real-application-example-fraud-detection)
+1. [What is AWS Data Firehose](#what-is-aws-data-firehose)
+2. [Where Firehose Fits in an Application](#where-firehose-fits-in-an-application)
+3. [Firehose vs Kinesis Data Streams vs Lambda](#firehose-vs-kinesis-data-streams-vs-lambda)
+4. [Core Concepts: Delivery Streams](#core-concepts-delivery-streams)
+5. [Data Sources](#data-sources)
+6. [Data Transformation](#data-transformation)
+7. [Buffering and Batching](#buffering-and-batching)
+8. [Supported Destinations](#supported-destinations)
+9. [Data Format Conversion](#data-format-conversion)
+10. [Error Handling and Monitoring](#error-handling-and-monitoring)
+11. [Real Application Example: Log Analytics Pipeline](#real-application-example-log-analytics-pipeline)
 12. [Best Practices](#best-practices)
 13. [Common Exam & Interview Notes](#common-exam--interview-notes)
 
 ---
 
-## What is AWS Managed Service for Apache Flink
+## What is AWS Data Firehose
 
-**Amazon Managed Service for Apache Flink** (formerly Kinesis Data Analytics) is a **fully managed service** for **processing and analyzing streaming data in real-time** using **Apache Flink**.
+**Amazon Data Firehose** (formerly Kinesis Data Firehose) is a **fully managed service** for **reliably loading streaming data** into data lakes, data stores, and analytics services.
 
 **Core idea**:
 
-> Flink transforms streaming data using SQL or Java/Scala code without managing infrastructure.
+> Firehose is the easiest way to capture, transform, and load streaming data into AWS destinations.
 
 ### Key Features
 
-- Real-time stream processing
-- SQL and programming APIs (Java, Scala, Python)
-- Stateful computations
-- Exactly-once processing
-- Automatic scaling
-- Built-in fault tolerance
+- **Zero administration**: No servers to manage
+- **Automatic scaling**: Handles any throughput
+- **Built-in transformations**: Lambda integration
+- **Format conversion**: JSON to Parquet/ORC
+- **Near real-time delivery**: 60 seconds minimum
+- **Pay per use**: No upfront costs
 
 ---
 
-## Where Flink Fits in an Application
+## Where Firehose Fits in an Application
 
 ### Typical Architecture
 
 ```
-Data Sources
-    ↓
-Kinesis / Kafka / MSK
-    ↓
-Managed Flink Application
-    ↓
-Kinesis / S3 / Redshift / OpenSearch
-    ↓
-Dashboards / Alerts
+Data Sources (Apps, Logs, IoT)
+        ↓
+    Firehose
+        ↓
+    [Optional: Lambda Transform]
+        ↓
+    [Optional: Format Conversion]
+        ↓
+Destinations (S3, Redshift, OpenSearch, etc.)
+        ↓
+Analytics / Dashboards
 ```
 
-**Use Flink when**:
+**Use Firehose when**:
 
-- Complex stream transformations needed
-- Real-time aggregations required
-- Stateful processing is essential
-- SQL queries on streaming data
-- Low-latency analytics (sub-second)
+- Loading data into S3, Redshift, or OpenSearch
+- No need for real-time processing (near real-time is OK)
+- Simple transformations sufficient
+- You want zero infrastructure management
 
 ---
 
-## Flink vs Kinesis Data Analytics vs Lambda
+## Firehose vs Kinesis Data Streams vs Lambda
 
-| Feature              | Flink                       | Kinesis Data Analytics | Lambda                 |
-| -------------------- | --------------------------- | ---------------------- | ---------------------- |
-| **Processing Model** | Stream processing framework | SQL on streams         | Event-driven functions |
-| **Language**         | Java, Scala, Python, SQL    | SQL only               | Multiple languages     |
-| **State Management** | Advanced stateful           | Limited                | Stateless (default)    |
-| **Complexity**       | Complex transformations     | Simple queries         | Simple logic           |
-| **Windowing**        | Advanced                    | Basic                  | Manual                 |
-| **Exactly-Once**     | Yes                         | Yes                    | At-least-once          |
-| **Scaling**          | Automatic parallelism       | Automatic              | Concurrent executions  |
-| **Use Case**         | Complex analytics           | Simple SQL queries     | Event processing       |
+| Feature            | Firehose                  | Kinesis Streams      | Lambda             |
+| ------------------ | ------------------------- | -------------------- | ------------------ |
+| **Purpose**        | Load data to destinations | Stream processing    | Event processing   |
+| **Management**     | Fully managed             | Manage shards        | Serverless         |
+| **Latency**        | Near real-time (60s+)     | Real-time (200ms)    | Real-time          |
+| **Scaling**        | Automatic                 | Manual/auto sharding | Automatic          |
+| **Storage**        | No storage                | 1-365 days           | No storage         |
+| **Replay**         | No                        | Yes                  | No                 |
+| **Destinations**   | Built-in (S3, Redshift)   | Any                  | Any                |
+| **Transformation** | Lambda integration        | Requires consumer    | Native             |
+| **Cost Model**     | Pay per GB                | Pay per shard-hour   | Pay per invocation |
+| **Use Case**       | ETL to data lake          | Stream processing    | Event-driven logic |
 
 ### When to Use What
 
-**Flink**:
+**Firehose**:
 
-- Complex event processing
-- Stateful computations
-- Advanced windowing
-- Pattern detection
-- Machine learning on streams
+- Loading data to S3/Redshift/OpenSearch
+- Simple ETL pipelines
+- Log aggregation and archival
+- Near real-time analytics
 
-**Kinesis Data Analytics (SQL)**:
+**Kinesis Streams**:
 
-- Simple SQL queries
-- Quick prototyping
-- Basic aggregations
-- Low code requirements
+- Custom stream processing
+- Multiple consumers
+- Data replay needed
+- Real-time requirements
 
 **Lambda**:
 
-- Simple transformations
-- Event-driven logic
-- Serverless architecture
+- Event-driven processing
+- Complex transformations
 - Integration with AWS services
+- Custom destinations
 
 ---
 
-## Core Concepts: Applications and State
+## Core Concepts: Delivery Streams
 
-### Flink Application
+### Delivery Stream
 
-A **Flink application** is a program that processes streaming data.
+A **delivery stream** is the underlying entity of Firehose that you use to deliver data.
 
 **Components**:
 
-- **Source**: Where data comes from (Kinesis, Kafka)
-- **Processing**: Transformations, aggregations, joins
-- **Sink**: Where data goes to (S3, Kinesis, Redshift)
+- **Source**: Where data comes from
+- **Transformation**: Optional Lambda processing
+- **Conversion**: Optional format change (JSON → Parquet)
+- **Destination**: Where data is delivered
+- **Backup**: Optional S3 backup for all data
 
-### State
+### Delivery Stream Types
 
-**State** is data that Flink maintains across events for stateful processing.
+**Direct PUT**:
 
-**Types of State**:
+```
+Application → Firehose → Destination
+```
 
-**Keyed State**:
+**Kinesis Data Stream as Source**:
 
-- Associated with a specific key
-- Example: User session data, account balance
+```
+Application → Kinesis Stream → Firehose → Destination
+```
 
-**Operator State**:
+**MSK as Source**:
 
-- Associated with a processing operator
-- Example: Buffered records, counters
-
-### Why State Matters
-
-- Calculate running totals
-- Detect patterns across events
-- Maintain session information
-- Track user behavior
+```
+Kafka Producers → MSK → Firehose → Destination
+```
 
 ---
 
-## Data Sources and Destinations
+## Data Sources
 
-### Supported Sources
+### 1. Direct PUT (PutRecord/PutRecordBatch)
 
-**Amazon Kinesis Data Streams**:
+**Most common method**:
 
-- Real-time data ingestion
-- Most common source
+```java
+PutRecordRequest request = PutRecordRequest.builder()
+    .deliveryStreamName("my-delivery-stream")
+    .record(Record.builder()
+        .data(SdkBytes.fromUtf8String(jsonData))
+        .build())
+    .build();
 
-**Amazon MSK (Managed Kafka)**:
+firehose.putRecord(request);
+```
 
-- High-throughput streaming
+**Characteristics**:
+
+- Direct API calls from your application
+- Synchronous writes
+- Automatic batching available
+
+### 2. Kinesis Data Streams
+
+**For existing Kinesis streams**:
+
+```
+Kinesis Stream → Firehose → S3
+```
+
+**Benefits**:
+
+- Leverage existing Kinesis infrastructure
+- Multiple consumers (Kinesis + Firehose)
+- Data replay capability
+
+### 3. Amazon MSK
+
+**For Kafka workloads**:
+
+```
+MSK Cluster → Firehose → S3/Redshift
+```
+
+**Benefits**:
+
 - Kafka compatibility
+- No code changes needed
+- Automatic offset management
 
-**Custom Sources**:
+### 4. AWS Services
 
-- REST APIs
-- Databases
-- File systems
+**Integrated sources**:
 
-### Supported Destinations (Sinks)
+- CloudWatch Logs
+- IoT Core
+- EventBridge
+- API Gateway
 
-**Amazon Kinesis Data Streams**:
+---
 
-- Send processed data downstream
+## Data Transformation
 
-**Amazon S3**:
+### Lambda Transformation
 
-- Store results in data lake
-- Parquet, JSON, CSV formats
+Firehose can invoke Lambda to transform data before delivery.
 
-**Amazon Redshift**:
+### Transformation Flow
 
-- Load analytics results
+```
+Source Data → Firehose → Lambda → Transformed Data → Destination
+```
+
+### Example: Enrich and Filter Logs
+
+```python
+import json
+import base64
+
+def lambda_handler(event, context):
+    output = []
+
+    for record in event['records']:
+        # Decode input
+        payload = base64.b64decode(record['data']).decode('utf-8')
+        data = json.loads(payload)
+
+        # Transform: Add timestamp, filter errors
+        if data.get('level') == 'ERROR':
+            data['processed_at'] = context.invoked_function_arn
+            data['enriched'] = True
+
+            # Encode output
+            output_data = json.dumps(data) + '\n'
+            output_record = {
+                'recordId': record['recordId'],
+                'result': 'Ok',
+                'data': base64.b64encode(output_data.encode('utf-8')).decode('utf-8')
+            }
+        else:
+            # Drop non-error logs
+            output_record = {
+                'recordId': record['recordId'],
+                'result': 'Dropped'
+            }
+
+        output.append(output_record)
+
+    return {'records': output}
+```
+
+### Transformation Results
+
+- **Ok**: Record transformed successfully
+- **Dropped**: Record filtered out
+- **ProcessingFailed**: Retry or backup to S3
+
+### Use Cases
+
+- Data enrichment (add metadata)
+- Filtering (remove unwanted records)
+- Format conversion (CSV to JSON)
+- Data masking (PII redaction)
+- Schema validation
+
+---
+
+## Buffering and Batching
+
+### Buffer Conditions
+
+Firehose buffers data before delivering based on **size** OR **time** (whichever comes first).
+
+### Default Settings
+
+**S3**:
+
+- Buffer size: **5 MB**
+- Buffer interval: **300 seconds** (5 minutes)
+
+**Redshift**:
+
+- Buffer size: **5 MB**
+- Buffer interval: **300 seconds**
+
+**OpenSearch**:
+
+- Buffer size: **5 MB**
+- Buffer interval: **300 seconds**
+
+### Configuration Example
+
+```
+Buffer Size: 1 MB
+Buffer Interval: 60 seconds
+
+Scenario 1: 1 MB reached in 30 seconds → Deliver
+Scenario 2: 50 seconds passed, only 0.5 MB → Deliver at 60s
+```
+
+### Important Notes
+
+- **Minimum interval**: 60 seconds (for S3, Redshift)
+- **Lower values**: More frequent, smaller files
+- **Higher values**: Fewer, larger files
+- **Cost tradeoff**: More frequent = more API calls = higher cost
+
+---
+
+## Supported Destinations
+
+### 1. Amazon S3
+
+**Most popular destination**:
+
+**Features**:
+
+- Automatic partitioning
+- Compression (GZIP, Snappy, ZIP)
+- Encryption (SSE-S3, SSE-KMS)
+- Prefix customization
+
+**Output Structure**:
+
+```
+s3://my-bucket/year/month/day/hour/
+    data-timestamp-uuid.json
+```
+
+**Use Cases**:
+
+- Data lake
+- Long-term storage
+- Analytics with Athena
+- Archive and compliance
+
+### 2. Amazon Redshift
+
+**Data warehouse loading**:
+
+**How it works**:
+
+```
+Firehose → S3 (staging) → Redshift COPY command
+```
+
+**Features**:
+
+- Automatic COPY commands
+- Column-based compression
+- Retry logic
+- Error logging
+
+**Use Cases**:
+
 - Business intelligence
+- SQL analytics
+- Data warehousing
 
-**Amazon OpenSearch**:
+### 3. Amazon OpenSearch
 
-- Search and visualization
+**Search and analytics**:
+
+**Features**:
+
+- Index rotation (daily, weekly, monthly)
+- Automatic retry
+- Backup to S3
+- VPC support
+
+**Use Cases**:
+
+- Log analytics
+- Full-text search
 - Real-time dashboards
+- Security monitoring
 
-**Custom Sinks**:
+### 4. HTTP Endpoints
 
-- DynamoDB (via Lambda)
-- RDS (via Lambda)
-- External APIs
+**Custom destinations**:
 
----
+**Supported**:
 
-## Flink SQL for Stream Processing
+- Datadog
+- Splunk
+- New Relic
+- Custom endpoints
 
-### Basic Query Structure
+**Features**:
 
-```sql
-CREATE TABLE source_table (
-    user_id VARCHAR,
-    event_type VARCHAR,
-    amount DECIMAL,
-    event_time TIMESTAMP(3),
-    WATERMARK FOR event_time AS event_time - INTERVAL '5' SECOND
-)
-WITH (
-    'connector' = 'kinesis',
-    'stream' = 'input-stream',
-    'aws.region' = 'us-east-1'
-);
+- Authentication headers
+- Retry configuration
+- Backup to S3
 
-CREATE TABLE destination_table (
-    user_id VARCHAR,
-    total_amount DECIMAL,
-    event_count BIGINT
-)
-WITH (
-    'connector' = 'kinesis',
-    'stream' = 'output-stream',
-    'aws.region' = 'us-east-1'
-);
+### 5. Third-Party Services
 
-INSERT INTO destination_table
-SELECT
-    user_id,
-    SUM(amount) as total_amount,
-    COUNT(*) as event_count
-FROM source_table
-WHERE event_type = 'purchase'
-GROUP BY user_id;
-```
+**Direct integrations**:
 
-### Key SQL Features
-
-**Filtering**:
-
-```sql
-WHERE event_type = 'purchase' AND amount > 100
-```
-
-**Aggregations**:
-
-```sql
-SUM(amount), COUNT(*), AVG(price), MAX(quantity)
-```
-
-**Joins** (Stream-to-Stream):
-
-```sql
-SELECT a.user_id, a.order_id, b.product_name
-FROM orders a
-JOIN products b
-ON a.product_id = b.product_id
-WHERE a.event_time BETWEEN b.event_time - INTERVAL '1' HOUR
-                       AND b.event_time + INTERVAL '1' HOUR
-```
+- Datadog
+- MongoDB
+- Splunk
+- Coralogix
 
 ---
 
-## Windowing and Aggregations
+## Data Format Conversion
 
-### What is Windowing?
+### JSON to Parquet/ORC
 
-**Windowing** groups streaming data into finite chunks for aggregation.
+Firehose can automatically convert JSON to columnar formats.
 
-### Window Types
+### Why Convert?
 
-### 1. Tumbling Window
+**Benefits of Parquet/ORC**:
 
-**Fixed-size, non-overlapping windows**
-
-```sql
-SELECT
-    user_id,
-    TUMBLE_START(event_time, INTERVAL '5' MINUTE) as window_start,
-    SUM(amount) as total
-FROM transactions
-GROUP BY
-    user_id,
-    TUMBLE(event_time, INTERVAL '5' MINUTE)
-```
-
-**Visualization**:
-
-```
-[0-5min] [5-10min] [10-15min]
-```
-
-**Use cases**: Hourly metrics, daily summaries
-
-### 2. Hopping Window
-
-**Fixed-size, overlapping windows**
-
-```sql
-SELECT
-    user_id,
-    HOP_START(event_time, INTERVAL '1' MINUTE, INTERVAL '5' MINUTE) as window_start,
-    COUNT(*) as event_count
-FROM events
-GROUP BY
-    user_id,
-    HOP(event_time, INTERVAL '1' MINUTE, INTERVAL '5' MINUTE)
-```
-
-**Visualization**:
-
-```
-[0-5min]
-  [1-6min]
-    [2-7min]
-```
-
-**Use cases**: Moving averages, sliding metrics
-
-### 3. Session Window
-
-**Dynamic windows based on inactivity gaps**
-
-```sql
-SELECT
-    user_id,
-    SESSION_START(event_time, INTERVAL '15' MINUTE) as session_start,
-    COUNT(*) as clicks_in_session
-FROM clicks
-GROUP BY
-    user_id,
-    SESSION(event_time, INTERVAL '15' MINUTE)
-```
-
-**Visualization**:
-
-```
-Activity → Gap (15min) → New Session
-[Session 1]  idle  [Session 2]
-```
-
-**Use cases**: User sessions, engagement tracking
-
----
-
-## Stateful Processing
-
-### Why Stateful Processing?
-
-- Maintain context across events
-- Detect patterns
-- Calculate running totals
-- Track user journeys
-
-### Example: Running Sum
-
-```sql
--- Calculate running total per user
-SELECT
-    user_id,
-    event_time,
-    amount,
-    SUM(amount) OVER (
-        PARTITION BY user_id
-        ORDER BY event_time
-        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-    ) as running_total
-FROM transactions
-```
-
-### Example: Pattern Detection
-
-Detect 3 failed login attempts within 5 minutes:
-
-```sql
-SELECT *
-FROM login_events
-MATCH_RECOGNIZE (
-    PARTITION BY user_id
-    ORDER BY event_time
-    MEASURES
-        FIRST(A.event_time) as first_attempt,
-        LAST(C.event_time) as last_attempt
-    PATTERN (A B C)
-    DEFINE
-        A AS A.status = 'failed',
-        B AS B.status = 'failed',
-        C AS C.status = 'failed'
-)
-WHERE last_attempt - first_attempt < INTERVAL '5' MINUTE
-```
-
-### State Backend
-
-Flink stores state in:
-
-- **RocksDB** (default): Disk-based, large state
-- **Heap**: Memory-based, fast but limited
-
----
-
-## Scaling and Parallelism
-
-### Parallelism Units (KPUs)
-
-**Kinesis Processing Unit (KPU)**:
-
-- 1 KPU = 1 vCPU + 4 GB memory
-- Minimum: 1 KPU
-- Auto-scaling available
-
-### How Scaling Works
-
-```
-Input Stream (multiple shards)
-    ↓
-Flink Application (multiple parallel tasks)
-    ↓
-Output Stream (multiple shards)
-```
-
-### Parallelism Example
-
-```
-3 Kinesis shards → 6 KPUs (2 per shard)
-    ↓
-Process 3x more data
-```
-
-### Auto-Scaling
-
-- Monitors CPU and backpressure
-- Adds/removes KPUs automatically
-- Scales between min and max settings
-
----
-
-## Checkpoints and Fault Tolerance
-
-### Checkpoints
-
-**Checkpoints** are periodic snapshots of application state.
-
-**Purpose**:
-
-- Enable fault recovery
-- Guarantee exactly-once processing
-- Allow application updates
-
-### How Checkpoints Work
-
-```
-1. Flink triggers checkpoint
-2. State is saved to S3
-3. Processing continues
-4. If failure occurs → restore from last checkpoint
-```
+- **90% smaller** than JSON
+- **10x faster** queries
+- **Lower costs** for storage and queries
+- Optimized for analytics
 
 ### Configuration
 
-```sql
-SET 'execution.checkpointing.interval' = '60s';
-SET 'execution.checkpointing.mode' = 'EXACTLY_ONCE';
-```
+**Requirements**:
 
-### Exactly-Once Processing
+- Input: JSON (one record per line)
+- Schema: AWS Glue Data Catalog table
+- Output: Parquet or ORC
 
-Flink guarantees **exactly-once** semantics:
-
-- Each record processed exactly once
-- No duplicates
-- No data loss
-
-### Recovery Flow
+### Example Flow
 
 ```
-Application Running → Checkpoint Saved
-    ↓
-Failure Occurs
-    ↓
-Restore from Last Checkpoint
-    ↓
-Resume Processing
+JSON Logs → Firehose → Parquet → S3 → Athena Queries
+```
+
+**Input** (JSON):
+
+```json
+{"user_id":"123","event":"click","timestamp":"2025-01-15T10:30:00Z"}
+{"user_id":"456","event":"view","timestamp":"2025-01-15T10:31:00Z"}
+```
+
+**Output** (Parquet):
+
+```
+Columnar binary format (90% smaller)
+```
+
+### Glue Integration
+
+```
+1. Create Glue Crawler
+2. Crawler scans sample data
+3. Glue creates table schema
+4. Firehose uses schema for conversion
 ```
 
 ---
 
-## Real Application Example: Fraud Detection
+## Error Handling and Monitoring
+
+### Failed Records
+
+**Delivery Failures**:
+
+- Lambda transformation errors
+- Destination unavailable
+- Format conversion errors
+
+**Handling**:
+
+```
+Failed Record → S3 Backup Bucket
+    ↓
+CloudWatch Alarm
+    ↓
+Manual Review/Retry
+```
+
+### Backup Configuration
+
+**Options**:
+
+- **All data**: Backup everything to S3
+- **Failed only**: Backup only failed records
+
+**Backup Structure**:
+
+```
+s3://backup-bucket/
+    processing-failed/
+    elasticsearch-failed/
+```
+
+### Monitoring Metrics
+
+**Key CloudWatch Metrics**:
+
+- `DeliveryToS3.Success`
+- `DeliveryToS3.DataFreshness` (latency)
+- `IncomingBytes`
+- `IncomingRecords`
+- `DataReadFromKinesisStream.Bytes`
+- `ExecuteProcessing.Duration` (Lambda)
+
+### CloudWatch Alarms
+
+```
+Alarm: DeliveryToS3.DataFreshness > 15 minutes
+Action: SNS notification to ops team
+```
+
+---
+
+## Real Application Example: Log Analytics Pipeline
 
 ### Scenario
 
-E-commerce platform detecting fraudulent transactions in real-time.
+SaaS application with microservices sending logs to centralized analytics.
 
 ### Architecture
 
 ```
-Payment Events (Kinesis)
+10 Microservices (EC2/ECS)
     ↓
-Managed Flink Application
+CloudWatch Logs
     ↓
-├── Real-time Alerts (Kinesis → Lambda → SNS)
-└── Analytics Storage (S3)
+Firehose Delivery Stream
+    ↓
+[Lambda Transform: Filter & Enrich]
+    ↓
+[Convert JSON → Parquet]
+    ↓
+S3 Data Lake
+    ↓
+├── Athena (SQL Queries)
+├── QuickSight (Dashboards)
+└── Redshift (Data Warehouse)
 ```
 
-### Fraud Detection Rules
+### Implementation Steps
 
-**Rule 1**: Multiple high-value transactions in short time
+**1. Configure Firehose**:
 
-```sql
--- Detect 3+ transactions over $500 within 10 minutes
-SELECT
-    user_id,
-    TUMBLE_START(event_time, INTERVAL '10' MINUTE) as window_start,
-    COUNT(*) as transaction_count,
-    SUM(amount) as total_amount
-FROM transactions
-WHERE amount > 500
-GROUP BY
-    user_id,
-    TUMBLE(event_time, INTERVAL '10' MINUTE)
-HAVING COUNT(*) >= 3
+```
+Source: CloudWatch Logs
+Buffer: 1 MB or 60 seconds
+Transformation: Lambda (enabled)
+Conversion: JSON to Parquet
+Destination: S3
+Backup: Failed records to S3
 ```
 
-**Rule 2**: Transactions from multiple countries
+**2. Lambda Transformation**:
 
-```sql
--- Detect purchases from 2+ countries within 1 hour
-SELECT
-    user_id,
-    HOP_START(event_time, INTERVAL '5' MINUTE, INTERVAL '1' HOUR) as window_start,
-    COUNT(DISTINCT country) as country_count,
-    COLLECT(country) as countries
-FROM transactions
-GROUP BY
-    user_id,
-    HOP(event_time, INTERVAL '5' MINUTE, INTERVAL '1' HOUR)
-HAVING COUNT(DISTINCT country) >= 2
+```python
+def lambda_handler(event, context):
+    output = []
+
+    for record in event['records']:
+        payload = json.loads(base64.b64decode(record['data']))
+
+        # Filter: Only ERROR and WARN levels
+        if payload.get('level') in ['ERROR', 'WARN']:
+
+            # Enrich: Add service name, environment
+            payload['service'] = extract_service(payload)
+            payload['environment'] = 'production'
+            payload['processed_timestamp'] = int(time.time())
+
+            output.append({
+                'recordId': record['recordId'],
+                'result': 'Ok',
+                'data': base64.b64encode(
+                    json.dumps(payload).encode('utf-8')
+                )
+            })
+        else:
+            # Drop INFO and DEBUG logs
+            output.append({
+                'recordId': record['recordId'],
+                'result': 'Dropped'
+            })
+
+    return {'records': output}
 ```
 
-**Rule 3**: Failed → Successful pattern
+**3. Glue Schema**:
 
 ```sql
--- Detect failed attempt followed by successful transaction
-SELECT *
-FROM transactions
-MATCH_RECOGNIZE (
-    PARTITION BY user_id, card_number
-    ORDER BY event_time
-    MEASURES
-        A.event_time as failed_time,
-        B.event_time as success_time,
-        B.amount as amount
-    PATTERN (A+ B)
-    WITHIN INTERVAL '30' MINUTE
-    DEFINE
-        A AS A.status = 'declined',
-        B AS B.status = 'approved' AND B.amount > 1000
+CREATE EXTERNAL TABLE logs (
+    timestamp string,
+    level string,
+    message string,
+    service string,
+    environment string,
+    processed_timestamp bigint
 )
+STORED AS PARQUET
+LOCATION 's3://my-logs-bucket/processed/'
 ```
 
-### Output Flow
+**4. S3 Structure**:
 
-**Suspicious Transaction Detected**:
+```
+s3://my-logs-bucket/
+    processed/
+        year=2025/
+            month=01/
+                day=15/
+                    hour=10/
+                        data.parquet
+    backup/
+        processing-failed/
+```
 
-1. Flink identifies pattern
-2. Sends alert to output Kinesis stream
-3. Lambda consumes alert
-4. SNS notifies fraud team
-5. Transaction flagged in DynamoDB
+**5. Query with Athena**:
 
-**Benefits**:
+```sql
+SELECT
+    service,
+    level,
+    COUNT(*) as error_count
+FROM logs
+WHERE year = '2025'
+  AND month = '01'
+  AND level = 'ERROR'
+GROUP BY service, level
+ORDER BY error_count DESC
+```
 
-- **Real-time**: Detect fraud in milliseconds
-- **Stateful**: Track patterns across events
-- **Scalable**: Handle millions of transactions
-- **Accurate**: Complex rules with low false positives
+### Benefits
+
+- **90% cost reduction**: Parquet compression
+- **Near real-time**: 1-minute delivery
+- **Filtered data**: Only errors and warnings
+- **Enriched logs**: Service and environment tags
+- **Queryable**: SQL analytics with Athena
+- **Zero management**: Fully managed pipeline
 
 ---
 
 ## Best Practices
 
-1. **Choose appropriate windowing**: Match business requirements
-2. **Configure checkpointing**: Balance frequency vs performance
-3. **Use event time over processing time**: More accurate results
-4. **Set watermarks correctly**: Handle late data
-5. **Optimize parallelism**: Match source partitions
-6. **Monitor metrics**: Backpressure, checkpoint duration
-7. **Use Flink SQL for simple cases**: Faster development
-8. **Use Java/Scala for complex logic**: More flexibility
-9. **Test with production-like data**: Avoid surprises
-10. **Enable auto-scaling**: Handle variable workloads
-11. **Set appropriate state backend**: RocksDB for large state
-12. **Handle late data**: Use allowed lateness settings
+1. **Choose buffer settings wisely**: Balance latency vs cost
+2. **Enable compression**: GZIP for S3 (saves 70-90%)
+3. **Use Parquet conversion**: For analytics workloads
+4. **Configure S3 backup**: Capture failed records
+5. **Monitor DataFreshness**: Alert on delivery delays
+6. **Keep Lambda transforms simple**: < 3 minutes execution
+7. **Use Kinesis as source**: When replay is needed
+8. **Partition S3 data**: Use custom prefixes
+9. **Set up CloudWatch alarms**: Monitor failures
+10. **Test Lambda transforms**: Handle edge cases
+11. **Use VPC for OpenSearch**: Security best practice
+12. **Enable encryption**: SSE-S3 or SSE-KMS
 
 ---
 
 ## Common Exam & Interview Notes
 
-- Flink provides **exactly-once processing** semantics
-- **Stateful processing** maintains context across events
-- **Windowing** groups unbounded streams into finite chunks
-- **Tumbling windows**: Non-overlapping, fixed-size
-- **Hopping windows**: Overlapping, fixed-size
-- **Session windows**: Dynamic, based on inactivity gaps
-- **Checkpoints** enable fault tolerance and recovery
-- **KPU** = 1 vCPU + 4 GB memory
-- Supports **Flink SQL** and **programming APIs** (Java, Scala, Python)
-- Integrates with **Kinesis, MSK, S3, Redshift**
-- **Event time** vs **processing time** for windowing
-- **Watermarks** handle out-of-order data
-- Better than Lambda for **complex stream processing**
-- Better than Kinesis Data Analytics for **advanced use cases**
-- Auto-scaling based on **CPU and backpressure**
+- Firehose is **near real-time** (60+ seconds minimum)
+- **Automatic scaling**: No capacity planning needed
+- **No data storage**: Data is delivered, not stored
+- **Buffer conditions**: Size OR time (whichever first)
+- **Lambda transformation**: 3 minutes max execution time
+- **Format conversion**: JSON to Parquet/ORC via Glue schema
+- **Destinations**: S3, Redshift, OpenSearch, HTTP endpoints
+- **Backup to S3**: All data or failed only
+- **No replay capability**: Use Kinesis Streams if needed
+- **Pay per GB**: No upfront costs or provisioning
+- **Maximum record size**: 1 MB before base64 encoding
+- **Batch operations**: PutRecordBatch up to 500 records
+- Firehose **automatically retries** failed deliveries
+- Works with **CloudWatch Logs** for centralized logging
 
 ---
 
 ## Summary
 
-- Managed Flink processes streaming data with SQL or code
-- Stateful processing enables complex event patterns
-- Windowing aggregates unbounded streams
-- Exactly-once processing guarantees data accuracy
-- Checkpoints provide fault tolerance
-- Auto-scaling handles variable workloads
-- Essential for real-time analytics and complex stream processing
+- Firehose delivers streaming data to AWS destinations
+- Fully managed with automatic scaling
+- Built-in Lambda transformation support
+- JSON to Parquet conversion for analytics
+- Near real-time delivery (60+ seconds)
+- Perfect for ETL, log aggregation, and data lake ingestion
+- Zero infrastructure management required
