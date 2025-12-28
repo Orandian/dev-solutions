@@ -344,39 +344,551 @@ function App() {
 }
 ```
 
-**Context with useReducer:**
+**Context with useReducer: Complete Guide**
+
+When your Context state becomes complex with multiple related values and actions, useReducer provides a more scalable pattern than multiple useState calls. It's like Redux but simpler and built into React.
+
+**Why useReducer with Context?**
+
+- Centralizes state logic in one place
+- Makes state updates predictable and testable
+- Easier to track what changes state and how
+- Better for complex state with multiple sub-values
+- Reduces bugs from scattered setState calls
+
+**Basic Shopping Cart Example:**
 
 ```jsx
 import { createContext, useContext, useReducer } from "react";
 
+// 1. Create Context
 const CartContext = createContext();
 
+// 2. Define initial state
+const initialState = {
+  items: [],
+  total: 0,
+  itemCount: 0,
+};
+
+// 3. Create reducer function
 function cartReducer(state, action) {
   switch (action.type) {
-    case "ADD_ITEM":
-      return { ...state, items: [...state.items, action.payload] };
-    case "REMOVE_ITEM":
+    case "ADD_ITEM": {
+      const newItem = action.payload;
+      const existingItem = state.items.find((item) => item.id === newItem.id);
+
+      if (existingItem) {
+        // Item exists, increase quantity
+        return {
+          ...state,
+          items: state.items.map((item) =>
+            item.id === newItem.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          ),
+          total: state.total + newItem.price,
+          itemCount: state.itemCount + 1,
+        };
+      } else {
+        // New item
+        return {
+          ...state,
+          items: [...state.items, { ...newItem, quantity: 1 }],
+          total: state.total + newItem.price,
+          itemCount: state.itemCount + 1,
+        };
+      }
+    }
+
+    case "REMOVE_ITEM": {
+      const itemId = action.payload;
+      const item = state.items.find((i) => i.id === itemId);
+
+      if (!item) return state;
+
+      if (item.quantity > 1) {
+        // Decrease quantity
+        return {
+          ...state,
+          items: state.items.map((i) =>
+            i.id === itemId ? { ...i, quantity: i.quantity - 1 } : i
+          ),
+          total: state.total - item.price,
+          itemCount: state.itemCount - 1,
+        };
+      } else {
+        // Remove item completely
+        return {
+          ...state,
+          items: state.items.filter((i) => i.id !== itemId),
+          total: state.total - item.price,
+          itemCount: state.itemCount - 1,
+        };
+      }
+    }
+
+    case "UPDATE_QUANTITY": {
+      const { id, quantity } = action.payload;
+      const item = state.items.find((i) => i.id === id);
+
+      if (!item || quantity < 0) return state;
+
+      const quantityDiff = quantity - item.quantity;
+
+      if (quantity === 0) {
+        return {
+          ...state,
+          items: state.items.filter((i) => i.id !== id),
+          total: state.total - item.price * item.quantity,
+          itemCount: state.itemCount - item.quantity,
+        };
+      }
+
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== action.payload),
+        items: state.items.map((i) => (i.id === id ? { ...i, quantity } : i)),
+        total: state.total + item.price * quantityDiff,
+        itemCount: state.itemCount + quantityDiff,
       };
-    case "CLEAR":
-      return { ...state, items: [] };
+    }
+
+    case "CLEAR_CART":
+      return initialState;
+
+    case "APPLY_DISCOUNT": {
+      const discountPercent = action.payload;
+      return {
+        ...state,
+        total: state.total * (1 - discountPercent / 100),
+      };
+    }
+
+    default:
+      throw new Error(`Unhandled action type: ${action.type}`);
+  }
+}
+
+// 4. Create Provider component
+function CartProvider({ children }) {
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+
+  // Optional: Create helper functions
+  const addItem = (item) => {
+    dispatch({ type: "ADD_ITEM", payload: item });
+  };
+
+  const removeItem = (id) => {
+    dispatch({ type: "REMOVE_ITEM", payload: id });
+  };
+
+  const updateQuantity = (id, quantity) => {
+    dispatch({ type: "UPDATE_QUANTITY", payload: { id, quantity } });
+  };
+
+  const clearCart = () => {
+    dispatch({ type: "CLEAR_CART" });
+  };
+
+  const applyDiscount = (percent) => {
+    dispatch({ type: "APPLY_DISCOUNT", payload: percent });
+  };
+
+  const value = {
+    state,
+    dispatch,
+    // Helper functions (optional but cleaner to use)
+    addItem,
+    removeItem,
+    updateQuantity,
+    clearCart,
+    applyDiscount,
+  };
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+}
+
+// 5. Create custom hook
+function useCart() {
+  const context = useContext(CartContext);
+  if (context === undefined) {
+    throw new Error("useCart must be used within CartProvider");
+  }
+  return context;
+}
+
+// 6. Export everything
+export { CartProvider, useCart };
+```
+
+**Using the Cart Context:**
+
+```jsx
+// App.jsx
+function App() {
+  return (
+    <CartProvider>
+      <ShoppingApp />
+    </CartProvider>
+  );
+}
+
+// ProductList.jsx
+function ProductList() {
+  const { addItem } = useCart();
+
+  const products = [
+    { id: 1, name: "Laptop", price: 999 },
+    { id: 2, name: "Mouse", price: 29 },
+    { id: 3, name: "Keyboard", price: 79 },
+  ];
+
+  return (
+    <div>
+      <h2>Products</h2>
+      {products.map((product) => (
+        <div key={product.id}>
+          <h3>{product.name}</h3>
+          <p>${product.price}</p>
+          <button onClick={() => addItem(product)}>Add to Cart</button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Cart.jsx
+function Cart() {
+  const { state, removeItem, updateQuantity, clearCart, applyDiscount } =
+    useCart();
+
+  return (
+    <div>
+      <h2>Shopping Cart</h2>
+      <p>Items: {state.itemCount}</p>
+      <p>Total: ${state.total.toFixed(2)}</p>
+
+      {state.items.map((item) => (
+        <div key={item.id}>
+          <h3>{item.name}</h3>
+          <p>Price: ${item.price}</p>
+          <p>Quantity: {item.quantity}</p>
+          <input
+            type="number"
+            value={item.quantity}
+            onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
+            min="0"
+          />
+          <button onClick={() => removeItem(item.id)}>Remove One</button>
+        </div>
+      ))}
+
+      <button onClick={() => applyDiscount(10)}>Apply 10% Discount</button>
+      <button onClick={clearCart}>Clear Cart</button>
+    </div>
+  );
+}
+```
+
+**Advanced: Authentication System with useReducer**
+
+A real-world authentication flow with loading states, errors, and user data:
+
+```jsx
+import { createContext, useContext, useReducer, useEffect } from "react";
+
+const AuthContext = createContext();
+
+const initialState = {
+  user: null,
+  token: null,
+  isAuthenticated: false,
+  isLoading: true,
+  error: null,
+};
+
+function authReducer(state, action) {
+  switch (action.type) {
+    case "AUTH_START":
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+      };
+
+    case "LOGIN_SUCCESS":
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
+        isAuthenticated: true,
+        isLoading: false,
+        error: null,
+      };
+
+    case "LOGIN_FAILURE":
+      return {
+        ...state,
+        user: null,
+        token: null,
+        isAuthenticated: false,
+        isLoading: false,
+        error: action.payload,
+      };
+
+    case "LOGOUT":
+      return {
+        ...initialState,
+        isLoading: false,
+      };
+
+    case "UPDATE_USER":
+      return {
+        ...state,
+        user: { ...state.user, ...action.payload },
+      };
+
+    case "RESTORE_SESSION":
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
+        isAuthenticated: true,
+        isLoading: false,
+      };
+
+    case "CLEAR_ERROR":
+      return {
+        ...state,
+        error: null,
+      };
+
     default:
       return state;
   }
 }
 
-function CartProvider({ children }) {
-  const [state, dispatch] = useReducer(cartReducer, { items: [] });
+function AuthProvider({ children }) {
+  const [state, dispatch] = useReducer(authReducer, initialState);
+
+  // Restore session on mount
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+
+    if (token && user) {
+      dispatch({
+        type: "RESTORE_SESSION",
+        payload: { token, user: JSON.parse(user) },
+      });
+    } else {
+      dispatch({ type: "LOGOUT" });
+    }
+  }, []);
+
+  // Login function
+  const login = async (email, password) => {
+    dispatch({ type: "AUTH_START" });
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Invalid credentials");
+      }
+
+      const data = await response.json();
+
+      // Save to localStorage
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: { user: data.user, token: data.token },
+      });
+
+      return { success: true };
+    } catch (error) {
+      dispatch({
+        type: "LOGIN_FAILURE",
+        payload: error.message,
+      });
+      return { success: false, error: error.message };
+    }
+  };
+
+  // Register function
+  const register = async (userData) => {
+    dispatch({ type: "AUTH_START" });
+
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Registration failed");
+      }
+
+      const data = await response.json();
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: { user: data.user, token: data.token },
+      });
+
+      return { success: true };
+    } catch (error) {
+      dispatch({
+        type: "LOGIN_FAILURE",
+        payload: error.message,
+      });
+      return { success: false, error: error.message };
+    }
+  };
+
+  // Logout function
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    dispatch({ type: "LOGOUT" });
+  };
+
+  // Update user profile
+  const updateUser = (userData) => {
+    const updatedUser = { ...state.user, ...userData };
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+    dispatch({ type: "UPDATE_USER", payload: userData });
+  };
+
+  const clearError = () => {
+    dispatch({ type: "CLEAR_ERROR" });
+  };
+
+  const value = {
+    ...state,
+    login,
+    register,
+    logout,
+    updateUser,
+    clearError,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+function useAuth() {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within AuthProvider");
+  }
+  return context;
+}
+
+export { AuthProvider, useAuth };
+```
+
+**Using the Auth Context:**
+
+```jsx
+// LoginForm.jsx
+function LoginForm() {
+  const { login, isLoading, error, clearError } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    return () => clearError(); // Clear error on unmount
+  }, [clearError]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await login(email, password);
+
+    if (result.success) {
+      // Redirect or show success message
+      console.log("Login successful!");
+    }
+  };
 
   return (
-    <CartContext.Provider value={{ state, dispatch }}>
-      {children}
-    </CartContext.Provider>
+    <form onSubmit={handleSubmit}>
+      {error && <div className="error">{error}</div>}
+
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        disabled={isLoading}
+      />
+
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        disabled={isLoading}
+      />
+
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? "Logging in..." : "Login"}
+      </button>
+    </form>
+  );
+}
+
+// ProtectedRoute.jsx
+function ProtectedRoute({ children }) {
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  return children;
+}
+
+// UserProfile.jsx
+function UserProfile() {
+  const { user, updateUser, logout } = useAuth();
+  const [name, setName] = useState(user?.name || "");
+
+  const handleUpdate = () => {
+    updateUser({ name });
+  };
+
+  return (
+    <div>
+      <h2>Welcome, {user?.name}</h2>
+      <input value={name} onChange={(e) => setName(e.target.value)} />
+      <button onClick={handleUpdate}>Update Name</button>
+      <button onClick={logout}>Logout</button>
+    </div>
   );
 }
 ```
+
+**Key Benefits of useReducer with Context:**
+
+1. **Centralized Logic**: All state transitions in one place
+2. **Predictable**: Easy to understand what changes state
+3. **Testable**: Reducers are pure functions, easy to test
+4. **Scalable**: Add new actions without cluttering components
+5. **Debug-friendly**: Clear action types help track state changes
+6. **Type-safe**: Works great with TypeScript for action types
 
 ---
 
@@ -429,19 +941,31 @@ function UserProfile() {
 }
 ```
 
-**Advanced patterns:**
+**Advanced Zustand Patterns: Complete Guide**
+
+Zustand shines when you need advanced features while keeping your code simple. Let's explore powerful patterns for real-world applications.
+
+---
+
+### 1. Async Actions with Loading States
+
+Handle API calls with proper loading and error states:
 
 ```jsx
-// Async actions
-const useStore = create((set, get) => ({
+import { create } from "zustand";
+
+const usePostStore = create((set, get) => ({
   posts: [],
   loading: false,
   error: null,
+  selectedPost: null,
 
+  // Fetch all posts
   fetchPosts: async () => {
     set({ loading: true, error: null });
     try {
       const res = await fetch("https://api.example.com/posts");
+      if (!res.ok) throw new Error("Failed to fetch posts");
       const posts = await res.json();
       set({ posts, loading: false });
     } catch (error) {
@@ -449,49 +973,279 @@ const useStore = create((set, get) => ({
     }
   },
 
-  addPost: (post) =>
-    set((state) => ({
-      posts: [...state.posts, post],
-    })),
+  // Fetch single post
+  fetchPost: async (id) => {
+    set({ loading: true, error: null });
+    try {
+      const res = await fetch(`https://api.example.com/posts/${id}`);
+      if (!res.ok) throw new Error("Post not found");
+      const post = await res.json();
+      set({ selectedPost: post, loading: false });
+    } catch (error) {
+      set({ error: error.message, loading: false });
+    }
+  },
 
-  // Access current state with get()
-  getCurrentCount: () => get().posts.length,
+  // Create post with optimistic update
+  createPost: async (newPost) => {
+    const tempId = `temp-${Date.now()}`;
+    const optimisticPost = { ...newPost, id: tempId };
+
+    // Optimistically add to UI
+    set((state) => ({
+      posts: [...state.posts, optimisticPost],
+    }));
+
+    try {
+      const res = await fetch("https://api.example.com/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newPost),
+      });
+
+      if (!res.ok) throw new Error("Failed to create post");
+      const createdPost = await res.json();
+
+      // Replace temp post with real one
+      set((state) => ({
+        posts: state.posts.map((p) => (p.id === tempId ? createdPost : p)),
+      }));
+    } catch (error) {
+      // Rollback on error
+      set((state) => ({
+        posts: state.posts.filter((p) => p.id !== tempId),
+        error: error.message,
+      }));
+    }
+  },
+
+  // Delete with optimistic update
+  deletePost: async (id) => {
+    const previousPosts = get().posts;
+
+    // Optimistically remove
+    set((state) => ({
+      posts: state.posts.filter((p) => p.id !== id),
+    }));
+
+    try {
+      const res = await fetch(`https://api.example.com/posts/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) throw new Error("Failed to delete");
+    } catch (error) {
+      // Rollback on error
+      set({
+        posts: previousPosts,
+        error: error.message,
+      });
+    }
+  },
+
+  // Clear error
+  clearError: () => set({ error: null }),
 }));
 
-// Slices pattern (organize large stores)
-const createUserSlice = (set) => ({
+// Using in component
+function PostsList() {
+  const { posts, loading, error, fetchPosts, deletePost, clearError } =
+    usePostStore();
+
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error)
+    return (
+      <div>
+        Error: {error} <button onClick={clearError}>Dismiss</button>
+      </div>
+    );
+
+  return (
+    <div>
+      {posts.map((post) => (
+        <div key={post.id}>
+          <h3>{post.title}</h3>
+          <button onClick={() => deletePost(post.id)}>Delete</button>
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+---
+
+### 2. Slices Pattern (Modular Store Architecture)
+
+Organize large stores by splitting into feature slices:
+
+```jsx
+import { create } from "zustand";
+
+// User slice
+const createUserSlice = (set, get) => ({
   user: null,
-  setUser: (user) => set({ user }),
-  logout: () => set({ user: null }),
+  isAuthenticated: false,
+
+  setUser: (user) =>
+    set({
+      user,
+      isAuthenticated: !!user,
+    }),
+
+  updateUser: (updates) =>
+    set((state) => ({
+      user: state.user ? { ...state.user, ...updates } : null,
+    })),
+
+  logout: () =>
+    set({
+      user: null,
+      isAuthenticated: false,
+    }),
+
+  // Access other slices with get()
+  getUserCartTotal: () => {
+    const { user } = get();
+    const { items } = get();
+    return user ? items.reduce((sum, item) => sum + item.price, 0) : 0;
+  },
 });
 
-const createCartSlice = (set) => ({
+// Cart slice
+const createCartSlice = (set, get) => ({
   items: [],
+
   addItem: (item) =>
-    set((state) => ({
-      items: [...state.items, item],
-    })),
+    set((state) => {
+      const existing = state.items.find((i) => i.id === item.id);
+      if (existing) {
+        return {
+          items: state.items.map((i) =>
+            i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+          ),
+        };
+      }
+      return { items: [...state.items, { ...item, quantity: 1 }] };
+    }),
+
   removeItem: (id) =>
     set((state) => ({
       items: state.items.filter((i) => i.id !== id),
     })),
+
+  clearCart: () => set({ items: [] }),
+
+  getTotalPrice: () => {
+    const { items } = get();
+    return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  },
+
+  getTotalItems: () => {
+    const { items } = get();
+    return items.reduce((sum, item) => sum + item.quantity, 0);
+  },
 });
 
-const useStore = create((...args) => ({
-  ...createUserSlice(...args),
-  ...createCartSlice(...args),
+// UI slice
+const createUISlice = (set) => ({
+  theme: "light",
+  sidebarOpen: false,
+  notifications: [],
+
+  toggleTheme: () =>
+    set((state) => ({
+      theme: state.theme === "light" ? "dark" : "light",
+    })),
+
+  toggleSidebar: () =>
+    set((state) => ({
+      sidebarOpen: !state.sidebarOpen,
+    })),
+
+  addNotification: (message) =>
+    set((state) => ({
+      notifications: [
+        ...state.notifications,
+        {
+          id: Date.now(),
+          message,
+          timestamp: new Date(),
+        },
+      ],
+    })),
+
+  removeNotification: (id) =>
+    set((state) => ({
+      notifications: state.notifications.filter((n) => n.id !== id),
+    })),
+});
+
+// Combine all slices
+const useStore = create((set, get) => ({
+  ...createUserSlice(set, get),
+  ...createCartSlice(set, get),
+  ...createUISlice(set, get),
 }));
 
-// Persist middleware
-import { persist } from "zustand/middleware";
+// Usage in components
+function CartSummary() {
+  const items = useStore((state) => state.items);
+  const getTotalPrice = useStore((state) => state.getTotalPrice);
+  const getTotalItems = useStore((state) => state.getTotalItems);
 
-const useStore = create(
+  return (
+    <div>
+      <p>Items: {getTotalItems()}</p>
+      <p>Total: ${getTotalPrice().toFixed(2)}</p>
+    </div>
+  );
+}
+
+function UserHeader() {
+  const user = useStore((state) => state.user);
+  const logout = useStore((state) => state.logout);
+  const getUserCartTotal = useStore((state) => state.getUserCartTotal);
+
+  return (
+    <div>
+      {user ? (
+        <>
+          <span>Welcome, {user.name}!</span>
+          <span>Cart Total: ${getUserCartTotal().toFixed(2)}</span>
+          <button onClick={logout}>Logout</button>
+        </>
+      ) : (
+        <span>Please login</span>
+      )}
+    </div>
+  );
+}
+```
+
+---
+
+### 3. Persist Middleware (localStorage/sessionStorage)
+
+Save state to browser storage automatically:
+
+```jsx
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
+
+// Basic persistence
+const useAuthStore = create(
   persist(
     (set) => ({
       user: null,
       token: null,
-      setUser: (user) => set({ user }),
-      setToken: (token) => set({ token }),
+
+      login: (user, token) => set({ user, token }),
+      logout: () => set({ user: null, token: null }),
     }),
     {
       name: "auth-storage", // localStorage key
@@ -499,20 +1253,428 @@ const useStore = create(
   )
 );
 
-// Immer middleware (easier immutable updates)
+// Advanced persistence with custom storage
+const useSettingsStore = create(
+  persist(
+    (set) => ({
+      theme: "light",
+      language: "en",
+      notifications: true,
+
+      setTheme: (theme) => set({ theme }),
+      setLanguage: (language) => set({ language }),
+      toggleNotifications: () =>
+        set((state) => ({
+          notifications: !state.notifications,
+        })),
+    }),
+    {
+      name: "app-settings",
+      storage: createJSONStorage(() => sessionStorage), // Use sessionStorage
+
+      // Partial persistence - only save specific keys
+      partialize: (state) => ({
+        theme: state.theme,
+        language: state.language,
+        // notifications excluded - won't persist
+      }),
+
+      // Migrate old versions
+      version: 1,
+      migrate: (persistedState, version) => {
+        if (version === 0) {
+          // Migrate from v0 to v1
+          return {
+            ...persistedState,
+            language: persistedState.lang || "en",
+          };
+        }
+        return persistedState;
+      },
+
+      // Custom serialization
+      serialize: (state) => JSON.stringify(state),
+      deserialize: (str) => JSON.parse(str),
+
+      // Hydration callback
+      onRehydrateStorage: (state) => {
+        console.log("Hydration starts");
+
+        return (state, error) => {
+          if (error) {
+            console.log("Error during hydration", error);
+          } else {
+            console.log("Hydration finished", state);
+          }
+        };
+      },
+    }
+  )
+);
+
+// Multi-tab sync example
+const useCartStore = create(
+  persist(
+    (set, get) => ({
+      items: [],
+
+      addItem: (item) =>
+        set((state) => ({
+          items: [...state.items, item],
+        })),
+
+      // Will sync across tabs automatically
+      clearCart: () => set({ items: [] }),
+    }),
+    {
+      name: "shopping-cart",
+      // Syncs across tabs/windows
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
+);
+```
+
+---
+
+### 4. Immer Middleware (Mutable Syntax)
+
+Write simpler updates with direct mutations (Immer handles immutability):
+
+```jsx
+import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
 const useStore = create(
   immer((set) => ({
-    user: { name: "Alice", settings: { theme: "dark" } },
+    user: {
+      name: "Alice",
+      profile: {
+        bio: "Developer",
+        settings: {
+          theme: "dark",
+          notifications: {
+            email: true,
+            push: false,
+          },
+        },
+      },
+    },
+
+    // Without Immer - complex immutable update
+    // updateThemeOldWay: (theme) => set((state) => ({
+    //   user: {
+    //     ...state.user,
+    //     profile: {
+    //       ...state.user.profile,
+    //       settings: {
+    //         ...state.user.profile.settings,
+    //         theme
+    //       }
+    //     }
+    //   }
+    // })),
+
+    // With Immer - simple mutation
     updateTheme: (theme) =>
       set((state) => {
-        // Mutate draft directly (immer handles immutability)
-        state.user.settings.theme = theme;
+        state.user.profile.settings.theme = theme;
+      }),
+
+    toggleEmailNotifications: () =>
+      set((state) => {
+        state.user.profile.settings.notifications.email =
+          !state.user.profile.settings.notifications.email;
+      }),
+
+    updateBio: (bio) =>
+      set((state) => {
+        state.user.profile.bio = bio;
+      }),
+
+    // Complex nested array mutations
+    posts: [],
+
+    addPost: (post) =>
+      set((state) => {
+        state.posts.push(post);
+      }),
+
+    updatePost: (id, updates) =>
+      set((state) => {
+        const post = state.posts.find((p) => p.id === id);
+        if (post) {
+          Object.assign(post, updates);
+        }
+      }),
+
+    deletePost: (id) =>
+      set((state) => {
+        const index = state.posts.findIndex((p) => p.id === id);
+        if (index !== -1) {
+          state.posts.splice(index, 1);
+        }
       }),
   }))
 );
+
+// Combining Immer with Persist
+const useTodoStore = create(
+  persist(
+    immer((set) => ({
+      todos: [],
+
+      addTodo: (text) =>
+        set((state) => {
+          state.todos.push({
+            id: Date.now(),
+            text,
+            completed: false,
+          });
+        }),
+
+      toggleTodo: (id) =>
+        set((state) => {
+          const todo = state.todos.find((t) => t.id === id);
+          if (todo) {
+            todo.completed = !todo.completed;
+          }
+        }),
+
+      deleteTodo: (id) =>
+        set((state) => {
+          const index = state.todos.findIndex((t) => t.id === id);
+          if (index !== -1) {
+            state.todos.splice(index, 1);
+          }
+        }),
+    })),
+    {
+      name: "todos-storage",
+    }
+  )
+);
 ```
+
+---
+
+### 5. Subscriptions & External Updates
+
+React to store changes outside components:
+
+```jsx
+import { create } from "zustand";
+import { subscribeWithSelector } from "zustand/middleware";
+
+const useStore = create(
+  subscribeWithSelector((set) => ({
+    count: 0,
+    user: null,
+    theme: "light",
+
+    increment: () => set((state) => ({ count: state.count + 1 })),
+    setUser: (user) => set({ user }),
+    setTheme: (theme) => set({ theme }),
+  }))
+);
+
+// Subscribe to specific state changes
+const unsubCount = useStore.subscribe(
+  (state) => state.count,
+  (count, prevCount) => {
+    console.log("Count changed from", prevCount, "to", count);
+
+    // Trigger side effects
+    if (count > 10) {
+      console.log("Count exceeded 10!");
+    }
+  }
+);
+
+// Subscribe to user login/logout
+const unsubUser = useStore.subscribe(
+  (state) => state.user,
+  (user, prevUser) => {
+    if (user && !prevUser) {
+      console.log("User logged in:", user.name);
+      // Track analytics
+      // analytics.track('user_login', { userId: user.id });
+    } else if (!user && prevUser) {
+      console.log("User logged out");
+      // Clear user data
+    }
+  }
+);
+
+// Subscribe to theme changes and update document
+useStore.subscribe(
+  (state) => state.theme,
+  (theme) => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }
+);
+
+// Cleanup subscriptions
+// unsubCount();
+// unsubUser();
+
+// Subscribe to entire store
+const unsubAll = useStore.subscribe((state) => {
+  console.log("State changed:", state);
+});
+```
+
+---
+
+### 6. DevTools Integration
+
+Debug your Zustand store like Redux:
+
+```jsx
+import { create } from "zustand";
+import { devtools } from "zustand/middleware";
+
+const useStore = create(
+  devtools(
+    (set) => ({
+      count: 0,
+      user: null,
+
+      increment: () =>
+        set(
+          (state) => ({ count: state.count + 1 }),
+          false, // don't replace state
+          "increment" // action name in devtools
+        ),
+
+      setUser: (user) =>
+        set(
+          { user },
+          false,
+          { type: "setUser", user } // detailed action
+        ),
+    }),
+    {
+      name: "MyAppStore", // Store name in devtools
+      enabled: process.env.NODE_ENV === "development",
+    }
+  )
+);
+```
+
+---
+
+### 7. Computed Values (Selectors)
+
+Create derived state efficiently:
+
+```jsx
+import { create } from "zustand";
+
+const useStore = create((set, get) => ({
+  items: [],
+  taxRate: 0.1,
+
+  addItem: (item) =>
+    set((state) => ({
+      items: [...state.items, item],
+    })),
+
+  // Computed values as functions
+  getSubtotal: () => {
+    const { items } = get();
+    return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  },
+
+  getTax: () => {
+    const { getSubtotal, taxRate } = get();
+    return getSubtotal() * taxRate;
+  },
+
+  getTotal: () => {
+    const { getSubtotal, getTax } = get();
+    return getSubtotal() + getTax();
+  },
+}));
+
+// Use in component
+function CartTotal() {
+  const getSubtotal = useStore((state) => state.getSubtotal);
+  const getTax = useStore((state) => state.getTax);
+  const getTotal = useStore((state) => state.getTotal);
+
+  return (
+    <div>
+      <p>Subtotal: ${getSubtotal().toFixed(2)}</p>
+      <p>Tax: ${getTax().toFixed(2)}</p>
+      <p>Total: ${getTotal().toFixed(2)}</p>
+    </div>
+  );
+}
+
+// Alternative: Selector pattern with useMemo in component
+function CartTotalOptimized() {
+  const items = useStore((state) => state.items);
+  const taxRate = useStore((state) => state.taxRate);
+
+  const subtotal = useMemo(
+    () => items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    [items]
+  );
+
+  const tax = subtotal * taxRate;
+  const total = subtotal + tax;
+
+  return (
+    <div>
+      <p>Subtotal: ${subtotal.toFixed(2)}</p>
+      <p>Tax: ${tax.toFixed(2)}</p>
+      <p>Total: ${total.toFixed(2)}</p>
+    </div>
+  );
+}
+```
+
+---
+
+### 8. Combining Multiple Middlewares
+
+Stack middlewares for maximum power:
+
+```jsx
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
+import { devtools } from "zustand/middleware";
+
+const useStore = create(
+  devtools(
+    persist(
+      immer((set) => ({
+        user: null,
+        items: [],
+
+        login: (user) =>
+          set((state) => {
+            state.user = user;
+          }),
+
+        addItem: (item) =>
+          set((state) => {
+            state.items.push(item);
+          }),
+      })),
+      {
+        name: "app-storage",
+        storage: createJSONStorage(() => localStorage),
+      }
+    ),
+    { name: "MyStore" }
+  )
+);
+```
+
+These advanced patterns make Zustand incredibly powerful while maintaining simplicity!
 
 ---
 
