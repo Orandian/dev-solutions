@@ -54,3 +54,6 @@ nav:
       - Kubernetes Comprehensive Guide: kubernetes/kubernetes_comprehensive_guide.md
   - Expo:
       - Expo Solutions Guide: expo/expo_solutions_guide.md
+  - React:
+      - State Management: react/state_management.md
+      
