@@ -50,6 +50,7 @@ nav:
       - SQS vs SNS vs Kinesis: aws/sqs-vs-sns-vs-kinesis.md
       - Amazon Managed Service for Apache Flink: aws/aws-apache-flink.md
       - Amazon Data Firehose: aws/aws-data-firehose.md
+      - AWS AI Practitioner: aws/aws-ai-practitioner.md
   - Kubernetes:
       - Kubernetes Comprehensive Guide: kubernetes/kubernetes_comprehensive_guide.md
   - Expo:
